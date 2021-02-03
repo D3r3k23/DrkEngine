@@ -3,7 +3,7 @@ option(Debug "Debug" OFF)
 cmake_minimum_required(VERSION 3.16)
 project(DrkEngine)
 
-if (Debug == ON)
+if(Debug == ON)
     set(CMAKE_BUILD_TYPE Debug)
 else()
     set(CMAKE_BUILD_TYPE Release)
