@@ -1,8 +1,8 @@
 if(${CMAKE_BUILD_TYPE} == Debug)
     target_compile_definitions(DrkEngine
       PRIVATE
-        DRK_LOG
-        DRK_ASSERT
+        DRK_EN_LOGGING
+        DRK_EN_ASSERTS
     )
 endif()
     
