@@ -57,7 +57,7 @@ namespace Drk
 
 
 #ifdef EN_LOGGING
-    #define LOG(type, msg) { Drk::Logger::log(type, msg); }
+    #define LOG(type, msg) Drk::Logger::log(type, msg)
     Drk::Logger::init();
 #else
     #define LOG(type, msg)
