@@ -79,7 +79,6 @@ namespace Drk
     #else
         #define ASSERT(cond, msg)
     #endif
-    
 }
 
 
