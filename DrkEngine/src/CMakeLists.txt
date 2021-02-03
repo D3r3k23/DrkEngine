@@ -1,4 +1,4 @@
-target_sources(DrkEngine
+library_sources(DrkEngine
   PUBLIC
     Engine.cpp
     
