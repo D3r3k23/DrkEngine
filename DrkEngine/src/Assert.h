@@ -12,10 +12,13 @@
 
 namespace Drk
 {
-    void failed(const char* msg, const char* file, int line)
+    class Assert
     {
-        std::string log_msg((std::string)msg + (std::string)file + std::to_string(line));
-        LOG(LogType::ERROR, log_msg);
+        static void failed(const std::string& msg, const char* file, int line)
+        {
+            std::string log_msg("Assert: " + (std::string)file + " [" std::to_string(line) "] " + msg);
+            LOG(LogType::ERROR, log_msg);
+        }
     }
 }
 
@@ -25,7 +28,7 @@ namespace Drk
     { /
         if (!(cond)) /
         { /
-            Drk::failed(msg, std::filesystem::path(__FILE__).filename().string(), __LINE__); /
+            Drk::Assert::failed(msg, std::filesystem::path(__FILE__).filename().string(), __LINE__); /
             std::assert(false); /
         } /
     } /
