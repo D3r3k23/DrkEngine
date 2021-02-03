@@ -29,7 +29,7 @@ namespace Drk
         if (!(cond)) /
         { /
             Drk::Assert::failed(msg, std::filesystem::path(__FILE__).filename().string(), __LINE__); /
-            std::assert(false); /
+            std::assert(0); /
         } /
     } /
 #else
