@@ -1,5 +1,6 @@
 library_sources(DrkEngine
-  PUBLIC
+  PRIVATE
     Engine.cpp
-    
+    Core.cpp
+    Chess.cpp
 )
