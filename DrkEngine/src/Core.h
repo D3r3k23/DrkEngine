@@ -28,22 +28,28 @@ namespace Drk
 
     ////////// Logger //////////
     
-    enum class LogType { INFO, WARN, ERROR };
+    enum class LogType
+    {
+        INFO,
+        WARN,
+        ERROR
+    };
 
     class Logger
     {
     public:
         static void init(void);
-        static void log(LogType type, std::string msg);
+        static void log(LogType type, const char* msg);
+        static void log(LogType type, const std::string& msg);
         static void save(void);
     
     private:
+        ostream& operator<<(ostream& os, LogType type);
+        
         static std::ofstream logfile;
         static std::tm* logtime;
         static std::string fn;
         static bool ready;
-        
-        static std::string type_str(LogType type);
     };
 
     #ifdef DRK_EN_LOGGING
@@ -58,7 +64,7 @@ namespace Drk
     class Assert
     {
     public:
-        static void failed(const std::string& msg, const char* file, int line);
+        static void failed(const char* msg, const char* file, int line);
     }
 
     #ifdef DRK_EN_ASSERTS
