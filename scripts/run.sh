@@ -5,8 +5,16 @@ while getopts "d" flags; do
 done
 
 if [ "$debug" = true ]; then
-    build/bin/Linux/Debug/ConsoleChess.sh
+    if [ -e "build/bin/Linux/Debug/ConsoleChess.sh" ]; then
+        build/bin/Linux/Debug/ConsoleChess.sh
+    else
+        echo "Executable is not built."
+    fi
 else
-    build/bin/Linux/Release/ConsoleChess.sh
+    if [ -e "build/bin/Linux/Release/ConsoleChess.sh" ]; then
+        build/bin/Linux/Release/ConsoleChess.sh
+    else
+        echo "Executable is not built."
+    fi
 fi
 
