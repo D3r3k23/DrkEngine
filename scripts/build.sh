@@ -1,3 +1,9 @@
 mkdir -p build
-cmake -B build
-cmake --build builds
+
+if [$1 == debug] then
+    cmake -DDebug=ON -B build
+else
+    cmake -B build
+fi
+
+cmake --build build
