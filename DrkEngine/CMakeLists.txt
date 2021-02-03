@@ -1,4 +1,4 @@
-if (${CMAKE_BUILD_TYPE} == Debug)
+if(${CMAKE_BUILD_TYPE} == Debug)
     target_compile_definitions(DrkEngine
       PRIVATE
         DRK_LOG
