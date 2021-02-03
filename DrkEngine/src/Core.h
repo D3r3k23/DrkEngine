@@ -45,7 +45,7 @@ namespace Drk
         static std::string type_str(LogType type);
     };
 
-    #ifdef DRK_LOG
+    #ifdef DRK_EN_LOGGING
         #define LOG(type, msg) Drk::Logger::log(type, msg)
     #else
         #define LOG(type, msg)
@@ -60,7 +60,7 @@ namespace Drk
         static void failed(const std::string& msg, const char* file, int line);
     }
 
-    #ifdef DRK_ASSERT
+    #ifdef DRK_EN_ASSERTS
         #define ASSERT(cond, msg) \
         do { \
             if (!(cond)) \
