@@ -22,28 +22,40 @@ namespace Drk
             ready = true;
     }
     
-    void Logger::log(LogType type, std::string msg)
+    void Logger::log(LogType type, const char* msg)
     {
         if (!ready)
             init();
-        logfile << "[" << type_str(type) << "]  " << msg << std::endl;
+        logfile << "[" << type << "]  " << msg << std::endl;
     }
     
-    std::string Logger::type_str(LogType type)
+    void Logger::log(LogType type, const std::string& msg)
+    {
+        log(type, msg.c_str());
+    }
+    
+    void Logger::save(void)
+    {
+        logfile.close();
+    }
+    
+    ostream& operator<<(ostream& os, LogType type)
     {
         switch (type)
         {
-        case INFO : return "Info   ";
-        case WARN : return "Warning";
-        case ERR  : return "Error  ";
-        default   : return "";
+        case INFO : os << "Info   ";
+        case WARN : os << "Warning";
+        case ERR  : os << "Error  ";
+        default   : os << " ";
         }
+        
+        return os;
     }
     
     
-    void Assert::failed(const std::string& msg, const char* file, int line)
+    void Assert::failed(const char* msg, const char* file, int line)
     {
-        std::string log_msg("Assert: " + (std::string)file + " [" std::to_string(line) "] " + msg);
+        std::string log_msg("Assert: " + std::string(file) + " [" std::to_string(line) "] " + std::string(msg));
         LOG(LogType::ERROR, log_msg);
     }
 }
