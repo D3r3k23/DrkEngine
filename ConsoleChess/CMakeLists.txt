@@ -1,4 +1,7 @@
-add_executable(ConsoleChess)
 add_subdirectory(src)
 
-target_link_libraries(ConsoleChess DrkEngine)
+target_include_directories(
+  ConsoleChess
+    PUBLIC
+    "${PROJECT_SOURCE_DIR}/ConsoleChess/include"
+)

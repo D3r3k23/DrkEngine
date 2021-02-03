@@ -3,6 +3,7 @@
 #define ENGINE_H
 
 
+#include "Core.h"
 #include "Chess.h"
 
 

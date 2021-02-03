@@ -1,4 +1,6 @@
-target_sources(ConsoleChess
+target_sources(
+  ConsoleChess
   PUBLIC
     Main.cpp
+    Application.cpp
 )

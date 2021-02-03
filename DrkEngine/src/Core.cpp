@@ -4,21 +4,38 @@
 
 namespace Drk
 {
-    bool Logger::ready = false; // init
+    std::ostream& operator<<(std::ostream& os, LogType& type)
+    {
+        switch (type)
+        {
+        case LogType::INFO : os << "Info   ";
+        case LogType::WARN : os << "Warning";
+        case LogType::ERR  : os << "Error  ";
+        default: ;
+        }
+        
+        return os;
+    }
+
+    bool Logger::ready = false; // init bool ready
     
     void Logger::init(void)
     {
         logtime = gmtime(nullptr);
-        fn = "logs/drk_engine"                + "_";
-        fn += std::to_string(logtime.tm_mon)  + ".";
-        fn += std::to_string(logtime.tm_mday) + ".";
-        fn += std::to_string(logtine.tm_year) + "_";
-        fn += std::to_string(logtime.tm_hour) + ":";
-        fn += std::to_string(logtine.tm_min)  + ":";
-        fn += std::to_string(logtime.tm_sec)  + ".";
+        fn = "logs/drk_engine_";
+        fn += std::to_string(logtime->tm_mon)  + ".";
+        fn += std::to_string(logtime->tm_mday) + ".";
+        fn += std::to_string(logtime->tm_year) + "_";
+        fn += std::to_string(logtime->tm_hour) + ":";
+        fn += std::to_string(logtime->tm_min)  + ":";
+        fn += std::to_string(logtime->tm_sec)  + ".";
         fn += ".log";
+        
+        logfile.open(fn, std::ofstream::out);
             
-        if (logfile.fopen(fn))
+        if (logfile.fail())
+            std::cout << "Error: Could not open log file." << std::endl;
+        else
             ready = true;
     }
     
@@ -26,6 +43,7 @@ namespace Drk
     {
         if (!ready)
             init();
+
         logfile << "[" << type << "]  " << msg << std::endl;
     }
     
@@ -39,23 +57,11 @@ namespace Drk
         logfile.close();
     }
     
-    ostream& operator<<(ostream& os, LogType type)
-    {
-        switch (type)
-        {
-        case INFO : os << "Info   ";
-        case WARN : os << "Warning";
-        case ERR  : os << "Error  ";
-        default   : os << " ";
-        }
-        
-        return os;
-    }
     
-    
-    void Assert::failed(const char* msg, const char* file, int line)
+    void Assert::failed(const std::string& msg, const std::string& file, int line)
     {
-        std::string log_msg("Assert: " + std::string(file) + " [" std::to_string(line) "] " + std::string(msg));
-        LOG(LogType::ERROR, log_msg);
+        std::string log_msg("Assert: " + file + " [" + std::to_string(line) + "] " + msg);
+        Logger::save();
+        LOG(LogType::ERR, log_msg);
     }
 }

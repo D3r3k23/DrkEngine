@@ -4,12 +4,17 @@
 
 
 #include <fstream>
+#include <iostream>
 #include <string>
 #include <ctime>
-
 #include <memory>
 #include <cassert>
 #include <filesystem>
+
+
+#ifndef DRK_EN_LOGGING
+#define DRK_EN_LOGGING
+#endif
 
 
 namespace Drk
@@ -20,7 +25,7 @@ namespace Drk
     using Ptr = std::shared_ptr<T>;
     
     template <typename T, typename ... Args>
-    constexpr Ptr<T> make_ptr(Args&& args)
+    constexpr Ptr<T> make_ptr(Args&& ... args)
     {
         return std::make_shared<T>(std::forward<Args>(args)...);
     }
@@ -32,8 +37,10 @@ namespace Drk
     {
         INFO,
         WARN,
-        ERROR
+        ERR
     };
+
+    std::ostream& operator<<(std::ostream& os, LogType& type);
 
     class Logger
     {
@@ -44,8 +51,6 @@ namespace Drk
         static void save(void);
     
     private:
-        ostream& operator<<(ostream& os, LogType type);
-        
         static std::ofstream logfile;
         static std::tm* logtime;
         static std::string fn;
@@ -53,27 +58,27 @@ namespace Drk
     };
 
     #ifdef DRK_EN_LOGGING
-        #define LOG(type, msg) Drk::Logger::log(type, msg)
+        #define LOG(type, msg) Logger::log(type, msg)
     #else
         #define LOG(type, msg)
     #endif
 
 
-    ////////// Assert //////////
+    ////////// Asserts //////////
 
     class Assert
     {
     public:
-        static void failed(const char* msg, const char* file, int line);
-    }
+        static void failed(const std::string& msg, const std::string& file, int line);
+    };
 
     #ifdef DRK_EN_ASSERTS
         #define ASSERT(cond, msg) \
         do { \
             if (!(cond)) \
             { \
-                Drk::Assert::failed(msg, std::filesystem::path(__FILE__).filename().string(), __LINE__); \
-                std::assert(0); \
+                Assert::failed(msg, std::filesystem::path(__FILE__).filename().string(), __LINE__); \
+                assert(false); \
             } \
         } while (false)
     #else
