@@ -35,6 +35,7 @@ namespace Drk
     public:
         static void init(void);
         static void log(LogType type, std::string msg);
+        static void save(void);
     
     private:
         static std::ofstream logfile;
