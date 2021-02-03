@@ -19,7 +19,7 @@ namespace Drk
     template <typename T>
     using Ptr = std::shared_ptr<T>;
     
-    template <typename T, typename ... Args
+    template <typename T, typename ... Args>
     constexpr Ptr<T> make_ptr(Args&& args)
     {
         return std::make_shared<T>(std::forward<Args>(args)...);
