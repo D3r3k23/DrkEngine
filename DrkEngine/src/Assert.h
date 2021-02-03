@@ -14,7 +14,7 @@ namespace Drk
 {
     void failed(const char* msg, const char* file, int line)
     {
-        std::string log_msg((std::string)msg + (std::string)file + std::to_string(line);
+        std::string log_msg((std::string)msg + (std::string)file + std::to_string(line));
         LOG(LogType::ERROR, log_msg);
     }
 }
