@@ -6,12 +6,17 @@
 #include "Core.h"
 #include "Chess.h"
 
+#include <vector>
+
 
 namespace Drk
 {
     class Position
     {
     public:
+        Position();
+        Ptr<std::vector<Chess::Move>> get_legal_moves(Rank rank, File file);
+
 
     private:
         Chess::Board board;

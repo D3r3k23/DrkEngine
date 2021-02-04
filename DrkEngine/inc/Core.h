@@ -16,7 +16,6 @@
 #ifndef DRK_EN_LOGGING
 #define DRK_EN_LOGGING
 #endif
-
 #ifndef DRK_EN_ASSERTS
 #define DRK_EN_ASSERTS
 #endif
@@ -94,7 +93,7 @@ namespace Drk
 #else
     #define ASSERT(cond, msg) // Unimplemented
 
-#endif // DR_EN_ASSERTS
+#endif // DRK_EN_ASSERTS
 }
 
 

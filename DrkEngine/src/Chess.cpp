@@ -25,7 +25,7 @@ namespace Drk::Chess
     Board::Board()
     {
         for (Rank rank = R1; rank <= R8; rank++)
-            for (File file = FA; file <= FH; file++)
+            for (File file = Fa; file <= Fh; file++)
                 board[rank][file] = { rank, file, None };
 
         load("DrkEngine/resources/starting_position.drk");

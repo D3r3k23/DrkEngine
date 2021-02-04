@@ -3,7 +3,9 @@
 #define APPLICATION_H
 
 
-#include <DrkEngine.h>
+#include "DrkEngine.h"
+#include "MainMenu.h"
+#include "Game.h"
 
 #include <iostream>
 #include <string>

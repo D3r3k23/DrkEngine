@@ -6,6 +6,7 @@
 #include "Core.h"
 #include "Chess.h"
 #include "Position.h"
+#include "Eval.h"
 
 
 namespace Drk
