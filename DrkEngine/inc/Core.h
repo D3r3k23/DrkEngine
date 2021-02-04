@@ -34,64 +34,58 @@ namespace Drk
         return std::make_shared<T>(std::forward<Args>(args)...);
     }
     
-
     ////////// Logging //////////
+    #ifdef DRK_EN_LOGGING
 
-#ifdef DRK_EN_LOGGING
+        #define LOG(type, msg) Logger::log(type, msg)
 
-    #define LOG(type, msg) Logger::log(type, msg)
-    
-    enum class LogType
-    {
-        INFO,
-        WARN,
-        ERR
-    };
+        enum class LogType
+        {
+            INFO,
+            WARN,
+            ERR
+        };
 
-    std::ostream& operator<<(std::ostream& os, LogType& type);
+        std::ostream& operator<<(std::ostream& os, LogType& type);
 
-    class Logger
-    {
-    public:
-        static void init(void);
-        static void log(LogType type, const char* msg);
-        static void log(LogType type, const std::string& msg);
-        static void save(void);
-    
-    private:
-        static std::ofstream logfile;
-        static bool ready;
-    };
+        class Logger
+        {
+        public:
+            static void init(void);
+            static void log(LogType type, const char* msg);
+            static void log(LogType type, const std::string& msg);
+            static void save(void);
 
-#else
-    #define LOG(type, msg) // Unimplemented
+        private:
+            static std::ofstream logfile;
+            static bool ready;
+        };
 
-#endif // DRK_EN_LOGGING
-
+    #else
+        #define LOG(type, msg) // Unimplemented
+    #endif // DRK_EN_LOGGING
 
     ////////// Asserts //////////
+    #ifdef DRK_EN_ASSERTS
 
-#ifdef DRK_EN_ASSERTS
+        #define ASSERT(cond, msg) \
+        do { \
+            if (!(cond)) \
+            { \
+                Assert::failed(msg, std::filesystem::path(__FILE__).filename().string(), __LINE__); \
+                assert(false); \
+            } \
+        } while (false)
 
-    #define ASSERT(cond, msg) \
-    do { \
-        if (!(cond)) \
-        { \
-            Assert::failed(msg, std::filesystem::path(__FILE__).filename().string(), __LINE__); \
-            assert(false); \
-        } \
-    } while (false)
+        class Assert
+        {
+        public:
+            static void failed(const std::string& msg, const std::string& file, int line);
+        };
 
-    class Assert
-    {
-    public:
-        static void failed(const std::string& msg, const std::string& file, int line);
-    };
-
-#else
-    #define ASSERT(cond, msg) // Unimplemented
-
-#endif // DRK_EN_ASSERTS
+    #else
+        #define ASSERT(cond, msg) // Unimplemented 
+    #endif // DRK_EN_ASSERTS
 }
 
 
