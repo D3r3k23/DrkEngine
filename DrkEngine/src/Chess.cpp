@@ -28,10 +28,10 @@ namespace Drk::Chess
             for (File file = FA; file <= FH; file++)
                 board[rank][file] = { rank, file, None };
 
-        load_position("DrkEngine/resources/starting_position.drk");
+        load("DrkEngine/resources/starting_position.drk");
     }
 
-    void Board::load_position(const char* fn)
+    void Board::load(const char* fn)
     {
         std::ifstream iFile(fn, std::ifstream::in);
 

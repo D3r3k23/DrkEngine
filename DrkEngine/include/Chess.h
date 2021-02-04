@@ -65,7 +65,7 @@ namespace Drk::Chess
     {
     public:
         Board();
-        void load_position(const char* fn);
+        void load(const char* fn);
 
     private:
 

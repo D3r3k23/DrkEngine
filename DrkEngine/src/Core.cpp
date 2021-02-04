@@ -22,16 +22,16 @@ namespace Drk
     void Logger::init(void)
     {
         logtime = gmtime(nullptr);
-        fn = "logs/drk_engine_";
-        fn += std::to_string(logtime->tm_mon)  + ".";
-        fn += std::to_string(logtime->tm_mday) + ".";
-        fn += std::to_string(logtime->tm_year) + "_";
-        fn += std::to_string(logtime->tm_hour) + ":";
-        fn += std::to_string(logtime->tm_min)  + ":";
-        fn += std::to_string(logtime->tm_sec)  + ".";
-        fn += ".log";
+        fp = "logs/drk_engine_";
+        fp += std::to_string(logtime->tm_mon)  + ".";
+        fp += std::to_string(logtime->tm_mday) + ".";
+        fp += std::to_string(logtime->tm_year) + "_";
+        fp += std::to_string(logtime->tm_hour) + ":";
+        fp += std::to_string(logtime->tm_min)  + ":";
+        fp += std::to_string(logtime->tm_sec)  + ".";
+        fp += ".log";
         
-        logfile.open(fn, std::ofstream::out);
+        logfile.open(fp, std::ofstream::out);
             
         if (logfile.fail())
             std::cout << "Error: Could not open log file." << std::endl;
