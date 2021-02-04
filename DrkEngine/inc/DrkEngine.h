@@ -1,21 +1,13 @@
 
-#ifndef ENGINE_H
-#define ENGINE_H
+#ifndef DRK_ENGINE_H
+#define DRK_ENGINE_H
 
 
-#include "Core.h"
-#include "Chess.h"
+#include "ChessPrimitives.h"
+#include "Pieces.h"
+#include "Board.h"
 #include "Position.h"
 #include "Eval.h"
 
 
-namespace Drk
-{
-    class Engine
-    {
-        Engine();
-    };
-}
-
-
-#endif // ENGINE_H
+#endif // DRK_ENGINE_H

@@ -37,10 +37,10 @@ namespace Drk
         
         logfile.open(fp, std::ofstream::out);
             
-        if (logfile.fail())
-            std::cout << "Error: Could not open log file." << std::endl;
-        else
+        if (logfile.is_open())
             ready = true;
+        else
+            std::cout << "Error: Could not open log file." << std::endl;
     }
     
     void Logger::log(LogType type, const char* msg)

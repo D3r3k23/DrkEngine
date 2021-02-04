@@ -4,16 +4,17 @@
 
 
 #include "Core.h"
-#include "Chess.h"
+#include "ChessPrimitives.h"
 #include "Position.h"
 
 
-namespace Drk
+namespace Drk::Engine
 {
     class Eval
     {
     public:
-        
+        Ptr<std::vector<Chess::Move>> evaluate(const Chess::Position& position);
+
     private:
     
     };

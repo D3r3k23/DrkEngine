@@ -2,10 +2,49 @@
 #include "Position.h"
 
 
-namespace Drk
+namespace Drk::Chess
 {
-    Position::Position()
+    Position::Position(void)
     {
-        toPlay = Chess::Color::White;
+        load("DrkEngine/resources/starting_position.drk");
+        opening = true;
+    }
+
+    void Position::load(const char* fp)
+    {
+        std::ifstream iFile(fp, std::ifstream::in);
+        ASSERT(iFile.is_open(), "Could not open <file>.");
+
+        // ASSERT if file is not a valid .drk
+
+        std::string line;
+
+        for (Rank rank = R8; rank >= R1; rank++)
+        {
+            getline(iFile, line);
+            
+        }
+    }
+
+    void Position::save(const char* fp)
+    {
+        std::ofstream oFile(fp, std::ofstream::out);
+        ASSERT(oFile.is_open(), "Could not open <file>.");
+
+        for (Rank rank = R8; rank >= R1; rank--) // Use iterators
+        {
+            for (File file = Fa; file <= Fh; file++)
+            {
+                auto piece = board.get_piece(rank, file);
+                oFile << (char)(piece->get_color()) << piece->get_symbol();
+
+                if (file != Fh)
+                    oFile << "|";
+            }
+            oFile << std::endl;
+        }
+        oFile << (char)toPlay               << "-";
+        oFile << (castleWhite ? "CW" : " ") << "-";
+        oFile << (castleBlack ? "CB" : " ");
     }
 }

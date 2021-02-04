@@ -4,6 +4,7 @@
 
 
 #include "DrkEngine.h"
+
 #include "MainMenu.h"
 #include "Game.h"
 
@@ -15,12 +16,12 @@
 class Application
 {
 public:
-    Application();
-    ~Application();
+    Application(void);
+    ~Application(void);
     void run(void);
 
 private:
-    Drk::DrkEngine drk;
+    
 };
 
 

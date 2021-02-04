@@ -2,12 +2,12 @@
 #include "Application.h"
 
 
-Application::Application()
+Application::Application(void)
 {
     std::cout << "App created." << std::endl;
 }
 
-Application::~Application()
+Application::~Application(void)
 {
 
 }

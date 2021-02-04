@@ -4,23 +4,47 @@
 
 
 #include "Core.h"
-#include "Chess.h"
+#include "ChessPrimitives.h"
+#include "Pieces.h"
+#include "Board.h"
 
 #include <vector>
+#include <fstream>
 
 
-namespace Drk
+namespace Drk::Chess
 {
     class Position
     {
     public:
-        Position();
-        Ptr<std::vector<Chess::Move>> get_legal_moves(Rank rank, File file);
+        Position(void);
 
+        bool can_en_passant();
+
+        void load(const char* fn);
+        void save(const char* fp);
+
+        
+        // friend class Eval;
+    
+    private:
 
     private:
-        Chess::Board board;
-        Chess::Color toPlay;
+        Board board;
+        Color toPlay;
+
+        bool opening    = false;
+        bool middlegame = false;
+        bool endgame    = false;
+
+        // Castling rights
+        bool castleWhite = false;
+        bool castleBlack = false;
+
+        // End of game
+        bool checkmate = false;
+        bool stalemate = false;
+        bool threefold = false;
     };
 }
 
