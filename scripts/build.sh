@@ -9,7 +9,7 @@ done
 if [ "$debug" = true ]; then
     cmake -DDebug=ON -B build
 else
-    cmake -B build
+    cmake -DDebug=OFF -B build
 fi
 
 cmake --build build
