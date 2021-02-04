@@ -7,7 +7,7 @@ namespace Drk::Chess
     Position::Position(void)
     {
         load("DrkEngine/resources/starting_position.drk");
-        opening = true;
+        flags.opening = true;
     }
 
     void Position::load(const char* fp)
@@ -22,7 +22,7 @@ namespace Drk::Chess
         for (Rank rank = R8; rank >= R1; rank++)
         {
             getline(iFile, line);
-            
+
         }
     }
 
@@ -43,8 +43,8 @@ namespace Drk::Chess
             }
             oFile << std::endl;
         }
-        oFile << (char)toPlay               << "-";
-        oFile << (castleWhite ? "CW" : " ") << "-";
-        oFile << (castleBlack ? "CB" : " ");
+        oFile << (char)toPlay << "-";
+        oFile << (flags.castleWhite ? "CW" : " ") << "-";
+        oFile << (flags.castleBlack ? "CB" : " ");
     }
 }

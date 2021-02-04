@@ -14,6 +14,22 @@
 
 namespace Drk::Chess
 {
+    struct PositionFlags
+    {
+        bool opening    = false;
+        bool middlegame = false;
+        bool endgame    = false;
+
+        // Castling rights
+        bool castleWhite = false;
+        bool castleBlack = false;
+
+        // End of game
+        bool stalemate = false;
+        bool threefold = false;
+    };
+
+
     class Position
     {
     public:
@@ -33,18 +49,7 @@ namespace Drk::Chess
         Board board;
         Color toPlay;
 
-        bool opening    = false;
-        bool middlegame = false;
-        bool endgame    = false;
-
-        // Castling rights
-        bool castleWhite = false;
-        bool castleBlack = false;
-
-        // End of game
-        bool checkmate = false;
-        bool stalemate = false;
-        bool threefold = false;
+        PositionFlags flags;
     };
 }
 
