@@ -1,4 +1,4 @@
-option(Debug "Debug" OFF) # "cmake -DDebug=ON" for Debug mode
+option(Debug "Debug" OFF) # "cmake -DDebug=ON" for Debug config
 
 cmake_minimum_required(VERSION 3.16)
 project(DrkEngine)
