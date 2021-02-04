@@ -17,7 +17,7 @@ public:
     void run(void);
 
 private:
-    // Drk::DrkEngine drk;
+    Drk::DrkEngine drk;
 };
 
 

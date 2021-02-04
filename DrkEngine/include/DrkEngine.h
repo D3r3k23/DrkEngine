@@ -1,27 +1,20 @@
 
-#ifndef DRK_ENGINE_H
-#define DRK_ENGINE_H
+#ifndef ENGINE_H
+#define ENGINE_H
 
 
 #include "Core.h"
-#include "Engine.h"
 #include "Chess.h"
+#include "Position.h"
 
 
 namespace Drk
 {
-    int get_five() { return 5; }
-
-    class DrkEngine
+    class Engine
     {
-    public:
-        DrkEngine();
-        ~DrkEngine();
-
-    private:
-
+    
     };
 }
 
 
-#endif // DRK_ENGINE_H
+#endif // ENGINE_H

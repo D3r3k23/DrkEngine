@@ -26,14 +26,14 @@ namespace Drk
     void Logger::init(void)
     {
         logtime = gmtime(nullptr);
-        fp = "logs/drk_engine_";
-        fp += std::to_string(logtime->tm_mon)  + ".";
-        fp += std::to_string(logtime->tm_mday) + ".";
-        fp += std::to_string(logtime->tm_year) + "_";
-        fp += std::to_string(logtime->tm_hour) + ":";
-        fp += std::to_string(logtime->tm_min)  + ":";
-        fp += std::to_string(logtime->tm_sec)  + ".";
-        fp += ".log";
+        fp = "logs/drk_engine_"
+           + std::to_string(logtime->tm_mon)  + "."
+           + std::to_string(logtime->tm_mday) + "."
+           + std::to_string(logtime->tm_year) + "_"
+           + std::to_string(logtime->tm_hour) + ":"
+           + std::to_string(logtime->tm_min)  + ":"
+           + std::to_string(logtime->tm_sec)
+           + ".log";
         
         logfile.open(fp, std::ofstream::out);
             
@@ -70,9 +70,14 @@ namespace Drk
 
     void Assert::failed(const std::string& msg, const std::string& file, int line)
     {
-        std::string log_msg("Assert: " + file + " [" + std::to_string(line) + "] " + msg);
-        Logger::save();
-        LOG(LogType::ERR, log_msg);
+        std::string assert_msg("Assert: " + file + " [" + std::to_string(line) + "] " + msg);
+
+        #ifdef DRK_EN_LOGGING
+            Logger::log(LogType::ERR, assert_msg);
+            Logger::save();
+        #else
+            std::cout << "Error: " << assert_msg << std::endl;
+        #endif
     }
 
 #endif // DRK_EN_ASSERTS

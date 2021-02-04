@@ -1,7 +1,7 @@
 target_sources(
   DrkEngine
   PUBLIC
-    Engine.cpp
+    DrkEngine.cpp
     Core.cpp
     Chess.cpp
 )
