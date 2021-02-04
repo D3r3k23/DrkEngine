@@ -4,6 +4,10 @@
 
 namespace Drk
 {
+    ////////// Logging //////////
+
+#ifdef DRK_EN_LOGGING
+
     std::ostream& operator<<(std::ostream& os, LogType& type)
     {
         switch (type)
@@ -57,11 +61,19 @@ namespace Drk
         logfile.close();
     }
     
-    
+#endif // DRK_EN_LOGGING
+
+
+    ////////// Asserts //////////
+
+#ifdef DRK_EN_ASSERTS  
+
     void Assert::failed(const std::string& msg, const std::string& file, int line)
     {
         std::string log_msg("Assert: " + file + " [" + std::to_string(line) + "] " + msg);
         Logger::save();
         LOG(LogType::ERR, log_msg);
     }
+
+#endif // DRK_EN_ASSERTS
 }
