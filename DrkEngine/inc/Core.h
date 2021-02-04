@@ -60,8 +60,6 @@ namespace Drk
     
     private:
         static std::ofstream logfile;
-        static std::tm* logtime;
-        static std::string fp;
         static bool ready;
     };
 
