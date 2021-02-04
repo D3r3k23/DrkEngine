@@ -1,5 +1,5 @@
 target_sources(
-  ConsoleChess
+ConsoleChess
   PUBLIC
     Main.cpp
     Application.cpp

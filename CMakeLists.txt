@@ -1,4 +1,4 @@
-option(Debug "Debug" OFF)
+option(Debug "Debug" OFF) # "cmake -DDebug=ON" for Debug mode
 
 cmake_minimum_required(VERSION 3.16)
 project(DrkEngine)
@@ -27,4 +27,4 @@ add_executable(ConsoleChess)
 add_subdirectory(ConsoleChess)
 
 target_link_libraries(ConsoleChess DrkEngine)
-target_include_directories(ConsoleChess PUBLIC "${PROJECT_SOURCE_DIR}/DrkEngine/include")
+target_include_directories(ConsoleChess PUBLIC "${PROJECT_SOURCE_DIR}/DrkEngine/include") # Problem?

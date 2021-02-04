@@ -12,7 +12,7 @@ namespace Drk
 {
     class Engine
     {
-    
+        Engine();
     };
 }
 

@@ -11,7 +11,11 @@ namespace Drk
 {
     class Position
     {
-    
+    public:
+
+    private:
+        Chess::Board board;
+        Chess::Color toPlay;
     };
 }
 

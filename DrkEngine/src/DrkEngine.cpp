@@ -1,10 +1,10 @@
 
-#include "Engine.h"
+#include "DrkEngine.h"
 
 
 namespace Drk
 {
-    DrkEngine::DrkEngine()
+    Engine::Engine()
     {
         LOG(LogType::INFO, "Engine startup.");
     }
