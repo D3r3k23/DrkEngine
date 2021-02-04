@@ -70,7 +70,6 @@ namespace Drk
     void Assert::failed(const std::string& msg, const std::string& file, int line)
     {
         std::string assert_msg("Assert: " + file + " [" + std::to_string(line) + "] " + msg);
-        
         std::cout << "Error: " << assert_msg << std::endl;
 
     #ifdef DRK_EN_LOGGING
