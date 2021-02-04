@@ -1,8 +1,8 @@
-if [[ $1 = "-d" ]]; then
+if [[ $1 == "-d" ]]; then
     debug=true
 fi
 
-if [[ "$debug" = true ]]; then
+if [[ "$debug" == true ]]; then
     executable_path="build/bin/Linux/Debug/ConsoleChess"
 else
     executable_path="build/bin/Linux/Release/ConsoleChess"
