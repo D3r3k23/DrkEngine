@@ -21,7 +21,7 @@ namespace Drk::Chess
 
         for (Rank rank = R8; rank >= R1; rank++)
         {
-            getline(iFile, line);
+            std::getline(iFile, line);
 
         }
     }
