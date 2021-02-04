@@ -73,10 +73,10 @@ namespace Drk
         
         std::cout << "Error: " << assert_msg << std::endl;
 
-        #ifdef DRK_EN_LOGGING
-            Logger::log(LogType::ERR, assert_msg);
-            Logger::save();
-        #endif
+    #ifdef DRK_EN_LOGGING
+        Logger::log(LogType::ERR, assert_msg);
+        Logger::save();
+    #endif
     }
 
 #endif // DRK_EN_ASSERTS
