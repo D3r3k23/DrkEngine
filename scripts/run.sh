@@ -1,20 +1,16 @@
-while getopts "d" flags; do
-    case "${flag}" in
-        d) debug = true;;
-    esac
-done
-
-if [ "$debug" = true ]; then
-    if [ -e "build/bin/Linux/Debug/ConsoleChess.sh" ]; then
-        build/bin/Linux/Debug/ConsoleChess.sh
-    else
-        echo "Executable is not built."
-    fi
-else
-    if [ -e "build/bin/Linux/Release/ConsoleChess.sh" ]; then
-        build/bin/Linux/Release/ConsoleChess.sh
-    else
-        echo "Executable is not built."
-    fi
+if [ $1 = "-d" ]; then
+    debug=true
 fi
 
+if [ "$debug" = true ]; then
+    executable_path="build/bin/Linux/Debug/ConsoleChess"
+else
+    executable_path="build/bin/Linux/Release/ConsoleChess"
+fi
+
+if [ -x $executable_path ]; then
+    echo "Running executable: $executable_path."
+    $executable_path
+else
+    echo "Executable: $executable_path does not exist."
+fi

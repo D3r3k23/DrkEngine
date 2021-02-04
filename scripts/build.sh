@@ -1,10 +1,8 @@
 mkdir -p build
 
-while getopts "d" flags; do
-    case "${flag}" in
-        d) debug = true;;
-    esac
-done
+if [ $1 = "-d" ]; then
+    debug=true
+fi
 
 if [ "$debug" = true ]; then
     cmake -DDebug=ON -B build
