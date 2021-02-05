@@ -39,7 +39,7 @@ namespace Drk::Chess
 
         bool can_en_passant() const;
 
-        void load_from_file(const char* fn);
+        void load_from_file(const char* fp);
         void save_to_file(const char* fp) const;
 
         
