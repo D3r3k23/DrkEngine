@@ -24,12 +24,12 @@ namespace Drk::Engine
     class Eval
     {
     public:
-        void load_position(const Position& position);
+        void load_position(const Chess::Position& position);
         
         Ptr<std::vector<Chess::Move>> evaluate(const Chess::Position& position);
 
     private:
-        Position position;
+        Chess::Position position;
         EvalWeights weights;
     };
 }
