@@ -35,10 +35,10 @@ namespace Drk::Chess
     public:
         Position(void);
 
-        bool can_en_passant();
+        bool can_en_passant() const;
 
-        void load(const char* fn);
-        void save(const char* fp);
+        void load_from_file(const char* fn);
+        void save_to_file(const char* fp) const;
 
         
         // friend class Eval;
