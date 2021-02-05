@@ -19,7 +19,7 @@ namespace Drk::Chess
 
         static Ptr<Piece> create(PieceEnum piece, Square square={ R1, Fa }, Color color=Color::None);
 
-        virtual Ptr<std::vector<Move>> get_legal_moves(Rank rank, File file);
+        virtual Ptr<std::vector<Move>> get_legal_moves(Rank rank, File file) const;
 
         Color get_color(void) const { return color; }
         char get_symbol(void) const { return (char)piece; }
