@@ -10,7 +10,7 @@ fi
 
 if [[ -x $executable_path ]]; then
     echo "Running executable: $executable_path."
-    $executable_path # Run executable
+    $executable_path
 else
     echo "Executable: $executable_path does not exist."
 fi
