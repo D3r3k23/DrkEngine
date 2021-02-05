@@ -34,6 +34,8 @@ namespace Drk::Chess
     {
     public:
         Position(void);
+        
+        Position& operator=(const Position& other); // Copy assignment
 
         bool can_en_passant() const;
 
