@@ -6,11 +6,11 @@ namespace Drk::Chess
 {
     Position::Position(void)
     {
-        load("DrkEngine/resources/starting_position.drk");
+        load_from_file("DrkEngine/resources/starting_position.drk");
         flags.opening = true;
     }
 
-    void Position::load(const char* fp)
+    void Position::load_from_file(const char* fp)
     {
         std::ifstream iFile(fp, std::ifstream::in);
         ASSERT(iFile.is_open(), "Could not open <file>.");
@@ -26,7 +26,7 @@ namespace Drk::Chess
         }
     }
 
-    void Position::save(const char* fp)
+    void Position::save_to_file(const char* fp)
     {
         std::ofstream oFile(fp, std::ofstream::out);
         ASSERT(oFile.is_open(), "Could not open <file>.");
