@@ -23,10 +23,19 @@ namespace Drk::Chess
         {
             std::getline(iFile, line);
 
+            std::string pieceStr;
+
+            for (File file = Fa; file <= Fh; file++)
+            {
+                pieceStr = line.substr((int)file * 3, 2);
+
+                Ptr<Piece> piece = Piece::create((PieceEnum)pieceStr[1], { rank, file }, (Color)pieceStr[0]);
+                board.board[rank][file] = piece;
+            }
         }
     }
 
-    void Position::save_to_file(const char* fp)
+    void Position::save_to_file(const char* fp) const
     {
         std::ofstream oFile(fp, std::ofstream::out);
         ASSERT(oFile.is_open(), "Could not open <file>.");
@@ -35,7 +44,7 @@ namespace Drk::Chess
         {
             for (File file = Fa; file <= Fh; file++)
             {
-                auto piece = board.get_piece(rank, file);
+                Ptr<Piece> piece = board.board[rank][file];
                 oFile << (char)(piece->get_color()) << piece->get_symbol();
 
                 if (file != Fh)

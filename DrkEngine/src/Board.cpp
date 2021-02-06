@@ -11,5 +11,8 @@ namespace Drk::Chess
                 board[rank][file] = Piece::create(PieceEnum::None, Square{ rank, file });
     }
 
-    Ptr<Piece> Board::get_piece(Rank rank, File file)
+    Ptr<Piece> Board::get_piece(Rank rank, File file) const
+    {
+        return board[rank][file];
+    }
 }

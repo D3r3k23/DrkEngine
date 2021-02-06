@@ -19,7 +19,9 @@ namespace Drk::Chess
         // Iterators
 
 
-        Ptr<Piece> get_piece(Rank rank, File file);
+        Ptr<Piece> get_piece(Rank rank, File file) const;
+
+        friend class Position;
 
     private:
         Ptr<Piece> board[8][8];

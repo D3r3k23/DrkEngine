@@ -34,18 +34,16 @@ namespace Drk::Chess
     {
     public:
         Position(void);
-        
-        Position& operator=(const Position& other); // Copy assignment
 
         bool can_en_passant() const;
 
-        void load_from_file(const char* fp);
-        void save_to_file(const char* fp) const;
 
         
         // friend class Eval;
     
     private:
+        void load_from_file(const char* fp);
+        void save_to_file(const char* fp) const;
 
     private:
         Board board;
