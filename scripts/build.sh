@@ -5,9 +5,9 @@ fi
 mkdir -p build
 
 if [[ "$debug" == true ]]; then
-    cmake -DDebug=ON -B build
+    cmake -DCMAKE_BUILD_TYPE=Debug -B build
 else
-    cmake -DDebug=OFF -B build
+    cmake -DCMAKE_BUILD_TYPE=Release -B build
 fi
 
 cmake --build build
