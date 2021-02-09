@@ -25,7 +25,7 @@ namespace Drk
         void Logger::init(void)
         {
             std::tm* logtime = gmtime(nullptr);
-            std::string fp = "logs/drk_engine_"
+            std::string fp = "debug/drk_engine_"
               + std::to_string(logtime->tm_mon)  + "."
               + std::to_string(logtime->tm_mday) + "."
               + std::to_string(logtime->tm_year) + "_"
