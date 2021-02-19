@@ -1,12 +1,12 @@
 
-#ifndef APPLICATION_H
-#define APPLICATION_H
+#ifndef APPLICATION_HPP
+#define APPLICATION_HPP
 
 
-#include "DrkEngine.h"
+#include "DrkEngine.hpp"
 
-#include "MainMenu.h"
-#include "Game.h"
+#include "MainMenu.hpp"
+#include "Game.hpp"
 
 #include <iostream>
 #include <string>
@@ -25,4 +25,4 @@ private:
 };
 
 
-#endif // APPLICATION_H
+#endif // APPLICATION_HPP

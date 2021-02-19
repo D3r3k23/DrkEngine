@@ -1,12 +1,12 @@
 
-#ifndef POSITION_H
-#define POSITION_H
+#ifndef POSITION_HPP
+#define POSITION_HPP
 
 
-#include "Core.h"
-#include "ChessPrimitives.h"
-#include "Pieces.h"
-#include "Board.h"
+#include "Core.hpp"
+#include "ChessPrimitives.hpp"
+#include "Pieces.hpp"
+#include "Board.hpp"
 
 #include <vector>
 #include <fstream>
@@ -54,4 +54,4 @@ namespace Drk::Chess
 }
 
 
-#endif // POSITION_H
+#endif // POSITION_HPP

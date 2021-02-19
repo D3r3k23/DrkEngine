@@ -1,10 +1,10 @@
 
-#ifndef PIECES_H
-#define PIECES_H
+#ifndef PIECES_HPP
+#define PIECES_HPP
 
 
-#include "Core.h"
-#include "ChessPrimitives.h"
+#include "Core.hpp"
+#include "ChessPrimitives.hpp"
 
 #include <vector>
 
@@ -94,4 +94,4 @@ namespace Drk::Chess
 }
 
 
-#endif // PIECES_H
+#endif // PIECES_HPP

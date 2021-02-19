@@ -1,9 +1,9 @@
 
-#ifndef CHESS_H
-#define CHESS_H
+#ifndef CHESS_HPP
+#define CHESS_HPP
 
 
-#include "Core.h"
+#include "Core.hpp"
 
 
 namespace Drk::Chess
@@ -66,4 +66,4 @@ namespace Drk::Chess
 }
 
 
-#endif // CHESS_H
+#endif // CHESS_HPP

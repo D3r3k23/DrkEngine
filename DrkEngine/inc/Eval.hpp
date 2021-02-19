@@ -1,11 +1,11 @@
 
-#ifndef EVAL_H
-#define EVAL_H
+#ifndef EVAL_HPP
+#define EVAL_HPP
 
 
-#include "Core.h"
-#include "ChessPrimitives.h"
-#include "Position.h"
+#include "Core.hpp"
+#include "ChessPrimitives.hpp"
+#include "Position.hpp"
 
 
 namespace Drk::Engine
@@ -35,4 +35,4 @@ namespace Drk::Engine
 }
 
 
-#endif // EVAL_H
+#endif // EVAL_HPP

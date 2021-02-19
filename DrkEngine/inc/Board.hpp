@@ -1,11 +1,11 @@
 
-#ifndef BOARD_H
-#define BOARD_H
+#ifndef BOARD_HPP
+#define BOARD_HPP
 
 
-#include "Core.h"
-#include "ChessPrimitives.h"
-#include "Pieces.h"
+#include "Core.hpp"
+#include "ChessPrimitives.hpp"
+#include "Pieces.hpp"
 
 
 namespace Drk::Chess
@@ -29,4 +29,4 @@ namespace Drk::Chess
 }
 
 
-#endif // BOARD_H
+#endif // BOARD_HPP
