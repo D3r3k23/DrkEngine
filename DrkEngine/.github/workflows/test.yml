@@ -1,0 +1,16 @@
+# name: Test
+# on: [push]
+# 
+# env:
+#     BUILD_TYPE: Debug
+# 
+# jobs:
+#     build:
+#         runs-on: ubuntu-20.04
+#         steps:
+#             - uses: actions/checkout@v2
+#             - name: Run Tests
+#             
+#               working-directory: DrkEngine
+#               shell: bash
+#               run: scripts/test.sh
