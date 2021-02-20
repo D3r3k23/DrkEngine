@@ -5,7 +5,7 @@ env:
   BUILD_TYPE: Debug
 
 jobs:
-  Linux Build:
+  Linux-Build:
     runs-on: ubuntu-latest
     steps:
         - uses: actions/checkout@v2
@@ -18,7 +18,7 @@ jobs:
           shell: bash
           run: scripts/runtests.sh
 
-#   Windows Build:
+#   Windows-Build:
 #     runs-on: windows-latest
 #     steps:
 #         - uses: actions/checkout@v2
