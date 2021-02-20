@@ -7,13 +7,12 @@
 # jobs:
 #   Unit Test:
 #     runs-on: ubuntu-latest
-#     shell: bash
-#     working-directory: DrkEngine
 #     steps:
 #         - uses: actions/checkout@v2
+#           shell: bash
 # 
-#         - name: Build DrkEngine
+#         - name: Build Test
 #           run: scripts/build.sh -d -t
 # 
-#         - name: Run Tests
+#         - name: Run Test
 #           run: scripts/test.sh
