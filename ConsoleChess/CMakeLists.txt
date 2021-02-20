@@ -1,2 +1,0 @@
-target_include_directories(ConsoleChess PUBLIC inc)
-add_subdirectory(src)
