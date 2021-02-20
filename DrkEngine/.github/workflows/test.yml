@@ -5,7 +5,7 @@
 #   BUILD_TYPE: Debug
 # 
 # jobs:
-#   Unit Test:
+#   Linux Test:
 #     runs-on: ubuntu-latest
 #     steps:
 #         - uses: actions/checkout@v2
@@ -16,3 +16,15 @@
 # 
 #         - name: Run Test
 #           run: scripts/test.sh
+# 
+#   Windows Test:
+#     runs-on: windows-latest
+#     steps:
+#         - uses: actions/checkout@v2
+#           shell: pswh
+# 
+#         - name: Build Test
+#           run: scripts/build.bat -d -t
+# 
+#         - name: Run Test
+#           run: scripts/test.bat
