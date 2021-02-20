@@ -2,15 +2,18 @@
 # on: [push]
 # 
 # env:
-#     BUILD_TYPE: Debug
+#   BUILD_TYPE: Debug
 # 
 # jobs:
-#     build:
-#         runs-on: ubuntu-20.04
-#         steps:
-#             - uses: actions/checkout@v2
-#             - name: Run Tests
-#             
-#               working-directory: DrkEngine
-#               shell: bash
-#               run: scripts/test.sh
+#   Unit Test:
+#     runs-on: ubuntu-latest
+#     shell: bash
+#     working-directory: DrkEngine
+#     steps:
+#         - uses: actions/checkout@v2
+# 
+#         - name: Build DrkEngine
+#           run: scripts/build.sh -d -t
+# 
+#         - name: Run Tests
+#           run: scripts/test.sh
