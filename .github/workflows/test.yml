@@ -1,30 +1,30 @@
-# name: Unit Tests
-# on: [push]
-# 
-# env:
-#   BUILD_TYPE: Debug
-# 
-# jobs:
-#   Linux Test:
-#     runs-on: ubuntu-latest
-#     steps:
-#         - uses: actions/checkout@v2
-#           shell: bash
-# 
-#         - name: Build Test
-#           run: scripts/buildtest.sh
-# 
-#         - name: Run Test
-#           run: scripts/runtest.sh
-# 
-#   Windows Test:
+name: Unit Tests
+on: [push]
+
+env:
+  BUILD_TYPE: Debug
+
+jobs:
+  Linux Build:
+    runs-on: ubuntu-latest
+    steps:
+        - uses: actions/checkout@v2
+          shell: bash
+
+        - name: Build Tests
+          run: scripts/buildtests.sh
+
+        - name: Run Tests
+          run: scripts/runtests.sh
+
+#   Windows Build:
 #     runs-on: windows-latest
 #     steps:
 #         - uses: actions/checkout@v2
 #           shell: pswh
 # 
-#         - name: Build Test
-#           run: scripts/buildtest.bat
+#         - name: Build Tests
+#           run: scripts/buildtests.bat
 # 
-#         - name: Run Test
-#           run: scripts/runtest.bat
+#         - name: Run Tests
+#           run: scripts/runtests.bat

@@ -37,7 +37,7 @@ namespace Drk
     ////////// Logging //////////
     #ifdef DRK_EN_LOGGING
 
-        #define LOG(type, msg) Logger::log(type, msg)
+        #define DRK_LOG(type, msg) Logger::log(type, msg)
 
         enum class LogType
         {
@@ -62,19 +62,19 @@ namespace Drk
         };
 
     #else
-        #define LOG(type, msg) // Unimplemented
+        #define DRK_LOG(type, msg) // Unimplemented
     #endif // DRK_EN_LOGGING
 
     ////////// Asserts //////////
     #ifdef DRK_EN_ASSERTS
 
-        #define ASSERT(cond, msg) \
-        do { \
-            if (!(cond)) \
-            { \
+        #define DRK_ASSERT(cond, msg)                                                               \
+        do {                                                                                        \
+            if (!(cond))                                                                            \
+            {                                                                                       \
                 Assert::failed(msg, std::filesystem::path(__FILE__).filename().string(), __LINE__); \
-                assert(false); \
-            } \
+                assert(false);                                                                      \
+            }                                                                                       \
         } while (false)
 
         class Assert
@@ -84,7 +84,7 @@ namespace Drk
         };
 
     #else
-        #define ASSERT(cond, msg) // Unimplemented 
+        #define DRK_ASSERT(cond, msg) // Unimplemented 
     #endif // DRK_EN_ASSERTS
 }
 
