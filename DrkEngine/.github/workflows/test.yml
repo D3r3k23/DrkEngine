@@ -1,4 +1,4 @@
-# name: Test
+# name: Unit Tests
 # on: [push]
 # 
 # env:
@@ -12,10 +12,10 @@
 #           shell: bash
 # 
 #         - name: Build Test
-#           run: scripts/build.sh -d -t
+#           run: scripts/buildtest.sh
 # 
 #         - name: Run Test
-#           run: scripts/test.sh
+#           run: scripts/runtest.sh
 # 
 #   Windows Test:
 #     runs-on: windows-latest
@@ -24,7 +24,7 @@
 #           shell: pswh
 # 
 #         - name: Build Test
-#           run: scripts/build.bat -d -t
+#           run: scripts/buildtest.bat
 # 
 #         - name: Run Test
-#           run: scripts/test.bat
+#           run: scripts/runtest.bat
