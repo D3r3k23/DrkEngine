@@ -9,22 +9,24 @@ jobs:
     runs-on: ubuntu-latest
     steps:
         - uses: actions/checkout@v2
-          shell: bash
 
         - name: Build Tests
+          shell: bash
           run: scripts/buildtests.sh
 
         - name: Run Tests
+          shell: bash
           run: scripts/runtests.sh
 
 #   Windows Build:
 #     runs-on: windows-latest
 #     steps:
 #         - uses: actions/checkout@v2
-#           shell: pswh
 # 
 #         - name: Build Tests
+#           shell: pswh
 #           run: scripts/buildtests.bat
 # 
 #         - name: Run Tests
+#           shell: pswh
 #           run: scripts/runtests.bat
