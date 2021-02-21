@@ -1,4 +1,4 @@
-executable_path = "tests/build/Tests"
+executable_path = "tests/build/bin/Tests"
 
 if [[ -x $executable_path ]]; then
     ./$executable_path
