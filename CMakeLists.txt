@@ -5,7 +5,6 @@ add_library(DrkEngine STATIC)
 target_include_directories(DrkEngine PUBLIC inc)
 add_subdirectory(src)
 
-
 if(${CMAKE_BUILD_TYPE} STREQUAL Debug)
     target_compile_definitions(
     DrkEngine
@@ -20,7 +19,6 @@ else()
         DRK_EN_ASSERTS
     )
 endif()
-
 
 option(BUILD_TESTS "Build unit tests" OFF)
 if (${BUILD_TESTS})

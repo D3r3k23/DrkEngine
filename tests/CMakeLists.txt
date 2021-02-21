@@ -1,2 +1,11 @@
-add_executable(Tests PRIVATE TestMain.cpp)
+add_executable(Tests PRIVATE Main.cpp)
 target_link_libraries(Tests PRIVATE DrkEngine)
+target_include_directories(Tests PRIVATE ${PROJECT_SOURCE_DIR}/inc)
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_FLAGS "{CMAKE_CXX_FLAGS} -Wall")
+
+set(OUTPUT_DIRECTORY "build/bin")
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${OUTPUT_DIRECTORY}")
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${OUTPUT_DIRECTORY}/lib")
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${OUTPUT_DIRECTORY}/lib")
