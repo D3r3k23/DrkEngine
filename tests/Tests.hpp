@@ -25,7 +25,7 @@ namespace DrkTest
         std::cout << "Test: " << name << std::endl;
 
         Time start  = now();
-        bool passed = DrkTest::run(func);
+        bool passed = DrkTest::func();
         Time end    = now();
 
         Micro elapsed = std::chromo::time_point_cast<Micro>(end  ).time_since_epoch()
@@ -33,7 +33,6 @@ namespace DrkTest
 
         std::cout << "Result:  " << passed ? "Passed" : "Failed" << std::endl;
         std::cout << "Profile: " << elapsed << " us" << std::endl;
-
         std::cout << std::endl;
     }
 
