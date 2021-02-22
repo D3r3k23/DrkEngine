@@ -9,7 +9,6 @@
 #include <ctime>
 #include <memory>
 #include <cassert>
-#include <filesystem>
 
 
 // Temp:
@@ -39,7 +38,8 @@ namespace Drk
         {
             INFO,
             WARN,
-            ERR
+            ERR,
+            ASSERT
         };
 
         std::ostream& operator<<(std::ostream& os, LogType& type);
@@ -68,7 +68,7 @@ namespace Drk
         do {                                                                                        \
             if (!(cond))                                                                            \
             {                                                                                       \
-                Assert::failed(msg, std::filesystem::path(__FILE__).filename().string(), __LINE__); \
+                Assert::failed(msg, __FILE__, __LINE__); \ // std::filesystem::path(__FILE__).filename().string()
                 assert(false);                                                                      \
             }                                                                                       \
         } while (false)
