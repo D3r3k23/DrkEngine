@@ -3,8 +3,6 @@
 #define TESTS_HPP
 
 
-#include "DrkEngine.hpp"
-
 #include <iostream>
 #include <functional>
 #include <chrono>
@@ -39,14 +37,9 @@ namespace DrkTest
         }
     }
     
-    
-    bool test_1()
-    {
-        for (int i = 0; i < 20000; i++);
-        using namespace Drk;
-        DRK_LOG(INFO, "Log works properly.");
-        return true;
-    }
+    // Test test case
+    // Tests DRK_LOG
+    bool test_1();
 }
 
 
