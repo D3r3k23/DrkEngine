@@ -12,8 +12,12 @@
 
 
 // Temp:
+#ifndef DRK_EN_LOGGING
 #define DRK_EN_LOGGING
+#endif
+#ifndef DRK_EN_ASSERTS
 #define DRK_EN_ASSERTS
+#endif
 
 
 namespace Drk
@@ -64,13 +68,13 @@ namespace Drk
     ////////// Asserts //////////
     #ifdef DRK_EN_ASSERTS
 
-        #define DRK_ASSERT(cond, msg)                                                               \
-        do {                                                                                        \
-            if (!(cond))                                                                            \
-            {                                                                                       \
+        #define DRK_ASSERT(cond, msg)                    \
+        do {                                             \
+            if (!(cond))                                 \
+            {                                            \
                 Assert::failed(msg, __FILE__, __LINE__); \ // std::filesystem::path(__FILE__).filename().string()
-                assert(false);                                                                      \
-            }                                                                                       \
+                assert(false);                           \
+            }                                            \
         } while (false)
 
         class Assert
