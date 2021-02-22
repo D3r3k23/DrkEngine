@@ -1,3 +1,4 @@
+
 working_dir="tests"
 executable_path="build/bin/Tests"
 
