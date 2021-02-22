@@ -13,12 +13,8 @@
 
 
 // Temp:
-#ifndef DRK_EN_LOGGING
 #define DRK_EN_LOGGING
-#endif
-#ifndef DRK_EN_ASSERTS
 #define DRK_EN_ASSERTS
-#endif
 
 
 namespace Drk

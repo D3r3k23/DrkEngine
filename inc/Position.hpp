@@ -37,7 +37,7 @@ namespace Drk::Chess
 
         bool can_en_passant() const;
 
-
+        void load_starting_position();
         
         // friend class Eval;
     

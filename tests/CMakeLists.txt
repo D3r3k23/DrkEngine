@@ -2,7 +2,7 @@ add_executable(Tests PRIVATE Main.cpp)
 target_link_libraries(Tests PRIVATE DrkEngine)
 target_include_directories(Tests PRIVATE ${PROJECT_SOURCE_DIR}/inc)
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_FLAGS "{CMAKE_CXX_FLAGS} -Wall")
 
 set(OUTPUT_DIRECTORY "build/bin")
