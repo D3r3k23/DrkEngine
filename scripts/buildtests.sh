@@ -1,3 +1,4 @@
+
 build_dir="tests/build"
 
 mkdir -p $build_dir
