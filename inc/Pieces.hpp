@@ -14,17 +14,20 @@ namespace Drk::Chess
     class Piece // Base class
     {
     public:
-        Piece(PieceEnum piece, Square square, Color color, int value);
+        static Ptr<Piece> create(PieceEnum piece, Square square={ R1, Fa }, Color color=Color::None);
+        Piece(void) = delete;
         virtual ~Piece(void) = default;
 
-        static Ptr<Piece> create(PieceEnum piece, Square square={ R1, Fa }, Color color=Color::None);
-
-        virtual Ptr<std::vector<Move>> get_legal_moves(Rank rank, File file) const;
 
         Color get_color(void) const { return color; }
         char get_symbol(void) const { return (char)piece; }
 
+
+        virtual Ptr<std::vector<Move>> get_legal_moves(void) const = 0;
+
     protected:
+        Piece(PieceEnum piece, Square square, Color color, int value);
+
         PieceEnum piece;
         Square square;
         Color color;
@@ -38,7 +41,7 @@ namespace Drk::Chess
         public:
             None(Square square, Color color);
 
-            Ptr<std::vector<Move>> get_legal_moves(Rank rank, File file) override;
+            Ptr<std::vector<Move>> get_legal_moves(void) const override;
         };
 
         class King : public Piece
@@ -46,7 +49,7 @@ namespace Drk::Chess
         public:
             King(Square square, Color color);
 
-            Ptr<std::vector<Move>> get_legal_moves(Rank rank, File file) override;
+            Ptr<std::vector<Move>> get_legal_moves(void) const override;
         };
 
         class Queen : public Piece
@@ -54,7 +57,7 @@ namespace Drk::Chess
         public:
             Queen(Square square, Color color);
 
-            Ptr<std::vector<Move>> get_legal_moves(Rank rank, File file) override;
+            Ptr<std::vector<Move>> get_legal_moves(void) const override;
         };
 
         class Rook : public Piece
@@ -62,7 +65,7 @@ namespace Drk::Chess
         public:
             Rook(Square square, Color color);
 
-            Ptr<std::vector<Move>> get_legal_moves(Rank rank, File file) override;
+            Ptr<std::vector<Move>> get_legal_moves(void) const override;
         };
 
         class Bishop : public Piece
@@ -70,7 +73,7 @@ namespace Drk::Chess
         public:
             Bishop(Square square, Color color);
 
-            Ptr<std::vector<Move>> get_legal_moves(Rank rank, File file) override;
+            Ptr<std::vector<Move>> get_legal_moves(void) const override;
         };
 
         class Knight : public Piece
@@ -78,7 +81,7 @@ namespace Drk::Chess
         public:
             Knight(Square square, Color color);
 
-            Ptr<std::vector<Move>> get_legal_moves(Rank rank, File file) override;
+            Ptr<std::vector<Move>> get_legal_moves(void) const override;
         };
 
         class Pawn : public Piece
@@ -86,7 +89,7 @@ namespace Drk::Chess
         public:
             Pawn(Square square, Color color);
 
-            Ptr<std::vector<Move>> get_legal_moves(Rank rank, File file) override;
+            Ptr<std::vector<Move>> get_legal_moves(void) const override;
         };
 
         

@@ -48,6 +48,21 @@ namespace Drk::Chess
             return (File)nFile;
     }
 
+    Rank& operator+=(Rank& rank, int x) { rank = rank + x;  return rank; }
+    Rank& operator-=(Rank& rank, int x) { rank = rank - x;  return rank; }
+    File& operator+=(File& file, int x) { file = file + x;  return file; }
+    File& operator-=(File& file, int x) { file = file - x;  return file; }
+
+    Rank& operator++(Rank& rank) { rank += 1;  return rank; }
+    Rank& operator--(Rank& rank) { rank -+ 1;  return rank; }
+    File& operator++(File& file) { file += 1;  return file; }
+    File& operator--(File& file) { file -+ 1;  return file; }
+
+    Rank operator++(Rank& rank, int) { Rank prev = rank;  ++rank;  return prev; }
+    Rank operator--(Rank& rank, int) { Rank prev = rank;  --rank;  return prev; }
+    File operator++(File& file, int) { File prev = file;  ++file;  return prev; }
+    File operator--(File& file, int) { File prev = file;  --file;  return prev; }
+
 
     std::string Move::to_str()
     {

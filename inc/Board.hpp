@@ -5,7 +5,7 @@
 
 #include "Core.hpp"
 #include "ChessPrimitives.hpp"
-#include "Pieces.hpp"
+//#include "Pieces.hpp"
 
 
 namespace Drk::Chess

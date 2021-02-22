@@ -5,7 +5,8 @@
 
 #include "Core.hpp"
 #include "ChessPrimitives.hpp"
-#include "Position.hpp"
+//#include "Pieces.hpp"
+//#include "Position.hpp"
 
 
 namespace Drk::Engine

@@ -16,15 +16,20 @@ namespace Drk::Chess
     File operator+(const File& file, int n);
     File operator-(const File& file, int n);
 
-    Rank& operator++(Rank& rank) { rank = rank + 1;  return rank; }
-    Rank& operator--(Rank& rank) { rank = rank - 1;  return rank; }
-    File& operator++(File& file) { file = file + 1;  return file; }
-    File& operator--(File& file) { file = file - 1;  return file; }
+    Rank& operator+=(Rank& rank, int x);
+    Rank& operator-=(Rank& rank, int x);
+    File& operator+=(File& file, int x);
+    File& operator-=(File& file, int x);
 
-    Rank operator++(Rank& rank, int) { Rank prev = rank;  ++rank;  return prev; }
-    Rank operator--(Rank& rank, int) { Rank prev = rank;  --rank;  return prev; }
-    File operator++(File& file, int) { File prev = file;  ++file;  return prev; }
-    File operator--(File& file, int) { File prev = file;  --file;  return prev; }
+    Rank& operator++(Rank& rank);
+    Rank& operator--(Rank& rank);
+    File& operator++(File& file);
+    File& operator--(File& file);
+
+    Rank operator++(Rank& rank, int);
+    Rank operator--(Rank& rank, int);
+    File operator++(File& file, int);
+    File operator--(File& file, int);
 
 
     struct Square

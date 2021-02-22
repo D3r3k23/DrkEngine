@@ -36,7 +36,28 @@ namespace Drk
     ////////// Logging //////////
     #ifdef DRK_EN_LOGGING
 
-        #define DRK_LOG(type, msg) Logger::log(type, msg)
+        #define DRK_LOG(type, msg) Logger::log(LogType::type, msg)
+
+        enum class LogType;
+
+        class Logger
+        {
+        public:
+            static void init(void);
+            static void log(LogType type, const char* msg);
+            static void log(LogType type, const std::string& msg);
+            static void save(void);
+
+            Logger(Logger&) = delete;
+            void operator=(const Logger&) = delete;
+
+        private:
+            std::ofstream logfile;
+
+            static Logger* instance;
+            Logger(void);
+            ~Logger(void);
+        };
 
         enum class LogType
         {
@@ -47,19 +68,6 @@ namespace Drk
         };
 
         std::ostream& operator<<(std::ostream& os, LogType& type);
-
-        class Logger
-        {
-        public:
-            static void init(void);
-            static void log(LogType type, const char* msg);
-            static void log(LogType type, const std::string& msg);
-            static void save(void);
-
-        private:
-            static std::ofstream logfile;
-            static bool ready;
-        };
 
     #else
         #define DRK_LOG(type, msg) // Unimplemented
@@ -77,12 +85,8 @@ namespace Drk
                 assert(false);                           \
             }                                            \
         } while (false)
-
-        class Assert
-        {
-        public:
-            static void failed(const std::string& msg, const std::string& file, int line);
-        };
+        
+        void assert_failed(const std::string& msg, const std::string& file, int line);
 
     #else
         #define DRK_ASSERT(cond, msg) // Unimplemented 

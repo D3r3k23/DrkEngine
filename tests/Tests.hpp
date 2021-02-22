@@ -43,6 +43,8 @@ namespace DrkTest
     bool test_1()
     {
         for (int i = 0; i < 20000; i++);
+        using namespace Drk;
+        DRK_LOG(INFO, "Log works properly.");
         return true;
     }
 }
