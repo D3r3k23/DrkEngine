@@ -68,11 +68,12 @@ namespace Drk
     ////////// Asserts //////////
     #ifdef DRK_EN_ASSERTS
 
+        // std::filesystem::path(__FILE__).filename().string() ???
         #define DRK_ASSERT(cond, msg)                    \
         do {                                             \
             if (!(cond))                                 \
             {                                            \
-                Assert::failed(msg, __FILE__, __LINE__); \ // std::filesystem::path(__FILE__).filename().string()
+                Assert::failed(msg, __FILE__, __LINE__); \
                 assert(false);                           \
             }                                            \
         } while (false)
