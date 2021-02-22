@@ -10,7 +10,6 @@
 
 #define RUN_TEST(test) DrkTest::Util::run(DrkTest::test, #test)
 
-
 namespace DrkTest
 {
     namespace Util
