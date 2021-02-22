@@ -11,9 +11,10 @@ namespace Drk
         {
             switch (type)
             {
-            case LogType::INFO : os << "Info   ";
-            case LogType::WARN : os << "Warning";
-            case LogType::ERR  : os << "Error  ";
+            case LogType::INFO   : os << "Info   ";
+            case LogType::WARN   : os << "Warning";
+            case LogType::ERR    : os << "Error  ";
+            case LogType::ASSERT : os << "Assert ";
             default: ;
             }
 
@@ -25,7 +26,7 @@ namespace Drk
         void Logger::init(void)
         {
             std::tm* logtime = gmtime(nullptr);
-            std::string fp = "debug/drk_engine_"
+            std::string fp = "logs/drk_engine_"
               + std::to_string(logtime->tm_mon)  + "."
               + std::to_string(logtime->tm_mday) + "."
               + std::to_string(logtime->tm_year) + "_"
@@ -61,16 +62,17 @@ namespace Drk
 
     #endif // DRK_EN_LOGGING
 
+
     ////////// Asserts //////////
     #ifdef DRK_EN_ASSERTS  
 
         void Assert::failed(const std::string& msg, const std::string& file, int line)
         {
-            std::string assert_msg("Assert: " + file + " [" + std::to_string(line) + "] " + msg);
-            std::cout << "Error: " << assert_msg << std::endl;
+            std::string assert_msg(file + " [" + std::to_string(line) + "] " + msg);
+            std::cout << "Assert: " << assert_msg << std::endl;
 
             #ifdef DRK_EN_LOGGING
-                Logger::log(LogType::ERR, assert_msg);
+                Logger::log(LogType::ASSERT, assert_msg);
                 Logger::save();
             #endif // DRK_EN_LOGGING
         }
