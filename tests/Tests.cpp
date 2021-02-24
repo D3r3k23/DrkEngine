@@ -13,7 +13,7 @@ namespace DrkTest
         using TimePnt  = std::chrono::time_point<Clock>;
         using MicroSec = std::chrono::microseconds;
 
-        void run(std::function<bool()> func, const char* name)
+        void run_test(std::function<bool()> func, const char* name)
         {
             TimePnt start = Clock::now();
             bool passed   = func();
