@@ -8,13 +8,13 @@
 #include <chrono>
 
 
-#define RUN_TEST(test) DrkTest::Util::run(DrkTest::test, #test)
+#define RUN_TEST(test) DrkTest::Util::run_test(DrkTest::test, #test)
 
 namespace DrkTest
 {
     namespace Util
     {
-        void run(std::function<bool()> func, const char* name);
+        void run_test(std::function<bool()> func, const char* name);
     }
     
     // Test test case
