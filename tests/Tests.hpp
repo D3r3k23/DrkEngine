@@ -14,17 +14,15 @@ namespace DrkTest
 {
     namespace Util
     {
-        using TimePnt  = std::chrono::time_point<std::chrono::steady_clock>;
+        using Clock    = std::chrono::steady_clock;
+        using TimePnt  = std::chrono::time_point<Clock>;
         using MicroSec = std::chrono::microseconds;
-
-        TimePnt now(void)
-            { return std::chrono::steady_clock::now(); }
 
         void run(std::function<bool()> func, const char* name)
         {
-            TimePnt start = now();
+            TimePnt start = Clock::now();
             bool passed   = func();
-            TimePnt end   = now();
+            TimePnt end   = Clock::now();
 
             MicroSec elapsed = std::chrono::time_point_cast<MicroSec>(end  ).time_since_epoch()
                              - std::chrono::time_point_cast<MicroSec>(start).time_since_epoch();
