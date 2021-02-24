@@ -1,7 +1,7 @@
 
 project(Tests)
 
-add_executable(Tests Main.cpp, Tests.cpp)
+add_executable(Tests Main.cpp Tests.cpp)
 target_link_libraries(Tests PRIVATE DrkEngine)
 target_include_directories(Tests PRIVATE ${PROJECT_SOURCE_DIR}/inc)
 
