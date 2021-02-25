@@ -3,7 +3,8 @@
 
 
 int main(int, char**)
-{
+{   
+    DRK_DEBUG_BREAK;
     INIT_TESTS();
 
     RUN_TEST(test_1);

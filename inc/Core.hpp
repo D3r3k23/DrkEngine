@@ -9,10 +9,17 @@
 #include <memory>
 #include <chrono>
 #include <ctime>
-#include <cassert>
 
 
-// Temp:
+#ifdef __linux__
+    #include <signal.h>
+    #define DRK_DEBUG_BREAK raise(SIGTRAP)
+#elif _WIN32
+    #define DRK_DEBUG_BREAK __debugbreak()
+#endif
+
+
+// Temp
 #ifndef DRK_EN_LOGGING
 #define DRK_EN_LOGGING
 #endif
@@ -85,10 +92,7 @@ namespace Drk
         #define DRK_ASSERT(cond, msg)                    \
         do {                                             \
             if (!(cond))                                 \
-            {                                            \
                 Assert::failed(msg, __FILE__, __LINE__); \
-                assert(false);                           \
-            }                                            \
         } while (false)
         
         namespace Assert

@@ -43,6 +43,7 @@ namespace Drk
         {
             std::time_t now = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
             std::tm* logtime = std::localtime(&now);
+
             std::string fp = "logs/"
               + std::string(name) + "_drk_engine" + "_"
               + std::to_string(logtime->tm_mon)   + "."
@@ -94,6 +95,7 @@ namespace Drk
                 DRK_LOG(ASSERT, assert_msg);
                 Logger::save();
             #endif // DRK_EN_LOGGING
+            DRK_DEBUG_BREAK;
         }
 
     #endif // DRK_EN_ASSERTS
