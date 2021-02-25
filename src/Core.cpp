@@ -7,11 +7,14 @@ namespace Drk
     ////////// Logging //////////
     #ifdef DRK_EN_LOGGING
 
-        // Logger public static member functions
+        Ptr<Logger> Logger::instance = nullptr; // Logger private static instance
 
-        void Logger::init(void)
+
+        // Logger public static members
+
+        void Logger::init(const char* name)
         {
-            instance = new Logger;
+            instance = make_ptr<Logger>(name);
         }
 
         void Logger::log(LogType type, const char* msg)
@@ -29,26 +32,28 @@ namespace Drk
 
         void Logger::save(void)
         {
-            delete instance;
+            if (instance)
+                instance->logfile.close();
         }
 
 
-        // Logger private members
+        // Logger constructor & destructor
 
-        Logger* Logger::instance = nullptr;
-
-        Logger::Logger(void)
+        Logger::Logger(const char* name)
         {
-            std::tm* logtime = gmtime(nullptr);
-            std::string fp = "logs/drk_engine_"
-              + std::to_string(logtime->tm_mon)  + "."
-              + std::to_string(logtime->tm_mday) + "."
-              + std::to_string(logtime->tm_year) + "_"
-              + std::to_string(logtime->tm_hour) + ":"
-              + std::to_string(logtime->tm_min)  + ":"
-              + std::to_string(logtime->tm_sec)  + ".log";
+            std::time_t now  = std::time(NULL);
+            std::tm* logtime = std::localtime(&now);
+            std::stringstream fp;
+            
+            fp << "logs/" << name << "_drk_engine" << "_"
+               << std::to_string(logtime->tm_mon)  << "."
+               << std::to_string(logtime->tm_mday) << "."
+               << std::to_string(logtime->tm_year) << "_"
+               << std::to_string(logtime->tm_hour) << ":"
+               << std::to_string(logtime->tm_min)  << ":"
+               << std::to_string(logtime->tm_sec)  << ".log";
 
-            logfile.open(fp, std::ofstream::out);
+            logfile.open(fp.str(), std::ofstream::out);
         }
 
         Logger::~Logger(void)
@@ -79,7 +84,7 @@ namespace Drk
     ////////// Asserts //////////
     #ifdef DRK_EN_ASSERTS  
 
-        void assert_failed(const std::string& msg, const std::string& file, int line)
+        void Assert::failed(const std::string& msg, const std::string& file, int line)
         {
             std::string assert_msg(file + ":" + std::to_string(line) + ": " + msg);
             std::cout << "Assert: " << assert_msg << std::endl;

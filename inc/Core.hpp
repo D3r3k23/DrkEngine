@@ -5,10 +5,11 @@
 
 #include <fstream>
 #include <iostream>
+#include <sstream>
 #include <string>
-#include <ctime>
 #include <memory>
 #include <cassert>
+#include <ctime>
 
 
 // Temp:
@@ -32,31 +33,33 @@ namespace Drk
     {
         return std::make_shared<T>(std::forward<Args>(args)...);
     }
+
     
     ////////// Logging //////////
     #ifdef DRK_EN_LOGGING
 
-        #define DRK_LOG(type, msg) Logger::log(LogType::type, msg)
+        #define DRK_LOGGER_INIT(name) Logger::init(name)
+        #define DRK_LOG(type, msg)    Logger::log(LogType::type, msg)
 
         enum class LogType;
 
-        class Logger
+        class Logger // Singleton
         {
         public:
-            static void init(void);
+            static void init(const char* name="");
             static void log(LogType type, const char* msg);
             static void log(LogType type, const std::string& msg);
             static void save(void);
 
+            Logger(const char* name);
+            ~Logger(void);
             Logger(Logger&) = delete;
-            void operator=(const Logger&) = delete;
+            Logger& operator=(const Logger&) = delete;
 
         private:
             std::ofstream logfile;
 
-            static Logger* instance;
-            Logger(void);
-            ~Logger(void);
+            static Ptr<Logger> instance;
         };
 
         enum class LogType
@@ -69,9 +72,11 @@ namespace Drk
 
         std::ostream& operator<<(std::ostream& os, LogType& type);
 
-    #else
-        #define DRK_LOG(type, msg) // Unimplemented
+    #else // Unimplemented
+        #define DRK_LOGGER_INIT(name)
+        #define DRK_LOG(type, msg)
     #endif // DRK_EN_LOGGING
+
 
     ////////// Asserts //////////
     #ifdef DRK_EN_ASSERTS
@@ -86,10 +91,13 @@ namespace Drk
             }                                            \
         } while (false)
         
-        void assert_failed(const std::string& msg, const std::string& file, int line);
+        namespace Assert
+        {
+            void failed(const std::string& msg, const std::string& file, int line);
+        }
 
-    #else
-        #define DRK_ASSERT(cond, msg) // Unimplemented 
+    #else // Unimplemented 
+        #define DRK_ASSERT(cond, msg)
     #endif // DRK_EN_ASSERTS
 }
 
