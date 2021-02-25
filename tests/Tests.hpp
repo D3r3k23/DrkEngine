@@ -35,9 +35,11 @@ namespace DrkTest
     };
 
 
-    // Test test case
     // Tests DRK_LOG
     bool test_1();
+
+    // Tests DRK_ASSERT
+    bool test_2();
 }
 
 

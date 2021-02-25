@@ -56,7 +56,6 @@ namespace DrkTest
 
     Util::~Util(void)
     {
-        std::cout << std::endl;
         std::cout << "Tests completed." << std::endl;
         std::cout << "Tests passed: " << numPassed << "/" << numTests << std::endl;
     }

@@ -12,4 +12,11 @@ namespace DrkTest
         DRK_LOG(INFO, "Log works properly.");
         return true;
     }
+
+    bool test_2()
+    {
+        int X = 6, Y = 9;
+        DRK_ASSERT(X != Y, "Assert suceeded.");
+        return false;
+    }
 }

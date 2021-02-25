@@ -41,19 +41,20 @@ namespace Drk
 
         Logger::Logger(const char* name)
         {
-            std::time_t now  = std::time(NULL);
+            std::time_t now = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
             std::tm* logtime = std::localtime(&now);
-            std::stringstream fp;
-            
-            fp << "logs/" << name << "_drk_engine" << "_"
-               << std::to_string(logtime->tm_mon)  << "."
-               << std::to_string(logtime->tm_mday) << "."
-               << std::to_string(logtime->tm_year) << "_"
-               << std::to_string(logtime->tm_hour) << ":"
-               << std::to_string(logtime->tm_min)  << ":"
-               << std::to_string(logtime->tm_sec)  << ".log";
+            std::string fp = "logs/"
+              + std::string(name) + "_drk_engine" + "_"
+              + std::to_string(logtime->tm_mon)   + "."
+              + std::to_string(logtime->tm_mday)  + "."
+              + std::to_string(logtime->tm_year)  + "_"
+              + std::to_string(logtime->tm_hour)  + ":"
+              + std::to_string(logtime->tm_min)   + ":"
+              + std::to_string(logtime->tm_sec)   + ".log";
 
-            logfile.open(fp.str(), std::ofstream::out);
+            logfile.open(fp);
+            if (!logfile.is_open())
+                std::cout << "Couldn't open log file: " << fp << std::endl;
         }
 
         Logger::~Logger(void)
@@ -68,10 +69,10 @@ namespace Drk
         {
             switch (type)
             {
-            case LogType::INFO   : os << "Info   ";
-            case LogType::WARN   : os << "Warning";
-            case LogType::ERR    : os << "Error  ";
-            case LogType::ASSERT : os << "Assert ";
+            case LogType::INFO   : os << " Info  "; break;
+            case LogType::WARN   : os << "Warning"; break;
+            case LogType::ERR    : os << " Error "; break;
+            case LogType::ASSERT : os << "Assert "; break;
             default: ;
             }
 

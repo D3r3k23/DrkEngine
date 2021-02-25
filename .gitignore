@@ -1,5 +1,5 @@
 
-tests/build/
+build/
 .vscode/
 
-tests/logs/
+*.log
