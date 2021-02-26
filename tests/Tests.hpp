@@ -31,7 +31,7 @@ namespace DrkTest
         int numTests;
         int numPassed;
 
-        static Drk::Ptr<Util> instance;
+        static Drk::Ptr<Util> s_instance;
     };
 
 
