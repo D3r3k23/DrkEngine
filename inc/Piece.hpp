@@ -18,7 +18,7 @@ namespace Drk::Chess
         Piece(void) = delete;
         virtual ~Piece(void) = default;
 
-        virtual Ptr<std::vector<Move>> get_legal_moves(const Position& position) const = 0;
+        virtual Ptr<std::vector<Move>> get_possible_moves(void) const = 0;
 
         Square get_square(void) const { return square; }
         Color get_color(void)   const { return color; }
