@@ -5,8 +5,8 @@
 
 #include "Core.hpp"
 #include "ChessPrimitives.hpp"
-//#include "Pieces.hpp"
-//#include "Board.hpp"
+#include "Pieces.hpp"
+#include "Board.hpp"
 
 #include <vector>
 #include <fstream>

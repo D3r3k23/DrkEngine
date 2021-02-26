@@ -13,7 +13,7 @@ namespace Drk::Chess
     void Position::load_from_file(const char* fp)
     {
         std::ifstream iFile(fp, std::ifstream::in);
-        ASSERT(iFile.is_open(), "Could not open <file>.");
+        DRK_ASSERT(iFile.is_open(), "Could not open <file>.");
 
         // ASSERT if file is not a valid .drk
 
@@ -38,7 +38,7 @@ namespace Drk::Chess
     void Position::save_to_file(const char* fp) const
     {
         std::ofstream oFile(fp, std::ofstream::out);
-        ASSERT(oFile.is_open(), "Could not open <file>.");
+        DRK_ASSERT(oFile.is_open(), "Could not open <file>.");
 
         for (Rank rank = R8; rank >= R1; rank--) // Use iterators
         {

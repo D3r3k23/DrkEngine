@@ -4,11 +4,10 @@
 
 int main(int, char**)
 {   
-    DRK_DEBUG_BREAK;
     INIT_TESTS();
 
     RUN_TEST(test_1);
-    RUN_TEST(test_2);
+    // RUN_TEST(rank_enum);
 
     return 0;
 }

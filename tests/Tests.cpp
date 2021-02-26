@@ -2,6 +2,7 @@
 #include "Tests.hpp"
 
 using namespace Drk;
+using namespace Drk::Chess;
 
 
 namespace DrkTest
@@ -10,6 +11,15 @@ namespace DrkTest
     {
         for (int i = 0; i < 20000; i++);
         DRK_LOG(INFO, "Log works properly.");
+        return true;
+    }
+
+    bool rank_enum()
+    {
+        Rank r = R1;
+        std::cout << (int)r << std::endl;
+        r++;
+        std::cout << (int)r << std::endl;
         return true;
     }
 

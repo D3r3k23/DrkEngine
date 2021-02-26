@@ -45,8 +45,8 @@ namespace Drk
     ////////// Logging //////////
     #ifdef DRK_EN_LOGGING
 
-        #define DRK_LOGGER_INIT(name) Logger::init(name)
-        #define DRK_LOG(type, msg)    Logger::log(LogType::type, msg)
+        #define DRK_LOGGER_INIT(name) Drk::Logger::init(name)
+        #define DRK_LOG(type, msg)    Drk::Logger::log(LogType::type, msg)
 
         enum class LogType;
 
@@ -89,10 +89,10 @@ namespace Drk
     #ifdef DRK_EN_ASSERTS
 
         // std::filesystem::path(__FILE__).filename().string() ???
-        #define DRK_ASSERT(cond, msg)                    \
-        do {                                             \
-            if (!(cond))                                 \
-                Assert::failed(msg, __FILE__, __LINE__); \
+        #define DRK_ASSERT(cond, msg)                         \
+        do {                                                  \
+            if (!(cond))                                      \
+                Drk::Assert::failed(msg, __FILE__, __LINE__); \
         } while (false)
         
         namespace Assert

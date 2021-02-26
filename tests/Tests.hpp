@@ -38,6 +38,10 @@ namespace DrkTest
     // Tests DRK_LOG
     bool test_1();
 
+
+    // Tests the Rank enum
+    bool rank_enum();
+
     // Tests DRK_ASSERT
     bool test_2();
 }
