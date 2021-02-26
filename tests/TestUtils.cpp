@@ -11,7 +11,7 @@ namespace DrkTest
     using MicroSec = std::chrono::microseconds;
 
 
-    Ptr<Util> Util::instance = nullptr;
+    Ptr<Util> Util::s_instance = nullptr;
     
 
     // Public static members
@@ -19,22 +19,22 @@ namespace DrkTest
     void Util::init(void)
     {
         DRK_LOGGER_INIT("Tests");
-        instance = make_ptr<Util>();
+        s_instance = make_ptr<Util>();
     }
 
     void Util::run(std::function<bool()> func, const char* name)
     {
-        if (!instance)
+        if (!s_instance)
             init();
         
-        instance->numTests++;
+        s_instance->numTests++;
 
         TimePnt start = Clock::now();
         bool passed   = func();
         TimePnt end   = Clock::now();
 
         if (passed)
-            instance->numPassed++;
+            s_instance->numPassed++;
 
         MicroSec elapsed = std::chrono::time_point_cast<MicroSec>(end  ).time_since_epoch()
                          - std::chrono::time_point_cast<MicroSec>(start).time_since_epoch();
