@@ -2,7 +2,6 @@
 #include "Tests.hpp"
 
 using namespace Drk;
-using namespace Drk::Chess;
 
 
 namespace DrkTest
@@ -16,10 +15,21 @@ namespace DrkTest
 
     bool rank_enum()
     {
+        using namespace Chess;
+
         Rank r = R1;
         std::cout << (int)r << std::endl;
         r++;
         std::cout << (int)r << std::endl;
+        return true;
+    }
+
+    bool piece_enum()
+    {
+        using namespace Chess;
+        PieceEnum p = PieceEnum::King;
+        std::cout << (char)p << std::endl;
+
         return true;
     }
 

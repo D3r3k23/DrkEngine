@@ -54,9 +54,9 @@ namespace Drk::Chess
     File& operator-=(File& file, int x) { file = file - x;  return file; }
 
     Rank& operator++(Rank& rank) { rank += 1;  return rank; }
-    Rank& operator--(Rank& rank) { rank -+ 1;  return rank; }
+    Rank& operator--(Rank& rank) { rank -= 1;  return rank; }
     File& operator++(File& file) { file += 1;  return file; }
-    File& operator--(File& file) { file -+ 1;  return file; }
+    File& operator--(File& file) { file -= 1;  return file; }
 
     Rank operator++(Rank& rank, int) { Rank prev = rank;  ++rank;  return prev; }
     Rank operator--(Rank& rank, int) { Rank prev = rank;  --rank;  return prev; }
@@ -64,7 +64,7 @@ namespace Drk::Chess
     File operator--(File& file, int) { File prev = file;  --file;  return prev; }
 
 
-    std::string Move::to_str()
+    Move::operator std::string()
     {
         return "";
     }

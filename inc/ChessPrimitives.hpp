@@ -66,7 +66,7 @@ namespace Drk::Chess
             : from(from), to(to), piece(piece)
         {}
 
-        std::string to_str(); // returns ex: "Nf3-g5"
+        operator std::string(); // ex: "Nf3-g5"
     };
 }
 
