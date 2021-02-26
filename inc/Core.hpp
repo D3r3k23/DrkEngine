@@ -66,7 +66,7 @@ namespace Drk
         private:
             std::ofstream logfile;
 
-            static Ptr<Logger> instance;
+            static Ptr<Logger> s_instance;
         };
 
         enum class LogType
