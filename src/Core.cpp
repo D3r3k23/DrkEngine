@@ -7,7 +7,7 @@ namespace Drk
     ////////// Logging //////////
     #ifdef DRK_EN_LOGGING
 
-        Ptr<Logger> Logger::instance = nullptr; // Logger private static instance
+        Ptr<Logger> Logger::s_instance = nullptr; // Logger private static instance
 
 
         // Logger public static members
