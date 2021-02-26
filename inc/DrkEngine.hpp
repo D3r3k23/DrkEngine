@@ -4,6 +4,7 @@
 
 
 #include "ChessPrimitives.hpp"
+#include "Piece.hpp"
 #include "Pieces.hpp"
 #include "Board.hpp"
 #include "Position.hpp"
