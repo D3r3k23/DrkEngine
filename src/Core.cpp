@@ -14,16 +14,16 @@ namespace Drk
 
         void Logger::init(const char* name)
         {
-            instance = make_ptr<Logger>(name);
+            s_instance = make_ptr<Logger>(name);
             DRK_LOG(INFO, "Log file opened.");
         }
 
         void Logger::log(LogType type, const char* msg)
         {
-            if (!instance)
+            if (!s_instance)
                 init();
 
-            instance->logfile << "[" << type << "]  " << msg << "\n";
+            s_instance->logfile << "[" << type << "]  " << msg << "\n";
         }
 
         void Logger::log(LogType type, const std::string& msg)
@@ -33,10 +33,10 @@ namespace Drk
 
         void Logger::save(void)
         {
-            if (instance)
+            if (s_instance)
             {
                 DRK_LOG(INFO, "Log file closed.");
-                instance->logfile.close();
+                s_instance->logfile.close();
             }
         }
 
