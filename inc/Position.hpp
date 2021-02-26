@@ -38,6 +38,9 @@ namespace Drk::Chess
         bool can_en_passant() const;
 
         void load_starting_position();
+
+        bool square_occupied(Square square) const
+            { return board.square_occupied(square); }
         
         // friend class Eval;
     

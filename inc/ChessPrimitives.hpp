@@ -8,35 +8,42 @@
 
 namespace Drk::Chess
 {
-    enum Rank { R1=0, R2, R3, R4, R5, R6, R7, R8 };
-    enum File { Fa=0, Fb, Fc, Fd, Fe, Ff, Fg, Fh };
+    enum class Rank : int { R1, R2, R3, R4, R5, R6, R7, R8 };
+    enum class File : int { Fa, Fb, Fc, Fd, Fe, Ff, Fg, Fh };
 
-    Rank operator+(const Rank& rank, int n);
-    Rank operator-(const Rank& rank, int n);
-    File operator+(const File& file, int n);
-    File operator-(const File& file, int n);
+    int to_index(Rank rank);
+    int to_index(File file);
+    Rank to_rank(int index);
+    File to_file(int index);
 
-    Rank& operator+=(Rank& rank, int x);
-    Rank& operator-=(Rank& rank, int x);
-    File& operator+=(File& file, int x);
-    File& operator-=(File& file, int x);
+    char to_char(Rank rank);
+    char to_char(File file);
+    Rank to_rank(char ch);
+    File to_file(char ch);
 
-    Rank& operator++(Rank& rank);
-    Rank& operator--(Rank& rank);
-    File& operator++(File& file);
-    File& operator--(File& file);
+    bool operator>(const Rank&, const Rank&);
+    bool operator<(const File&, const File&);
 
-    Rank operator++(Rank& rank, int);
-    Rank operator--(Rank& rank, int);
-    File operator++(File& file, int);
-    File operator--(File& file, int);
+    Rank operator+(const Rank&, int);
+    File operator+(const File&, int);
+    Rank operator-(const Rank&, int);
+    File operator-(const File&, int);
 
+    Rank& operator+=(Rank&, int);
+    File& operator+=(File&, int);
+    Rank& operator-=(Rank&, int);
+    File& operator-=(File&, int);
 
-    struct Square
-    {
-        Rank rank;
-        File file;
-    };
+    Rank& operator++(Rank&);
+    File& operator++(File&);
+    Rank& operator--(Rank&);
+    File& operator--(File&);
+
+    Rank operator++(Rank&, int);
+    File operator++(File&, int);
+    Rank operator--(Rank&, int);
+    File operator--(File&, int);
+
 
     enum class PieceEnum : char
     {
@@ -49,11 +56,39 @@ namespace Drk::Chess
         Pawn   = 'P'
     };
 
+    char to_char(PieceEnum piece);
+
     enum class Color : char
     {
         None  = ' ',
         White = 'w',
         Black = 'b'
+    };
+
+    char to_char(Color color);
+
+
+    struct Square
+    {
+        Rank rank;
+        File file;
+
+        Square(Rank rank, File file)  
+            : rank(rank), file(file)
+        { }
+
+        Square(int i_rank, int i_file)
+            : rank(to_rank(i_rank)), file(to_file(i_file))
+        { }
+
+        std::string to_string(void)
+            { return std::string(1, to_char(file)) + std::string(1, to_char(rank)); }
+
+        bool operator==(const Square& other)
+            { return (this->rank == other.rank) && (this->file == other.file); }
+        
+        bool operator!=(const Square& other)
+            { return !(*this == other); }
     };
 
 
@@ -62,11 +97,8 @@ namespace Drk::Chess
         Square from, to;
         PieceEnum piece;
 
-        Move(Square from, Square to, PieceEnum piece)
-            : from(from), to(to), piece(piece)
-        {}
-
-        operator std::string(); // ex: "Nf3-g5"
+        std::string to_string(void)
+            { return to_char(piece) + from.to_string() + "-" + to.to_string(); }
     };
 }
 

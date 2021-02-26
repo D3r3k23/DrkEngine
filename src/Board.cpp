@@ -6,13 +6,26 @@ namespace Drk::Chess
 {
     Board::Board(void)
     {
-        for (Rank rank = R1; rank <= R8; rank++) // Use iterators
-            for (File file = Fa; file <= Fh; file++)
-                board[rank][file] = Piece::create(PieceEnum::None, Square{ rank, file });
+        for (int rank = 0; rank < 8; rank++)
+            for (int file = 0; file < 8; file++)
+                set_piece(Piece::create(PieceEnum::None, { rank, file }));
     }
 
-    Ptr<Piece> Board::get_piece(Rank rank, File file) const
+    bool Board::set_piece(const Ptr<Piece>& newPiece)
     {
-        return board[rank][file];
+        int rank = to_index(newPiece->get_square().rank);
+        int file = to_index(newPiece->get_square().file);
+        piece(rank, file) = newPiece;
+    }
+
+    bool Board::set_piece(PieceEnum piece, Square square, Color color)
+    {
+        auto newPiece = Piece::create(piece, square, color);
+        set_piece(newPiece);
+    }
+
+    bool Board::square_occupied(Square square) const
+    {
+        return get_piece(square)->get_piece_enum() != PieceEnum::None;
     }
 }
