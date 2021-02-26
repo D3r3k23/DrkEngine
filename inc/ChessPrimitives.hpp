@@ -77,8 +77,8 @@ namespace Drk::Chess
             : rank(rank), file(file)
         { }
 
-        Square(int i_rank, int i_file)
-            : rank(to_rank(i_rank)), file(to_file(i_file))
+        Square(int rank, int file)
+            : rank(to_rank(rank)), file(to_file(file))
         { }
 
         std::string to_string(void)
@@ -96,6 +96,10 @@ namespace Drk::Chess
     {
         Square from, to;
         PieceEnum piece;
+        
+        Move(Square from, Square to, PieceEnum piece)
+            : from(from), to(to), piece(piece)
+        { }
 
         std::string to_string(void)
             { return to_char(piece) + from.to_string() + "-" + to.to_string(); }
