@@ -15,6 +15,7 @@ namespace Drk
         void Logger::init(const char* name)
         {
             instance = make_ptr<Logger>(name);
+            DRK_LOG(INFO, "Log file opened.");
         }
 
         void Logger::log(LogType type, const char* msg)
@@ -33,7 +34,10 @@ namespace Drk
         void Logger::save(void)
         {
             if (instance)
+            {
+                DRK_LOG(INFO, "Log file closed.");
                 instance->logfile.close();
+            }
         }
 
 
@@ -54,8 +58,7 @@ namespace Drk
               + std::to_string(logtime->tm_sec)   + ".log";
 
             logfile.open(fp);
-            if (!logfile.is_open())
-                std::cout << "Couldn't open log file: " << fp << std::endl;
+            DRK_ASSERT(logfile.is_open(), "Couldn't open log file: " + fp);
         }
 
         Logger::~Logger(void)
