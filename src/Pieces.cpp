@@ -29,7 +29,7 @@ namespace Drk::Chess::Pieces
                 if (Util::in_bounds(r, f))
                 {
                     Square currentSquare(r, f);
-                    if (currentSquare != square);
+                    if (currentSquare != square)
                         moves->push_back(Move(square, currentSquare, PieceEnum::King));
                 }
 
