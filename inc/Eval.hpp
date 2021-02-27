@@ -5,32 +5,31 @@
 
 #include "Core.hpp"
 #include "ChessPrimitives.hpp"
+#include "Piece.hpp"
 #include "Pieces.hpp"
 #include "Position.hpp"
+#include "Engine.hpp"
+#include "EvalPosition.hpp"
 
 
 namespace Drk::Engine
 {
-    struct EvalWeights
-    {
-        double bishop;
-        double rook;
-        
-        void set_opening(void);
-        void set_middlegame(void);
-        void set_endgame(void);
-    };
-    
-    
     class Eval
     {
     public:
+        Eval(int level)
+            : level(level)
+        { }
+
         void load_position(const Chess::Position& position);
         
         Ptr<std::vector<Chess::Move>> evaluate(const Chess::Position& position);
 
     private:
+        int level;
+
         Chess::Position position;
+        // const EvalParams params;
         EvalWeights weights;
     };
 }

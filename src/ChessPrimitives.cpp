@@ -81,6 +81,9 @@ namespace Drk::Chess
     File operator--(File& file, int) { File prev = --file;  return prev; }
 
 
-    char to_char(PieceEnum piece) { return static_cast<char>(piece); }
-    char to_char(Color color)     { return static_cast<char>(color); }
+    PieceEnum to_piece_enum(char ch) { return static_cast<PieceEnum>(ch); }
+    char to_char(PieceEnum piece)    { return static_cast<char>(piece);   }
+
+    Color to_color(char ch)   { return static_cast<Color>(ch);   }
+    char to_char(Color color) { return static_cast<char>(color); }
 }

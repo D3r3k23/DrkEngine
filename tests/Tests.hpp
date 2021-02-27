@@ -45,7 +45,7 @@ namespace DrkTest
     bool rank_enum();
 
     // Tests DRK_ASSERT
-    bool test_2();
+    bool test_assert();
 }
 
 

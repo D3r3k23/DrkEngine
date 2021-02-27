@@ -5,6 +5,7 @@
 
 #include "Core.hpp"
 #include "ChessPrimitives.hpp"
+#include "Piece.hpp"
 #include "Pieces.hpp"
 #include "Board.hpp"
 
@@ -38,6 +39,8 @@ namespace Drk::Chess
         bool can_en_passant() const;
 
         void load_starting_position();
+
+        bool make_move(Move move);
 
         bool square_occupied(Square square) const
             { return board.square_occupied(square); }

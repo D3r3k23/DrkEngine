@@ -19,18 +19,18 @@ namespace Drk::Chess
 
         std::string line;
 
-        for (Rank rank = R8; rank >= R1; rank++)
+        for (int r = 7; r >= 0; r++)
         {
             std::getline(iFile, line);
 
             std::string pieceStr;
 
-            for (File file = Fa; file <= Fh; file++)
+            for (int f = 0; f <= 7; f++)
             {
-                pieceStr = line.substr((int)file * 3, 2);
+                pieceStr = line.substr(3 * f, 2);
 
-                Ptr<Piece> piece = Piece::create((PieceEnum)pieceStr[1], { rank, file }, (Color)pieceStr[0]);
-                board.board[rank][file] = piece;
+                Ptr<Piece> piece = Piece::create(to_piece_enum(pieceStr[1]), { r, f }, to_color(pieceStr[0]));
+                board.set_piece(piece);
             }
         }
     }
@@ -40,19 +40,19 @@ namespace Drk::Chess
         std::ofstream oFile(fp, std::ofstream::out);
         DRK_ASSERT(oFile.is_open(), "Could not open <file>.");
 
-        for (Rank rank = R8; rank >= R1; rank--) // Use iterators
+        for (int r = 7; r >= 0; r--)
         {
-            for (File file = Fa; file <= Fh; file++)
+            for (int f = 0; f <= 7; f++)
             {
-                Ptr<Piece> piece = board.board[rank][file];
-                oFile << (char)(piece->get_color()) << piece->get_symbol();
+                Ptr<Piece> piece = board.get_piece(r, f);
+                oFile << to_char(piece->get_color()) << piece->get_symbol();
 
-                if (file != Fh)
+                if (f < 7)
                     oFile << "|";
             }
             oFile << std::endl;
         }
-        oFile << (char)toPlay << "-";
+        oFile << to_char(toPlay) << "-";
         oFile << (flags.castleWhite ? "CW" : " ") << "-";
         oFile << (flags.castleBlack ? "CB" : " ");
     }

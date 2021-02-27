@@ -56,6 +56,7 @@ namespace Drk::Chess
         Pawn   = 'P'
     };
 
+    PieceEnum to_piece_enum(char ch);
     char to_char(PieceEnum piece);
 
     enum class Color : char
@@ -65,6 +66,7 @@ namespace Drk::Chess
         Black = 'b'
     };
 
+    Color to_color(char ch);
     char to_char(Color color);
 
 
@@ -96,7 +98,7 @@ namespace Drk::Chess
     {
         Square from, to;
         PieceEnum piece;
-        
+
         Move(Square from, Square to, PieceEnum piece)
             : from(from), to(to), piece(piece)
         { }

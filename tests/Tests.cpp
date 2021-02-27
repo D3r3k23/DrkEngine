@@ -17,10 +17,10 @@ namespace DrkTest
     {
         using namespace Chess;
 
-        Rank r = R1;
-        std::cout << (int)r << std::endl;
+        Rank r = Rank::R1;
+        std::cout << to_index(r) << std::endl;
         r++;
-        std::cout << (int)r << std::endl;
+        std::cout << to_index(r) << std::endl;
         return true;
     }
 
@@ -33,7 +33,7 @@ namespace DrkTest
         return true;
     }
 
-    bool test_2()
+    bool test_assert()
     {
         int X = 6, Y = 9;
         DRK_ASSERT(X != Y, "Assert suceeded.");

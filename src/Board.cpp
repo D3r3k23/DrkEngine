@@ -6,19 +6,19 @@ namespace Drk::Chess
 {
     Board::Board(void)
     {
-        for (int rank = 0; rank < 8; rank++)
-            for (int file = 0; file < 8; file++)
-                set_piece(Piece::create(PieceEnum::None, { rank, file }));
+        for (int r = 0; r < 8; r++)
+            for (int f = 0; f < 8; f++)
+                set_piece(Piece::create(PieceEnum::None, { r, f }));
     }
 
-    bool Board::set_piece(const Ptr<Piece>& newPiece)
+    void Board::set_piece(const Ptr<Piece>& newPiece)
     {
         int rank = to_index(newPiece->get_square().rank);
         int file = to_index(newPiece->get_square().file);
-        piece(rank, file) = newPiece;
+        board[rank][file] = newPiece;
     }
 
-    bool Board::set_piece(PieceEnum piece, Square square, Color color)
+    void Board::set_piece(PieceEnum piece, Square square, Color color)
     {
         auto newPiece = Piece::create(piece, square, color);
         set_piece(newPiece);
