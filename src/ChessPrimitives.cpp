@@ -14,9 +14,6 @@ namespace Drk::Chess
     Rank to_rank(char ch)   { return static_cast<Rank>(static_cast<int>(ch) - to_index(Rank::R1)); }
     File to_file(char ch)   { return static_cast<File>(static_cast<int>(ch) - to_index(File::Fa)); }
 
-    bool operator>(const Rank& lhs, const Rank& rhs) { return to_index(lhs) > to_index(rhs); }
-    bool operator<(const File& lhs, const File& rhs) { return to_index(lhs) < to_index(rhs); }
-
     Rank operator+(const Rank& rank, int x)
     {
         int nRank = to_index(rank) + x;
@@ -86,4 +83,15 @@ namespace Drk::Chess
 
     Color to_color(char ch)   { return static_cast<Color>(ch);   }
     char to_char(Color color) { return static_cast<char>(color); }
+
+
+    std::string Move::to_string(void)
+    {
+        if (castleShort)
+            return "OO";
+        else if (castleLong)
+            return "OOO";
+        else
+            return to_char(piece) + from.to_string() + (capture ? "x" : "") + to.to_string();
+    }
 }

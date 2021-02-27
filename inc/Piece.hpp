@@ -20,18 +20,22 @@ namespace Drk::Chess
 
         virtual Ptr<std::vector<Move>> get_possible_moves(void) const = 0;
 
-        Square get_square(void) const { return square; }
-        Color get_color(void)   const { return color; }
-        char get_symbol(void)   const { return to_char(piece); }
-        PieceEnum get_piece_enum(void) const { return piece; }
+        Square get_square(void) const { return m_square; }
+        Color get_color(void)   const { return m_color; }
+        char get_symbol(void)   const { return to_char(m_piece); }
+        PieceEnum get_piece_enum(void) const { return m_piece; }
 
     protected:
         Piece(PieceEnum piece, Square square, Color color, int value);
 
-        PieceEnum piece;
-        Square square;
-        Color color;
-        int value;
+        bool check_rook_move  (int rank, int file) const;
+        bool check_bishop_move(int rank, int file) const;
+
+protected:
+        PieceEnum m_piece;
+        Square m_square;
+        Color m_color;
+        int m_value;
     };
 }
 

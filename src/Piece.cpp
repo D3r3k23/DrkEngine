@@ -20,6 +20,18 @@ namespace Drk::Chess
     }
 
     Piece::Piece(PieceEnum piece, Square square, Color color, int value)
-        : piece(piece), square(square), color(color), value(value)
+        : m_piece(piece), m_square(square), m_color(color), m_value(value)
     { }
+
+    bool Piece::check_rook_move(int rank, int file) const
+    {
+        return (((rank == to_index(m_square.rank)) || (file == to_index(m_square.file)))
+            && (Square(rank, file) != m_square));
+    }
+
+    bool Piece::check_bishop_move(int rank, int file) const
+    {
+        return (((rank - to_index(m_square.rank)) == (file - to_index(m_square.file)))
+            && (Square(rank, file) != m_square));
+    }
 }

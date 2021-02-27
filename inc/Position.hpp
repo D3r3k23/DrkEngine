@@ -36,26 +36,32 @@ namespace Drk::Chess
     public:
         Position(void);
 
-        bool can_en_passant() const;
+        Ptr<std::vector<Move>> get_legal_moves(void) const;
+
+        bool can_en_passant(Pieces::Pawn pawn, Move move) const;
 
         void load_starting_position();
 
         bool make_move(Move move);
 
         bool square_occupied(Square square) const
-            { return board.square_occupied(square); }
+            { return m_board.square_occupied(square); }
         
-        // friend class Eval;
+        bool can_castle(Color color);
     
     private:
         void load_from_file(const char* fp);
         void save_to_file(const char* fp) const;
 
-    private:
-        Board board;
-        Color toPlay;
+        bool check_can_castle(Color color);
 
-        PositionFlags flags;
+    private:
+        Board m_board;
+        Color m_toPlay;
+
+        PositionFlags m_flags;
+
+        Move m_lastMove;
     };
 }
 

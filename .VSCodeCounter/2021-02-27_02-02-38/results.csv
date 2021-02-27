@@ -1,0 +1,31 @@
+"filename", "language", "C++", "Shell Script", "Markdown", "YAML", "comment", "blank", "total"
+"/home/derek/Dev/DrkEngine/.github/workflows/test.yml", "YAML", 0, 0, 0, 16, 0, 6, 22
+"/home/derek/Dev/DrkEngine/README.md", "Markdown", 0, 0, 2, 0, 0, 3, 5
+"/home/derek/Dev/DrkEngine/inc/Board.hpp", "C++", 27, 0, 0, 0, 0, 16, 43
+"/home/derek/Dev/DrkEngine/inc/ChessPrimitives.hpp", "C++", 82, 0, 0, 0, 0, 31, 113
+"/home/derek/Dev/DrkEngine/inc/Core.hpp", "C++", 75, 0, 0, 0, 5, 30, 110
+"/home/derek/Dev/DrkEngine/inc/DrkEngine.hpp", "C++", 9, 0, 0, 0, 0, 6, 15
+"/home/derek/Dev/DrkEngine/inc/Engine.hpp", "C++", 21, 0, 0, 0, 0, 11, 32
+"/home/derek/Dev/DrkEngine/inc/Eval.hpp", "C++", 26, 0, 0, 0, 1, 12, 39
+"/home/derek/Dev/DrkEngine/inc/EvalPosition.hpp", "C++", 20, 0, 0, 0, 0, 9, 29
+"/home/derek/Dev/DrkEngine/inc/Piece.hpp", "C++", 27, 0, 0, 0, 0, 13, 40
+"/home/derek/Dev/DrkEngine/inc/Pieces.hpp", "C++", 53, 0, 0, 0, 0, 15, 68
+"/home/derek/Dev/DrkEngine/inc/Position.hpp", "C++", 40, 0, 0, 0, 3, 21, 64
+"/home/derek/Dev/DrkEngine/inc/Util.hpp", "C++", 7, 0, 0, 0, 0, 5, 12
+"/home/derek/Dev/DrkEngine/scripts/buildtests.sh", "Shell Script", 0, 4, 0, 0, 0, 3, 7
+"/home/derek/Dev/DrkEngine/scripts/runtests.sh", "Shell Script", 0, 7, 0, 0, 0, 3, 10
+"/home/derek/Dev/DrkEngine/src/Board.cpp", "C++", 25, 0, 0, 0, 0, 7, 32
+"/home/derek/Dev/DrkEngine/src/ChessPrimitives.cpp", "C++", 70, 0, 0, 0, 0, 20, 90
+"/home/derek/Dev/DrkEngine/src/Core.cpp", "C++", 73, 0, 0, 0, 5, 28, 106
+"/home/derek/Dev/DrkEngine/src/Engine.cpp", "C++", 19, 0, 0, 0, 0, 8, 27
+"/home/derek/Dev/DrkEngine/src/Eval.cpp", "C++", 4, 0, 0, 0, 0, 5, 9
+"/home/derek/Dev/DrkEngine/src/EvalPosition.cpp", "C++", 7, 0, 0, 0, 0, 4, 11
+"/home/derek/Dev/DrkEngine/src/Piece.cpp", "C++", 21, 0, 0, 0, 0, 5, 26
+"/home/derek/Dev/DrkEngine/src/Pieces.cpp", "C++", 61, 0, 0, 0, 0, 16, 77
+"/home/derek/Dev/DrkEngine/src/Position.cpp", "C++", 45, 0, 0, 0, 1, 14, 60
+"/home/derek/Dev/DrkEngine/src/Util.cpp", "C++", 9, 0, 0, 0, 0, 4, 13
+"/home/derek/Dev/DrkEngine/tests/Main.cpp", "C++", 10, 0, 0, 0, 0, 6, 16
+"/home/derek/Dev/DrkEngine/tests/TestUtils.cpp", "C++", 41, 0, 0, 0, 2, 20, 63
+"/home/derek/Dev/DrkEngine/tests/Tests.cpp", "C++", 33, 0, 0, 0, 0, 10, 43
+"/home/derek/Dev/DrkEngine/tests/Tests.hpp", "C++", 30, 0, 0, 0, 4, 19, 53
+"Total", "-", 835, 11, 2, 16, 21, 350, 1235

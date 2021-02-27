@@ -25,6 +25,11 @@ namespace Drk::Chess::Pieces
     public:
         King(Square square, Color color);
         Ptr<std::vector<Move>> get_possible_moves(void) const override;
+
+        bool has_moved(void) const { return m_hasMoved; }
+    
+    private:
+        bool m_hasMoved = false;
     };
 
     class Queen : public Piece
@@ -39,6 +44,11 @@ namespace Drk::Chess::Pieces
     public:
         Rook(Square square, Color color);
         Ptr<std::vector<Move>> get_possible_moves(void) const override;
+
+        bool has_moved(void) const { return m_hasMoved; }
+    
+    private:
+        bool m_hasMoved = false;
     };
 
     class Bishop : public Piece

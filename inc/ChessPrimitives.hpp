@@ -21,9 +21,6 @@ namespace Drk::Chess
     Rank to_rank(char ch);
     File to_file(char ch);
 
-    bool operator>(const Rank&, const Rank&);
-    bool operator<(const File&, const File&);
-
     Rank operator+(const Rank&, int);
     File operator+(const File&, int);
     Rank operator-(const Rank&, int);
@@ -75,6 +72,10 @@ namespace Drk::Chess
         Rank rank;
         File file;
 
+        Square(void)
+            : rank(Rank::R1), file(File::Fa)
+        { }
+
         Square(Rank rank, File file)  
             : rank(rank), file(file)
         { }
@@ -98,13 +99,18 @@ namespace Drk::Chess
     {
         Square from, to;
         PieceEnum piece;
+        bool capture = false;
+        bool castleShort = false;
+        bool castleLong  = false;
 
-        Move(Square from, Square to, PieceEnum piece)
-            : from(from), to(to), piece(piece)
+        Move(void) = default;
+        Move(const Move&) = default;
+
+        Move(Square from, Square to, PieceEnum piece, bool capture=false, bool castleShort=false, bool castleLong=false)
+            : from(from), to(to), piece(piece), capture(capture), castleShort(castleShort), castleLong(castleLong)
         { }
 
-        std::string to_string(void)
-            { return to_char(piece) + from.to_string() + "-" + to.to_string(); }
+        std::string to_string(void);
     };
 }
 

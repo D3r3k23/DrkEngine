@@ -8,5 +8,7 @@ target_sources(DrkEngine
     Pieces.cpp
     Board.cpp
     Position.cpp
+    Engine.cpp
+    EvalPosition.cpp
     Eval.cpp
 )

@@ -21,56 +21,76 @@ namespace Drk::Chess::Pieces
     Ptr<std::vector<Move>> King::get_possible_moves(void) const
     {
         auto moves = make_ptr<std::vector<Move>>();
-        int  kRank = to_index(square.rank);
-        int  kFile = to_index(square.file);
+        int  kRank = to_index(m_square.rank);
+        int  kFile = to_index(m_square.file);
 
         for (int r = kRank - 1; r <= kRank + 1; r++)
             for (int f = kFile - 1; f <= kFile + 1; f++)
                 if (Util::in_bounds(r, f))
                 {
-                    Square currentSquare(r, f);
-                    if (currentSquare != square)
-                        moves->push_back(Move(square, currentSquare, PieceEnum::King));
+                    Square square(r, f);
+                    if (square != m_square)
+                        moves->push_back(Move(m_square, square, PieceEnum::King));
                 }
-
         return moves;
     }
 
     Ptr<std::vector<Move>> Queen::get_possible_moves(void) const
     {
         auto moves = make_ptr<std::vector<Move>>();
-        int  qRank = to_index(square.rank);
-        int  qFile = to_index(square.file);
 
         for (int r = 0; r < 8; r++)
             for (int f = 0; f < 8; f++)
                 if (Util::in_bounds(r, f))
-                {
-                    Square currentSquare(r, f);
-                    if (currentSquare != square)
-                        moves->push_back(Move(square, currentSquare, PieceEnum::King));
-                }
-
+                    if (check_rook_move(r, f) || check_bishop_move(r, f))
+                        moves->push_back(Move(m_square, Square(r, f), PieceEnum::King));
         return moves;
     }
 
     Ptr<std::vector<Move>> Rook::get_possible_moves(void) const
     {
-        return make_ptr<std::vector<Move>>();
+        auto moves = make_ptr<std::vector<Move>>();
+
+        for (int r = 0; r < 8; r++)
+            for (int f = 0; f < 8; f++)
+                if (Util::in_bounds(r, f))
+                    if (check_rook_move(r, f))
+                        moves->push_back(Move(m_square, Square(r, f), PieceEnum::King));
+        return moves;
     }
 
     Ptr<std::vector<Move>> Bishop::get_possible_moves(void) const
     {
-        return make_ptr<std::vector<Move>>();
+        auto moves = make_ptr<std::vector<Move>>();
+
+        for (int r = 0; r < 8; r++)
+            for (int f = 0; f < 8; f++)
+                if (Util::in_bounds(r, f))
+                    if (check_bishop_move(r, f))
+                        moves->push_back(Move(m_square, Square(r, f), PieceEnum::King));
+        return moves;
     }
 
     Ptr<std::vector<Move>> Knight::get_possible_moves(void) const
     {
-        return make_ptr<std::vector<Move>>();
+        auto moves = make_ptr<std::vector<Move>>();
+
+
+        return moves;
     }
 
     Ptr<std::vector<Move>> Pawn::get_possible_moves(void) const
     {
-        return make_ptr<std::vector<Move>>();
+        auto moves = make_ptr<std::vector<Move>>();
+
+        int r = to_index(m_square.rank) + 1;
+        for (int f = to_index(m_square.file) - 1; f <= to_index(m_square.file) + 1; f++)
+            if (Util::in_bounds(r, f))
+                moves->push_back(Move(m_square, Square(r, f), PieceEnum::Pawn));
+
+        if (m_square.rank == Rank::R2)
+            moves->push_back(Move(m_square, Square(m_square.rank + 2, m_square.file), PieceEnum::Pawn));
+
+        return moves;
     }
 }
