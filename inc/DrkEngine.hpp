@@ -8,6 +8,8 @@
 #include "Pieces.hpp"
 #include "Board.hpp"
 #include "Position.hpp"
+#include "Engine.hpp"
+#include "EvalPosition.hpp"
 #include "Eval.hpp"
 
 
