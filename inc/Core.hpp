@@ -11,20 +11,18 @@
 #include <ctime>
 
 
-#ifdef __linux__
-    #include <signal.h>
-    #define DRK_DEBUG_BREAK raise(SIGTRAP)
-#elif _WIN32
-    #define DRK_DEBUG_BREAK __debugbreak()
-#endif
+#ifdef DRK_DEBUG
 
+    #define DRK_EN_LOGGING
+    #define DRK_EN_ASSERTS
 
-// Temp
-#ifndef DRK_EN_LOGGING
-#define DRK_EN_LOGGING
-#endif
-#ifndef DRK_EN_ASSERTS
-#define DRK_EN_ASSERTS
+    #ifdef __linux__
+        #include <signal.h>
+        #define DRK_DEBUG_BREAK raise(SIGTRAP)
+    #elif _WIN32
+        #define DRK_DEBUG_BREAK __debugbreak()
+    #endif
+
 #endif
 
 
@@ -45,8 +43,9 @@ namespace Drk
     ////////// Logging //////////
     #ifdef DRK_EN_LOGGING
 
-        #define DRK_LOGGER_INIT(name) Drk::Logger::init(name)
-        #define DRK_LOG(type, msg)    Drk::Logger::log(LogType::type, msg)
+        #define DRK_LOGGER_INIT(name) Drk::Logger::init(name);
+        #define DRK_LOG(type, msg)    Drk::Logger::log(LogType::type, msg);
+        #define DRK_LOGGER_SAVE()     Drk::Logger::save();
 
         enum class LogType;
 
@@ -82,6 +81,7 @@ namespace Drk
     #else // Unimplemented
         #define DRK_LOGGER_INIT(name)
         #define DRK_LOG(type, msg)
+        #define DRK_LOG()
     #endif // DRK_EN_LOGGING
 
 

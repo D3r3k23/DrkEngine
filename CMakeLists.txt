@@ -20,14 +20,8 @@ target_compile_options(DrkEngine
 
 if(${CMAKE_BUILD_TYPE} STREQUAL Debug)
     target_compile_definitions(DrkEngine
-      PRIVATE
-        DRK_EN_LOGGING
-        DRK_EN_ASSERTS
-    )
-else()
-    target_compile_definitions(DrkEngine
-      PRIVATE
-        DRK_EN_ASSERTS
+      PUBLIC
+        DRK_DEBUG
     )
 endif()
 
