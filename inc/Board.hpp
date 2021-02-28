@@ -42,7 +42,7 @@ namespace Drk::Chess
         Iterator end(void);
 
         Iterator_const begin(void) const;
-        Iterator_const end(void)   const;
+        Iterator_const end(void) const;
 
     private:
         Ptr<Piece>& piece(int rank, int file)
