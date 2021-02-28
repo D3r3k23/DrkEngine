@@ -28,9 +28,9 @@ namespace Drk::Engine
     private:
         int level;
 
-        Chess::Position position;
-        // const EvalParams params;
-        EvalWeights weights;
+        Engine::EvalPosition m_position;
+        // const EvalParams m_params;
+        EvalWeights m_weights;
     };
 }
 
