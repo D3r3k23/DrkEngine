@@ -14,14 +14,15 @@ namespace Drk::Chess
     {
         auto moves = make_ptr<std::vector<Move>>();
 
-        // for (auto piece : m_board)
-        // {
-        //     auto pieceMoves = piece->get_possible_moves();
-        //     if (piece.pieceEnum == PieceEnum::Pawn)
-        //         for (auto move : pieceMoves)
-        //             if (can_en_passant(piece, move))
-        //                 moves->push_back(move);
-        // }
+        for (auto& piece : m_board)
+        {
+            auto pieceMoves = piece->get_possible_moves();
+            if (piece->get_piece_enum() == PieceEnum::Pawn)
+                for (auto& move : *pieceMoves)
+                    if (move.capture)
+                        if (can_en_passant(dynamic_cast<const Pieces::Pawn&>(*piece), move))
+                            moves->push_back(move);
+        }
 
         return moves;
     }

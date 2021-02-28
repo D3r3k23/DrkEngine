@@ -15,7 +15,7 @@ namespace Drk::Chess
     {
         int rank = to_index(newPiece->get_square().rank);
         int file = to_index(newPiece->get_square().file);
-        board[rank][file] = newPiece;
+        m_board[rank][file] = newPiece;
     }
 
     void Board::set_piece(PieceEnum piece, Square square, Color color)
@@ -24,8 +24,42 @@ namespace Drk::Chess
         set_piece(newPiece);
     }
 
-    bool Board::square_occupied(Square square) const
+
+    Board::Iterator Board::begin(void) { return Iterator(*this, 0, 0); }
+    Board::Iterator Board::end(void)   { return Iterator(*this, 7, 7); }
+
+    Board::Iterator_const Board::begin(void) const { return Iterator_const(*this, 0, 0); }
+    Board::Iterator_const Board::end(void)   const { return Iterator_const(*this, 7, 7); }
+
+    Board::Iterator& Board::Iterator::operator++(void)
     {
-        return get_piece(square)->get_piece_enum() != PieceEnum::None;
+        if (m_file == 7) 
+        {
+            if (m_rank < 7)
+            {
+                m_file = 0;
+                m_rank++;
+            }
+        }
+        else
+            m_file++;
+
+        return *this;
+    }
+
+    Board::Iterator_const& Board::Iterator_const::operator++(void)
+    {
+        if (m_file == 7) 
+        {
+            if (m_rank < 7)
+            {
+                m_file = 0;
+                m_rank++;
+            }
+        }
+        else
+            m_file++;
+
+        return *this;
     }
 }
