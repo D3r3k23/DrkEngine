@@ -75,7 +75,29 @@ namespace Drk::Chess
 
     bool Position::check_legal_move(Move& move) const
     {
+        switch (move.piece)
+        {
+        case PieceEnum::King   : 
+        case PieceEnum::Queen  : 
+        case PieceEnum::Rook   : 
+        case PieceEnum::Bishop : 
+        case PieceEnum::Knight : 
+        case PieceEnum::Pawn   : 
+        case PieceEnum::None   : 
+        default                : 
+        }
 
+        if (m_board.square_occupied(move.to))
+        {
+            if (m_board.get_piece(move.to)->get_color() == m_toPlay)
+                return false;
+            else if (m_board.get_piece(move.to)->get_color() == !m_toPlay)
+            {
+                move.type = MoveType::Capture;
+                if (move.piece == PieceEnum::Pawn)
+                    check_en_passant(move.to);
+            }
+        }
 
         // if (flags.in_check(m_toPlay))
         //     check_illegal_move_in_check()

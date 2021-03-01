@@ -15,7 +15,7 @@ namespace Drk::Chess
     {
         int rank = to_index(newPiece->get_square().rank);
         int file = to_index(newPiece->get_square().file);
-        m_board[rank][file] = newPiece;
+        piece(rank, file) = newPiece;
     }
 
     void Board::set_piece(PieceEnum piece, Square square, Color color)

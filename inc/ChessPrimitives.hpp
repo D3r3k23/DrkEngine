@@ -66,6 +66,8 @@ namespace Drk::Chess
     Color to_color(char ch);
     char to_char(Color color);
 
+    Color operator!(const Color& color);
+
 
     struct Square
     {

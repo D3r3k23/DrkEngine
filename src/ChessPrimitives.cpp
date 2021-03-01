@@ -84,6 +84,16 @@ namespace Drk::Chess
     Color to_color(char ch)   { return static_cast<Color>(ch);   }
     char to_char(Color color) { return static_cast<char>(color); }
 
+    Color operator!(const Color& color)
+    {
+        switch (color)
+        {
+        case Color::White : return Color::Black;
+        case Color::Black : return Color::White;
+        default           : return Color::None;
+        }
+    }
+
 
     std::string Move::to_string(void)
     {

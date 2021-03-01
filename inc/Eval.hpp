@@ -18,7 +18,7 @@ namespace Drk::Engine
     {
     public:
         Eval(int level)
-            : level(level)
+            : m_level(level)
         { }
 
         void load_position(const Chess::Position& position);
@@ -26,7 +26,7 @@ namespace Drk::Engine
         Ptr<std::vector<Chess::Move>> evaluate(const Chess::Position& position);
 
     private:
-        int level;
+        int m_level;
 
         Engine::EvalPosition m_position;
         // const EvalParams m_params;

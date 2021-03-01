@@ -1,4 +1,5 @@
 
+#include "Piece.hpp"
 #include "Pieces.hpp"
 
 

@@ -20,7 +20,7 @@ namespace Drk::Engine
         EvalPosition();
 
     private:
-        Chess::Position position;
+        Chess::Position m_position;
     };
 }
 
