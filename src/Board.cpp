@@ -25,11 +25,11 @@ namespace Drk::Chess
     }
 
 
-    Board::Iterator Board::begin(void) { return Iterator(*this, 0, 0); }
-    Board::Iterator Board::end(void)   { return Iterator(*this, 7, 7); }
+    Iterator Board::begin(void) { return Iterator(*this, 0, 0); }
+    Iterator Board::end(void)   { return Iterator(*this, 7, 7); }
 
-    Board::Iterator_const Board::begin(void) const { return Iterator_const(*this, 0, 0); }
-    Board::Iterator_const Board::end(void)   const { return Iterator_const(*this, 7, 7); }
+    Iterator_const Board::begin(void) const { return Iterator_const(*this, 0, 0); }
+    Iterator_const Board::end(void)   const { return Iterator_const(*this, 7, 7); }
 
     Board::Iterator& Board::Iterator::operator++(void)
     {
