@@ -11,6 +11,8 @@
 
 namespace Drk::Chess
 {
+    class Position;
+
     class Piece // Base class
     {
     public:

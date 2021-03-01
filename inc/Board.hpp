@@ -55,6 +55,7 @@ namespace Drk::Chess
         Ptr<Piece> m_board[8][8];
     };
 
+
     class Board::Iterator
     {
     public:
@@ -75,6 +76,7 @@ namespace Drk::Chess
         int m_rank;
         int m_file;
     };
+
 
     class Board::Iterator_const
     {

@@ -33,32 +33,42 @@ namespace Drk::Chess
 
     Board::Iterator& Board::Iterator::operator++(void)
     {
-        if (m_file == 7) 
+        do
         {
-            if (m_rank < 7)
+            if (m_file == 7) 
             {
                 m_file = 0;
-                m_rank++;
+
+                if (m_rank == 7)
+                    m_rank = 0;
+                else
+                    m_rank++;
             }
-        }
-        else
-            m_file++;
+            else
+                m_file++;
+
+        } while(m_board.get_piece(m_rank, m_file)->get_piece_enum() != PieceEnum::None);
 
         return *this;
     }
 
     Board::Iterator_const& Board::Iterator_const::operator++(void)
     {
-        if (m_file == 7) 
+        do
         {
-            if (m_rank < 7)
+            if (m_file == 7) 
             {
                 m_file = 0;
-                m_rank++;
+                
+                if (m_rank == 7)
+                    m_rank = 0;
+                else
+                    m_rank++;
             }
-        }
-        else
-            m_file++;
+            else
+                m_file++;
+
+        } while(m_board.get_piece(m_rank, m_file)->get_piece_enum() != PieceEnum::None);
 
         return *this;
     }

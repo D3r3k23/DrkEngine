@@ -87,11 +87,14 @@ namespace Drk::Chess
 
     std::string Move::to_string(void)
     {
-        if (castleShort)
+        if (type == MoveType::CastleShort)
             return "OO";
-        else if (castleLong)
+        else if (type == MoveType::CastleLong)
             return "OOO";
         else
-            return to_char(piece) + from.to_string() + (capture ? "x" : "") + to.to_string();
+            return to_char(piece)
+                 + from.to_string()
+                 + (type == MoveType::Capture ? "x" : "")
+                 + to.to_string();
     }
 }

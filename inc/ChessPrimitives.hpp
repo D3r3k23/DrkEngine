@@ -95,19 +95,21 @@ namespace Drk::Chess
     };
 
 
+    enum class MoveType
+        { Move, Capture, CastleShort, CastleLong, Promotion };
+
     struct Move
     {
         Square from, to;
         PieceEnum piece;
-        bool capture = false;
-        bool castleShort = false;
-        bool castleLong  = false;
+        MoveType type;
+        PieceEnum promoteTo;
 
         Move(void) = default;
         Move(const Move&) = default;
 
-        Move(Square from, Square to, PieceEnum piece, bool capture=false, bool castleShort=false, bool castleLong=false)
-            : from(from), to(to), piece(piece), capture(capture), castleShort(castleShort), castleLong(castleLong)
+        Move(Square from, Square to, PieceEnum piece, MoveType type=MoveType::Move, PieceEnum promoteTo=PieceEnum::None)
+            : from(from), to(to), piece(piece), type(type), promoteTo(promoteTo)
         { }
 
         std::string to_string(void);

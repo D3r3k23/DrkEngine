@@ -14,30 +14,91 @@ namespace Drk::Chess
     {
         auto moves = make_ptr<std::vector<Move>>();
 
-        for (auto& piece : m_board)
+        Ptr<std::vector<Move>> playerMoves = get_player_moves();
+
+        auto it = playerMoves->begin();
+        while (it != playerMoves->end())
         {
-            auto pieceMoves = piece->get_possible_moves();
-            if (piece->get_piece_enum() == PieceEnum::Pawn)
-                for (auto& move : *pieceMoves)
-                    if (move.capture)
-                        if (can_en_passant(dynamic_cast<const Pieces::Pawn&>(*piece), move))
-                            moves->push_back(move);
+            auto& move = *it;
+            bool remove = false;
+
+            if (!check_legal_move(move))
+                remove = true;
+
+            if (move.type == MoveType::Promotion)
+            {
+                Move promotionMove(move);
+                move.promoteTo = PieceEnum::Queen;  playerMoves->push_back(promotionMove);
+                move.promoteTo = PieceEnum::Rook;   playerMoves->push_back(promotionMove);
+                move.promoteTo = PieceEnum::Bishop; playerMoves->push_back(promotionMove);
+                move.promoteTo = PieceEnum::Knight; playerMoves->push_back(promotionMove);
+                remove = true;
+            }
+
+            if (remove)
+                it = playerMoves->erase(it);
+            else
+                it++;
         }
+        
+        // Add castles
 
         return moves;
     }
 
-    bool Position::can_castle(Color color)
+    bool Position::can_castle(void)
     {
-        if (color == Color::None)
+        if (m_toPlay == Color::None)
             return false;
         else
         {
-            if (((color == Color::White) ? m_flags.castleWhite : m_flags.castleBlack) == true)
-                return check_can_castle(color);
+            if (((m_toPlay == Color::White) ? m_flags.castleWhite : m_flags.castleBlack) == true)
+                return check_can_castle();
             else
                 return false;
         }
+    }
+
+    Ptr<std::vector<Move>> Position::get_player_moves(void) const
+    {
+        auto moves = make_ptr<std::vector<Move>>();
+
+        for (auto& piece : m_board)
+            if (piece->get_color() == m_toPlay)
+            {
+                Ptr<std::vector<Move>> pieceMoves = piece->get_possible_moves();
+                moves->insert(moves->end(), pieceMoves->begin(), pieceMoves->end());
+            }
+
+        return moves;
+    }
+
+    bool Position::check_legal_move(Move& move) const
+    {
+
+
+        // if (flags.in_check(m_toPlay))
+        //     check_illegal_move_in_check()
+    }
+
+    bool Position::check_can_castle(void)
+    {
+        // //Check
+        bool result = false;
+        if (m_toPlay == Color::White)
+        {
+
+            m_flags.castleWhite = result;
+            return result;
+        }
+        else if (m_toPlay == Color::White)
+        {
+            
+            m_flags.castleBlack = result;
+            return result;
+        }
+        else
+            return false;
     }
 
     void Position::load_from_file(const char* fp)
@@ -85,25 +146,5 @@ namespace Drk::Chess
         oFile << to_char(m_toPlay) << "-";
         oFile << (m_flags.castleWhite ? "CW" : " ") << "-";
         oFile << (m_flags.castleBlack ? "CB" : " ");
-    }
-
-    bool Position::check_can_castle(Color color)
-    {
-        // //Check
-        bool result = false;
-        if (color == Color::White)
-        {
-
-            m_flags.castleWhite = result;
-            return result;
-        }
-        else if (color == Color::White)
-        {
-            
-            m_flags.castleBlack = result;
-            return result;
-        }
-        else
-            return false;
     }
 }

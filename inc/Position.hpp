@@ -35,7 +35,6 @@ namespace Drk::Chess
     {
     public:
         Position(void);
-
         Ptr<std::vector<Move>> get_legal_moves(void) const;
 
         bool can_en_passant(Pieces::Pawn pawn, Move move) const;
@@ -47,13 +46,16 @@ namespace Drk::Chess
         bool square_occupied(Square square) const
             { return m_board.square_occupied(square); }
         
-        bool can_castle(Color color);
+        bool can_castle(void);
     
     private:
+        Ptr<std::vector<Move>> get_player_moves(void) const;
+        bool check_legal_move(Move& move) const;
+
+        bool check_can_castle(void);
+
         void load_from_file(const char* fp);
         void save_to_file(const char* fp) const;
-
-        bool check_can_castle(Color color);
 
     private:
         Board m_board;
