@@ -31,6 +31,7 @@ namespace Drk::Chess
     Board::Iterator_const Board::begin(void) const { return Iterator_const(*this, 0, 0); }
     Board::Iterator_const Board::end(void)   const { return Iterator_const(*this, 7, 7); }
 
+    
     Board::Iterator& Board::Iterator::operator++(void)
     {
         do
