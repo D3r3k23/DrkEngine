@@ -25,7 +25,7 @@ namespace Drk::Chess
             if (!check_legal_move(move))
                 remove = true;
 
-            if (move.type == MoveType::Promotion)
+            if (move.type == MoveType::Promotion) // Creates new move for each piece to promote to, removes original move
             {
                 Move promotionMove(move);
                 move.promoteTo = PieceEnum::Queen;  playerMoves->push_back(promotionMove);
