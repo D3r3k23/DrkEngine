@@ -74,17 +74,9 @@ namespace Drk::Chess
         Rank rank;
         File file;
 
-        Square(void)
-            : rank(Rank::R1), file(File::Fa)
-        { }
-
-        Square(Rank rank, File file)  
-            : rank(rank), file(file)
-        { }
-
-        Square(int rank, int file)
-            : rank(to_rank(rank)), file(to_file(file))
-        { }
+        Square(void)                 : rank(Rank::R1), file(File::Fa) { }
+        Square(Rank rank, File file) : rank(rank), file(file) { }
+        Square(int rank, int file)   : rank(to_rank(rank)), file(to_file(file)) { }
 
         std::string to_string(void)
             { return std::string(1, to_char(file)) + std::string(1, to_char(rank)); }
