@@ -21,6 +21,8 @@ namespace Drk::Engine
 
     private:
         Chess::Position m_position;
+
+        int eval;
     };
 }
 

@@ -11,6 +11,8 @@
 #include "Engine.hpp"
 #include "EvalPosition.hpp"
 
+#include <vector>
+
 
 namespace Drk::Engine
 {
@@ -18,18 +20,22 @@ namespace Drk::Engine
     {
     public:
         Eval(int level)
-            : m_level(level)
+            : m_params(EvalParams(level))
         { }
 
         void load_position(const Chess::Position& position);
         
-        Ptr<std::vector<Chess::Move>> evaluate(const Chess::Position& position);
+        EvalResults evaluate(const Chess::Position& position);
+    
+    private:
+        int minimax(const EvalPosition& position, int depth, Chess::Color maximizingColor);
+        int static_eval(const EvalPosition& position);
 
     private:
         int m_level;
 
         Engine::EvalPosition m_position;
-        // const EvalParams m_params;
+        const EvalParams m_params;
         EvalWeights m_weights;
     };
 }

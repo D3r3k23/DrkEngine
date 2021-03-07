@@ -7,12 +7,18 @@
 #include "ChessPrimitives.hpp"
 #include "Position.hpp"
 
+#include <vector>
+
 
 namespace Drk::Engine
 {
-    struct Params
+    struct EvalParams
     {
-        const int X = 5;
+        const int LEVEL;
+
+        EvalParams(int level)
+            : LEVEL(level)
+        { }
     };
 
 
@@ -24,6 +30,13 @@ namespace Drk::Engine
         void set_opening(void);
         void set_middlegame(void);
         void set_endgame(void);
+    };
+
+
+    struct EvalResults
+    {
+        std::vector<Ptr<Chess::Move>> moves;
+        int eval;
     };
 }
 
