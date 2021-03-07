@@ -77,14 +77,14 @@ namespace Drk::Chess
     {
         switch (move.piece)
         {
-        case PieceEnum::King   : 
-        case PieceEnum::Queen  : 
-        case PieceEnum::Rook   : 
-        case PieceEnum::Bishop : 
-        case PieceEnum::Knight : 
-        case PieceEnum::Pawn   : 
-        case PieceEnum::None   : 
-        default                : 
+        case PieceEnum::King   : break;
+        case PieceEnum::Queen  : break;
+        case PieceEnum::Rook   : break;
+        case PieceEnum::Bishop : break;
+        case PieceEnum::Knight : break;
+        case PieceEnum::Pawn   : break;
+        case PieceEnum::None   : break;
+        default                : break;
         }
 
         if (m_board.square_occupied(move.to))
@@ -94,8 +94,8 @@ namespace Drk::Chess
             else if (m_board.get_piece(move.to)->get_color() == !m_toPlay)
             {
                 move.type = MoveType::Capture;
-                if (move.piece == PieceEnum::Pawn)
-                    check_en_passant(move.to);
+                // if (move.piece == PieceEnum::Pawn)
+                //     check_en_passant(move.to);
             }
         }
 

@@ -2,6 +2,8 @@
 cmake_minimum_required(VERSION 3.16)
 project(DrkEngine)
 
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
 add_library(DrkEngine STATIC)
 target_include_directories(DrkEngine PUBLIC inc)
 add_subdirectory(src)
