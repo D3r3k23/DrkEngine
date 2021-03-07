@@ -6,9 +6,9 @@ target_link_libraries(Tests PRIVATE DrkEngine)
 
 target_sources(Tests
   PRIVATE
-    Main.cpp
-    Tests.cpp
-    TestUtils.cpp
+    src/Main.cpp
+    src/Tests.cpp
+    src/TestUtils.cpp
 )
 
 set_target_properties(Tests
