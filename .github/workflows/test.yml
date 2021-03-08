@@ -12,10 +12,11 @@ jobs:
         run:
           shell: bash
     steps:
-        - uses: actions/checkout@v2
+      - name: Checkout Repository
+        uses: actions/checkout@v2
 
-        - name: Build Tests
-          run: scripts/buildtests.sh
+      - name: Build Tests
+        run: scripts/buildtests.sh
 
-        - name: Run Tests
-          run: scripts/runtests.sh
+      - name: Run Tests
+        run: scripts/runtests.sh
