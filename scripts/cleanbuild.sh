@@ -1,3 +1,3 @@
 
-rm -r tests/build
+rm -rf tests/build
 scripts/buildtests
