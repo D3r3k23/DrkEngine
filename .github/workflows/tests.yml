@@ -1,0 +1,39 @@
+
+name: Unit Tests
+on: [push]
+
+env:
+  BUILD_TYPE: Debug
+
+jobs:
+  Linux-build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Build Tests
+        run: scripts/buildtests.sh
+
+      - name: Run Tests
+        run: scripts/runtests.sh
+
+  # Windows-build:
+  #   runs-on: windows-latest
+  #   defaults:
+  #     run:
+  #       shell: cmd
+
+  #   steps:
+  #     - name: Checkout Repository
+  #       uses: actions/checkout@v2
+
+  #     - name: Build Tests
+  #       run: scripts/buildtests.bat
+
+  #     - name: Run Tests
+  #       run: scripts/runtests.bat

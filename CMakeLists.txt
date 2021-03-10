@@ -17,7 +17,6 @@ set_target_properties(DrkEngine
 target_compile_options(DrkEngine
   PRIVATE
     -Wall
-    -Wextra
 )
 
 if(${CMAKE_BUILD_TYPE} STREQUAL Debug)

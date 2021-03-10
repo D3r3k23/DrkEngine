@@ -20,7 +20,6 @@ set_target_properties(Tests
 target_compile_options(Tests
   PRIVATE
     -Wall
-    -Wextra
 )
 
 set(OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
