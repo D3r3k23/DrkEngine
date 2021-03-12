@@ -29,7 +29,7 @@ namespace Drk::Engine
     
     private:
         int minimax(const EvalPosition& position, int depth, Chess::Color maximizingColor);
-        int static_eval(const EvalPosition& position);
+        int static_analysis(const EvalPosition& position);
 
     private:
         int m_level;

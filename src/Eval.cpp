@@ -34,7 +34,7 @@ namespace Drk::Engine
         }
     }
     
-    int Eval::static_eval(const EvalPosition& position)
+    int Eval::static_analysis(const EvalPosition& position)
     {
         
     }
