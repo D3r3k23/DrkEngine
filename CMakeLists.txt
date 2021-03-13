@@ -1,7 +1,7 @@
 
 cmake_minimum_required(VERSION 3.16)
 
-if (not CMAKE_BUILD_TYPE)
+if (NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE Release)
 endif()
 message("${CMAKE_BUILD_TYPE} build.")
