@@ -1,6 +1,6 @@
 
-message("${CMAKE_BUILD_TYPE} build.")
 cmake_minimum_required(VERSION 3.16)
+message("${CMAKE_BUILD_TYPE} build.")
 project(DrkEngine)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
