@@ -1,9 +1,13 @@
 
 cmake_minimum_required(VERSION 3.16)
-message("${CMAKE_BUILD_TYPE} build.")
-project(DrkEngine)
 
+if (not CMAKE_BUILD_TYPE)
+    set(CMAKE_BUILD_TYPE Release)
+endif()
+message("${CMAKE_BUILD_TYPE} build.")
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
+project(DrkEngine)
 
 add_library(DrkEngine STATIC)
 target_include_directories(DrkEngine PUBLIC inc)
