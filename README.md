@@ -8,6 +8,6 @@
 1. Clone the DrkEngine repository
 2. Include the following lines in CMakeLists.txt:
 
-``` add_subdirectory(<path>/DrkEngine) ```
+  ``` add_subdirectory(<path>/DrkEngine) ```
 
-``` target_link_libraries(<target> <Access specifier> DrkEngine) ```
+  ``` target_link_libraries(<target> <Access specifier> DrkEngine) ```
