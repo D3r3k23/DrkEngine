@@ -30,7 +30,7 @@ namespace Drk::Engine
     {
         if (depth == 0) // || position.game_over())
         {
-            return static_eval(position);
+            return static_analysis(position);
         }
     }
     
