@@ -63,7 +63,7 @@ namespace Drk::Chess
     {
         auto moves = make_ptr<std::vector<Move>>();
 
-        for (auto& piece : m_board)
+        for (const auto& piece : m_board)
             if (piece->get_color() == m_toPlay)
             {
                 Ptr<std::vector<Move>> pieceMoves = piece->get_possible_moves();

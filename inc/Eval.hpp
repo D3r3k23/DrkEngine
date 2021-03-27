@@ -19,8 +19,8 @@ namespace Drk::Engine
     class Eval
     {
     public:
-        Eval(int level)
-            : m_params(EvalParams(level))
+        Eval(const EvalParams& params)
+            : m_params(params)
         { }
 
         void load_position(const Chess::Position& position);
@@ -32,8 +32,6 @@ namespace Drk::Engine
         int static_analysis(const EvalPosition& position);
 
     private:
-        int m_level;
-
         Engine::EvalPosition m_position;
         const EvalParams m_params;
         EvalWeights m_weights;

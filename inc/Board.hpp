@@ -14,6 +14,10 @@ namespace Drk::Chess
     class Board
     {
     public:
+        class Iterator;
+        class Iterator_const;
+
+
         Board(void);
 
         const Ptr<Piece>& get_piece(int rank, int file) const
@@ -29,14 +33,11 @@ namespace Drk::Chess
         void set_piece(const Ptr<Piece>& newPiece);
         void set_piece(PieceEnum piece, Square square, Color color);
 
-        void move_piece(Ptr<Piece> piece);
+        void move_piece(Ptr<Piece> piece); // Board::Iterator?
 
         bool square_occupied(Square square) const
             { return get_piece(square)->get_piece_enum() != PieceEnum::None; }
 
-
-        class Iterator;
-        class Iterator_const;
 
         Iterator begin(void);
         Iterator end(void);

@@ -91,7 +91,7 @@ namespace Drk
 
         void Assert::failed(const std::string& msg, const std::string& file, int line)
         {
-            std::string assert_msg(file + ":" + std::to_string(line) + ": " + msg);
+            const std::string assert_msg(file + ":" + std::to_string(line) + ": " + msg);
             std::cout << "Assert: " << assert_msg << std::endl; // Remove later?
 
             DRK_LOG(ASSERT, assert_msg);

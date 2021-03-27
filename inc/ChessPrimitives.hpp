@@ -81,10 +81,10 @@ namespace Drk::Chess
         std::string to_string(void)
             { return std::string(1, to_char(file)) + std::string(1, to_char(rank)); }
 
-        bool operator==(const Square& other)
+        bool operator==(const Square& other) const
             { return (this->rank == other.rank) && (this->file == other.file); }
         
-        bool operator!=(const Square& other)
+        bool operator!=(const Square& other) const
             { return !(*this == other); }
     };
 

@@ -21,14 +21,14 @@ namespace Drk::Chess::Pieces
     Ptr<std::vector<Move>> King::get_possible_moves(void) const
     {
         auto moves = make_ptr<std::vector<Move>>();
-        int  kRank = to_index(m_square.rank);
-        int  kFile = to_index(m_square.file);
+        const int kRank = to_index(m_square.rank);
+        const int kFile = to_index(m_square.file);
 
         for (int r = kRank - 1; r <= kRank + 1; r++)
             for (int f = kFile - 1; f <= kFile + 1; f++)
                 if (Util::in_bounds(r, f))
                 {
-                    Square square(r, f);
+                    const Square square(r, f);
                     if (square != m_square)
                         moves->push_back(Move(m_square, square, PieceEnum::King));
                 }
@@ -83,7 +83,7 @@ namespace Drk::Chess::Pieces
     {
         auto moves = make_ptr<std::vector<Move>>();
 
-        int r = to_index(m_square.rank) + 1;
+        const int r = to_index(m_square.rank) + 1;
         for (int f = to_index(m_square.file) - 1; f <= to_index(m_square.file) + 1; f++)
             if (Util::in_bounds(r, f))
                 moves->push_back(Move(m_square, Square(r, f), PieceEnum::Pawn));

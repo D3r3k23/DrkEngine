@@ -6,7 +6,10 @@
 #include "DrkEngine.hpp"
 
 #include <iostream>
+#include <string>
+#include <vector>
 #include <functional>
+#include <memory>
 #include <chrono>
 
 
@@ -21,17 +24,22 @@ namespace DrkTest
     public:
         static void init(void);
         static void run(std::function<bool()> func, const char* name);
-
+        
         Util(void);
         ~Util(void);
         Util(Util&) = delete;
         Util& operator=(const Util&) = delete;
 
     private:
+        void run_internal(std::function<bool()> func, const char* name);
+        void print_results(void);
+
+    private:
         int numTests;
         int numPassed;
+        std::vector<std::string> failingTests;
 
-        static Drk::Ptr<Util> s_instance;
+        static std::unique_ptr<Util> s_instance;
     };
 
 

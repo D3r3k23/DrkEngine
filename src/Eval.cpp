@@ -11,16 +11,16 @@ namespace Drk::Engine
     
     EvalResults Eval::evaluate(const Chess::Position& position)
     {
-        int depth;
-
-        switch (m_params.LEVEL)
-        {
-        case 1 : depth = 0; break;
-        case 2 : depth = 1; break;
-        case 3 : depth = 3; break;
-        case 4 : depth = 8; break;
-        default: depth = 0; break;
-        }
+        int depth = [&]() {
+            switch (m_params.LEVEL)
+            {
+            case 1 : return 0;
+            case 2 : return 1;
+            case 3 : return 3;
+            case 4 : return 8;
+            default: return 1;
+            }
+        }();
 
         EvalResults results;
         

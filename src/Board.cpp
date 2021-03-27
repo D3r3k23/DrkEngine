@@ -13,8 +13,8 @@ namespace Drk::Chess
 
     void Board::set_piece(const Ptr<Piece>& newPiece)
     {
-        int rank = to_index(newPiece->get_square().rank);
-        int file = to_index(newPiece->get_square().file);
+        const int rank = to_index(newPiece->get_square().rank);
+        const int file = to_index(newPiece->get_square().file);
         piece(rank, file) = newPiece;
     }
 
