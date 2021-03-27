@@ -39,4 +39,14 @@ namespace DrkTest
         DRK_ASSERT(X == Y, "Assert suceeded.");
         return false;
     }
+
+    bool should_fail()
+    {
+        switch ((2 + 2) == 5)
+        {
+            case true  : return true;
+            case false : return false;
+            default    : return false;
+        }
+    }
 }

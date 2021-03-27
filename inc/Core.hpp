@@ -28,7 +28,7 @@
 
 namespace Drk
 {
-    ////////// Refs //////////
+    ////////// Refs ////////// Remove?
     
     template <typename T>
     using Ptr = std::shared_ptr<T>;
@@ -47,7 +47,11 @@ namespace Drk
         #define DRK_LOG(type, msg)    Drk::Logger::log(LogType::type, msg);
         #define DRK_LOGGER_SAVE()     Drk::Logger::save();
 
-        enum class LogType;
+
+        enum class LogType { INFO, WARN, ERR, ASSERT };
+
+        std::ostream& operator<<(std::ostream& os, LogType& type);
+
 
         class Logger // Singleton
         {
@@ -61,22 +65,16 @@ namespace Drk
             ~Logger(void);
             Logger(Logger&) = delete;
             Logger& operator=(const Logger&) = delete;
+        
+        private:
+            void log_internal(LogType type, const char* msg);
+            void save_internal(void);
 
         private:
             std::ofstream logfile;
 
-            static Ptr<Logger> s_instance;
+            static std::unique_ptr<Logger> s_instance;
         };
-
-        enum class LogType
-        {
-            INFO,
-            WARN,
-            ERR,
-            ASSERT
-        };
-
-        std::ostream& operator<<(std::ostream& os, LogType& type);
 
     #else // Unimplemented
         #define DRK_LOGGER_INIT(name)

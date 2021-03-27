@@ -54,6 +54,9 @@ namespace DrkTest
 
     // Tests DRK_ASSERT
     bool test_assert();
+
+    // Should fail
+    bool should_fail();
 }
 
 

@@ -6,6 +6,7 @@ using namespace Drk;
 
 namespace DrkTest
 {
+    // Private static instance
     std::unique_ptr<Util> Util::s_instance = nullptr;
     
 
@@ -25,6 +26,19 @@ namespace DrkTest
         s_instance->run_internal(func, name);
     }
 
+    // Constructor & destructor
+
+    Util::Util(void)
+    {
+        numTests  = 0;
+        numPassed = 0;
+    }
+
+    Util::~Util(void)
+    {void log_internal(LogType type, const char* msg);
+        void save_internal(void);
+        print_results();
+    }
 
     // Private functions
 
@@ -58,22 +72,12 @@ namespace DrkTest
     {
         std::cout << "Tests completed." << std::endl;
         std::cout << "Tests passed: " << numPassed << "/" << numTests << std::endl;
-        std::cout << "Failed tests:" << std::endl;
-        for (const auto& test : failingTests)
-            std::cout << test << std::endl;
-    }
 
-
-    // Constructor & destructor
-
-    Util::Util(void)
-    {
-        numTests  = 0;
-        numPassed = 0;
-    }
-
-    Util::~Util(void)
-    {
-        print_results();
+        if (numTests - numPassed > 0)
+        {
+            std::cout << "Failed tests:" << std::endl;
+            for (const auto& test : failingTests)
+                std::cout << " -" << test << std::endl;
+        }
     }
 }

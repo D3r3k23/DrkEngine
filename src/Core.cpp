@@ -7,14 +7,14 @@ namespace Drk
     ////////// Logging //////////
     #ifdef DRK_EN_LOGGING
 
-        Ptr<Logger> Logger::s_instance = nullptr; // Logger private static instance
+        // Logger private static instance
+        std::unique_ptr<Logger> Logger::s_instance = nullptr;
 
-
-        // Logger public static members
+        // Logger public static functions
 
         void Logger::init(const char* name)
         {
-            s_instance = make_ptr<Logger>(name);
+            s_instance = std::make_unique<Logger>(name);
             DRK_LOG(INFO, "Log file opened.");
         }
 
@@ -23,23 +23,22 @@ namespace Drk
             if (!s_instance)
                 init();
 
-            s_instance->logfile << "[" << type << "]  " << msg << "\n";
+            s_instance->log_internal(type, msg);
         }
 
         void Logger::log(LogType type, const std::string& msg)
         {
-            log(type, msg.c_str());
+            if (!s_instance)
+                init();
+
+            s_instance->log_internal(type, msg.c_str());
         }
 
         void Logger::save(void)
         {
             if (s_instance)
-            {
-                DRK_LOG(INFO, "Log file closed.");
-                s_instance->logfile.close();
-            }
+                s_instance->save_internal();
         }
-
 
         // Logger constructor & destructor
 
@@ -64,6 +63,19 @@ namespace Drk
         Logger::~Logger(void)
         {
             save();
+        }
+
+        // Logger private functions
+
+        void Logger::log_internal(LogType type, const char* msg)
+        {
+            logfile << "[" << type << "]  " << msg << "\n";
+        }
+
+        void Logger::save_internal(void)
+        {
+            DRK_LOG(INFO, "Log file closed.");
+            logfile.close();
         }
 
 
