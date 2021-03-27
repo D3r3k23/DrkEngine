@@ -1,7 +1,8 @@
 
 #include "Tests.hpp"
 
-using namespace Drk;
+#include <iostream>
+#include <chrono>
 
 
 namespace DrkTest
@@ -35,8 +36,7 @@ namespace DrkTest
     }
 
     Util::~Util(void)
-    {void log_internal(LogType type, const char* msg);
-        void save_internal(void);
+    {
         print_results();
     }
 

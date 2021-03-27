@@ -1,6 +1,9 @@
 
 #include "Core.hpp"
 
+#include <chrono>
+#include <ctime>
+
 
 namespace Drk
 {
@@ -44,17 +47,17 @@ namespace Drk
 
         Logger::Logger(const char* name)
         {
-            std::time_t now = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
-            std::tm* logtime = std::localtime(&now);
+            const std::time_t now = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
+            const std::tm* const logtime = std::localtime(&now);
 
-            std::string fp = "logs/"
-              + std::string(name) + "_drk_engine" + "_"
-              + std::to_string(logtime->tm_mon)   + "."
-              + std::to_string(logtime->tm_mday)  + "."
-              + std::to_string(logtime->tm_year)  + "_"
-              + std::to_string(logtime->tm_hour)  + ":"
-              + std::to_string(logtime->tm_min)   + ":"
-              + std::to_string(logtime->tm_sec)   + ".log";
+            const std::string fp = "logs/"
+                + std::string(name) + "_drk_engine" + "_"
+                + std::to_string(logtime->tm_mon)   + "."
+                + std::to_string(logtime->tm_mday)  + "."
+                + std::to_string(logtime->tm_year)  + "_"
+                + std::to_string(logtime->tm_hour)  + ":"
+                + std::to_string(logtime->tm_min)   + ":"
+                + std::to_string(logtime->tm_sec)   + ".log";
 
             logfile.open(fp);
             DRK_ASSERT(logfile.is_open(), "Couldn't open log file: " + fp);

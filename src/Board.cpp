@@ -1,6 +1,8 @@
 
 #include "Board.hpp"
 
+#include <Pieces.hpp>
+
 
 namespace Drk::Chess
 {

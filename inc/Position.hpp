@@ -10,7 +10,6 @@
 #include "Board.hpp"
 
 #include <vector>
-#include <fstream>
 
 
 namespace Drk::Chess

@@ -3,12 +3,10 @@
 #define CORE_HPP
 
 
-#include <fstream>
 #include <iostream>
+#include <fstream>
 #include <string>
 #include <memory>
-#include <chrono>
-#include <ctime>
 
 
 #ifdef DRK_DEBUG
@@ -47,10 +45,7 @@ namespace Drk
         #define DRK_LOG(type, msg)    Drk::Logger::log(LogType::type, msg);
         #define DRK_LOGGER_SAVE()     Drk::Logger::save();
 
-
-        enum class LogType { INFO, WARN, ERR, ASSERT };
-
-        std::ostream& operator<<(std::ostream& os, LogType& type);
+        enum class LogType;
 
 
         class Logger // Singleton
@@ -75,6 +70,11 @@ namespace Drk
 
             static std::unique_ptr<Logger> s_instance;
         };
+
+
+        enum class LogType { INFO, WARN, ERR, ASSERT };
+
+        std::ostream& operator<<(std::ostream& os, LogType& type);
 
     #else // Unimplemented
         #define DRK_LOGGER_INIT(name)

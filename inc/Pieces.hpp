@@ -3,8 +3,6 @@
 #define PIECES_HPP
 
 
-#include "Core.hpp"
-#include "Util.hpp"
 #include "ChessPrimitives.hpp"
 #include "Piece.hpp"
 

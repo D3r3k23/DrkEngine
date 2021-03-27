@@ -5,7 +5,6 @@
 
 #include "Core.hpp"
 #include "ChessPrimitives.hpp"
-#include "Position.hpp"
 
 #include <vector>
 
@@ -35,7 +34,7 @@ namespace Drk::Engine
 
     struct EvalResults
     {
-        std::vector<Ptr<Chess::Move>> moves;
+        std::vector<Chess::Move> moves;
         int eval;
     };
 }

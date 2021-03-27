@@ -5,12 +5,10 @@
 
 #include "DrkEngine.hpp"
 
-#include <iostream>
 #include <string>
 #include <vector>
 #include <functional>
 #include <memory>
-#include <chrono>
 
 
 #define INIT_TESTS()   DrkTest::Util::init()

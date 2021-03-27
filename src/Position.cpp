@@ -1,6 +1,8 @@
 
 #include "Position.hpp"
 
+#include <fstream>
+
 
 namespace Drk::Chess
 {

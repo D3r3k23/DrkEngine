@@ -5,9 +5,6 @@
 
 #include "Core.hpp"
 #include "ChessPrimitives.hpp"
-#include "Piece.hpp"
-#include "Pieces.hpp"
-#include "Position.hpp"
 #include "Engine.hpp"
 #include "EvalPosition.hpp"
 
@@ -32,7 +29,7 @@ namespace Drk::Engine
         int static_analysis(const EvalPosition& position);
 
     private:
-        Engine::EvalPosition m_position;
+        EvalPosition m_position;
         const EvalParams m_params;
         EvalWeights m_weights;
     };
