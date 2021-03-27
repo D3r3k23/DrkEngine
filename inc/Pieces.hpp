@@ -17,14 +17,14 @@ namespace Drk::Chess::Pieces
     {
     public:
         None(Square square, Color color);
-        Ptr<std::vector<Move>> get_possible_moves(void) const override;
+        std::vector<Move> get_possible_moves(void) const override;
     };
 
     class King : public Piece
     {
     public:
         King(Square square, Color color);
-        Ptr<std::vector<Move>> get_possible_moves(void) const override;
+        std::vector<Move> get_possible_moves(void) const override;
 
         bool has_moved(void) const { return m_hasMoved; }
     
@@ -36,14 +36,14 @@ namespace Drk::Chess::Pieces
     {
     public:
         Queen(Square square, Color color);
-        Ptr<std::vector<Move>> get_possible_moves(void) const override;
+        std::vector<Move> get_possible_moves(void) const override;
     };
 
     class Rook : public Piece
     {
     public:
         Rook(Square square, Color color);
-        Ptr<std::vector<Move>> get_possible_moves(void) const override;
+        std::vector<Move> get_possible_moves(void) const override;
 
         bool has_moved(void) const { return m_hasMoved; }
     
@@ -55,21 +55,21 @@ namespace Drk::Chess::Pieces
     {
     public:
         Bishop(Square square, Color color);
-        Ptr<std::vector<Move>> get_possible_moves(void) const override;
+        std::vector<Move> get_possible_moves(void) const override;
     };
 
     class Knight : public Piece
     {
     public:
         Knight(Square square, Color color);
-        Ptr<std::vector<Move>> get_possible_moves(void) const override;
+        std::vector<Move> get_possible_moves(void) const override;
     };
 
     class Pawn : public Piece
     {
     public:
         Pawn(Square square, Color color);
-        Ptr<std::vector<Move>> get_possible_moves(void) const override;
+        std::vector<Move> get_possible_moves(void) const override;
     };
 }
 

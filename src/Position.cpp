@@ -10,14 +10,12 @@ namespace Drk::Chess
         m_flags.opening = true;
     }
 
-    Ptr<std::vector<Move>> Position::get_legal_moves(void) const
+    std::vector<Move> Position::get_legal_moves(void) const
     {
-        auto moves = make_ptr<std::vector<Move>>();
+        std::vector<Move> moves = get_player_moves();
 
-        Ptr<std::vector<Move>> playerMoves = get_player_moves();
-
-        auto it = playerMoves->begin();
-        while (it != playerMoves->end())
+        auto it = moves.begin();
+        while (it != moves.end())
         {
             auto& move = *it;
             bool remove = false;
@@ -28,15 +26,15 @@ namespace Drk::Chess
             if (move.type == MoveType::Promotion) // Creates new move for each piece to promote to, removes original move
             {
                 Move promotionMove(move);
-                move.promoteTo = PieceEnum::Queen;  playerMoves->push_back(promotionMove);
-                move.promoteTo = PieceEnum::Rook;   playerMoves->push_back(promotionMove);
-                move.promoteTo = PieceEnum::Bishop; playerMoves->push_back(promotionMove);
-                move.promoteTo = PieceEnum::Knight; playerMoves->push_back(promotionMove);
+                promotionMove.promoteTo = PieceEnum::Queen;  moves.push_back(promotionMove);
+                promotionMove.promoteTo = PieceEnum::Rook;   moves.push_back(promotionMove);
+                promotionMove.promoteTo = PieceEnum::Bishop; moves.push_back(promotionMove);
+                promotionMove.promoteTo = PieceEnum::Knight; moves.push_back(promotionMove);
                 remove = true;
             }
 
             if (remove)
-                it = playerMoves->erase(it);
+                it = moves.erase(it);
             else
                 it++;
         }
@@ -59,15 +57,15 @@ namespace Drk::Chess
         }
     }
 
-    Ptr<std::vector<Move>> Position::get_player_moves(void) const
+    std::vector<Move> Position::get_player_moves(void) const
     {
-        auto moves = make_ptr<std::vector<Move>>();
+        std::vector<Move> moves;
 
         for (const auto& piece : m_board)
             if (piece->get_color() == m_toPlay)
             {
-                Ptr<std::vector<Move>> pieceMoves = piece->get_possible_moves();
-                moves->insert(moves->end(), pieceMoves->begin(), pieceMoves->end());
+                const std::vector<Move> pieceMoves = piece->get_possible_moves();
+                moves.insert(moves.end(), pieceMoves.begin(), pieceMoves.end());
             }
 
         return moves;

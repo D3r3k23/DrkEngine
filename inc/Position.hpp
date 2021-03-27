@@ -35,7 +35,7 @@ namespace Drk::Chess
     {
     public:
         Position(void);
-        Ptr<std::vector<Move>> get_legal_moves(void) const;
+        std::vector<Move> get_legal_moves(void) const;
 
         bool can_en_passant(Pieces::Pawn pawn, Move move) const;
 
@@ -49,7 +49,7 @@ namespace Drk::Chess
         bool can_castle(void);
     
     private:
-        Ptr<std::vector<Move>> get_player_moves(void) const;
+        std::vector<Move> get_player_moves(void) const;
         bool check_legal_move(Move& move) const;
 
         bool check_can_castle(void);

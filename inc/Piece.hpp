@@ -16,11 +16,11 @@ namespace Drk::Chess
     class Piece // Base class
     {
     public:
-        static Ptr<Piece> create(PieceEnum piece, Square square={ Rank::R1, File::Fa }, Color color=Color::None);
+        static Piece* create(PieceEnum piece, Square square={ Rank::R1, File::Fa }, Color color=Color::None);
         Piece(void) = delete;
         virtual ~Piece(void) = default;
 
-        virtual Ptr<std::vector<Move>> get_possible_moves(void) const = 0;
+        virtual std::vector<Move> get_possible_moves(void) const = 0;
 
         Square    get_square    (void) const { return m_square; }
         Color     get_color     (void) const { return m_color; }
