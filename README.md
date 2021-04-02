@@ -5,7 +5,7 @@
 \
 \
 \
-\
+
 ## To use this library in a CMake project
 1. Clone the DrkEngine repository
 2. Include the following lines in CMakeLists.txt:    
