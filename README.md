@@ -2,9 +2,7 @@
 # DrkEngine
 
 ### Chess engine
-  
-  
-  
+
 
 ## To use this library in a CMake project
 1. Clone the DrkEngine repository
