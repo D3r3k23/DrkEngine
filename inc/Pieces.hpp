@@ -1,4 +1,10 @@
 
+/*////////////////////////////////////////////////////
+ * - Chess piece classes derived from Chess::Piece
+ * - Main function is to override get_moves() and
+ *     track piece data
+/*////////////////////////////////////////////////////
+
 #ifndef PIECES_HPP
 #define PIECES_HPP
 
@@ -9,22 +15,27 @@
 #include <vector>
 
 
+class Drk::Chess::Position; // Forward declaration
+
 namespace Drk::Chess::Pieces
 {
     class None : public Piece
     {
     public:
         None(Square square, Color color);
-        std::vector<Move> get_possible_moves(void) const override;
+        std::vector<Move> get_moves(const Position& position) const override;
     };
 
     class King : public Piece
     {
     public:
         King(Square square, Color color);
-        std::vector<Move> get_possible_moves(void) const override;
+        std::vector<Move> get_moves(const Position& position) const override;
 
         bool has_moved(void) const { return m_hasMoved; }
+
+    private:
+        std::vector<Move> get_possible_moves(const Position& position) const override;
     
     private:
         bool m_hasMoved = false;
@@ -34,16 +45,22 @@ namespace Drk::Chess::Pieces
     {
     public:
         Queen(Square square, Color color);
-        std::vector<Move> get_possible_moves(void) const override;
+        std::vector<Move> get_moves(const Position& position) const override;
+
+    private:
+        std::vector<Move> get_possible_moves(Square square) const;
     };
 
     class Rook : public Piece
     {
     public:
         Rook(Square square, Color color);
-        std::vector<Move> get_possible_moves(void) const override;
+        std::vector<Move> get_moves(const Position& position) const override;
 
         bool has_moved(void) const { return m_hasMoved; }
+
+    private:
+        std::vector<Move> get_possible_moves(Square square) const;
     
     private:
         bool m_hasMoved = false;
@@ -53,21 +70,35 @@ namespace Drk::Chess::Pieces
     {
     public:
         Bishop(Square square, Color color);
-        std::vector<Move> get_possible_moves(void) const override;
+        std::vector<Move> get_moves(const Position& position) const override;
+
+    private:
+        std::vector<Move> get_possible_moves(Square square) const;
     };
 
     class Knight : public Piece
     {
     public:
         Knight(Square square, Color color);
-        std::vector<Move> get_possible_moves(void) const override;
+        std::vector<Move> get_moves(const Position& position) const override;
+
+    private:
+        std::vector<Move> get_possible_moves(Square square) const;
     };
 
     class Pawn : public Piece
     {
     public:
         Pawn(Square square, Color color);
-        std::vector<Move> get_possible_moves(void) const override;
+        std::vector<Move> get_moves(const Position& position) const override;
+
+    private:
+        std::vector<Move> get_possible_moves(const Position& position) const override;
+
+        // Checks if the move is a legal en passant
+        bool check_en_passant(const Position& position, Square square) const;
+
+        static std::vector<Move> make_promotion(std::vector<Move>& moves);
     };
 }
 

@@ -1,8 +1,8 @@
 
-/*///////////////////////////////////////////////////////
+/*/////////////////////////////////////////////////////////
  * Basic structure for a chess board. Contains a C-array
- * of pieces. Contains non-const and const Iterators.
-/*///////////////////////////////////////////////////////
+ * of pieces. Implements non-const and const Iterators.
+/*/////////////////////////////////////////////////////////
 
 #ifndef BOARD_HPP
 #define BOARD_HPP
@@ -21,26 +21,22 @@ namespace Drk::Chess
         class Iterator;
         class Iterator_const;
 
-
         Board(void);
+        ~Board(void);
 
-        const Ptr<Piece>& get_piece(int rank, int file) const
-            { return piece(rank, file); }
+        const Piece& get_piece(int rank, int file)   const { return piece(rank, file); }
+        const Piece& get_piece(Rank rank, File file) const { return piece(rank, file); }
+        const Piece& get_piece(Square square)        const { return piece(square); }
 
-        const Ptr<Piece>& get_piece(Rank rank, File file) const
-            { return get_piece(to_index(rank), to_index(file)); }
-
-        const Ptr<Piece>& get_piece(Square square) const
-            { return get_piece(square.rank, square.file); }
-
-
-        void set_piece(const Ptr<Piece>& newPiece);
+        void set_piece(const Piece& newPiece);
         void set_piece(PieceEnum piece, Square square, Color color);
 
-        void move_piece(Ptr<Piece> piece); // Board::Iterator?
+        void move_piece(int rank, int file);
+        void move_piece(Iterator it);
+
 
         bool square_occupied(Square square) const
-            { return get_piece(square)->get_piece_enum() != PieceEnum::None; }
+            { return get_piece(square).get_piece_enum() != PieceEnum::None; }
 
 
         Iterator begin(void);
@@ -53,11 +49,13 @@ namespace Drk::Chess
         friend class CommandLineTools;
 
     private:
-        Ptr<Piece>& piece(int rank, int file)
-            { return m_board[rank][file]; }
+        Piece& piece(int rank,  int file)  { return *m_board[rank][file]; }
+        Piece& piece(Rank rank, File file) { return piece(to_index(rank), to_index(file)); }
+        Piece& piece(Square square)        { return piece(square.rank, square.file); }
 
-        const Ptr<Piece>& piece(int rank, int file) const
-            { return m_board[rank][file]; }
+        const Piece& piece(int rank,  int file)  const { return *m_board[rank][file]; }
+        const Piece& piece(Rank rank, File file) const { return piece(to_index(rank), to_index(file)); }
+        const Piece& piece(Square square)        const { return piece(square.rank, square.file); }
 
     private:
         Ptr<Piece> m_board[8][8];
@@ -74,7 +72,7 @@ namespace Drk::Chess
 
         Iterator& operator++(void);
 
-        const Ptr<Piece>& operator*(void) const
+        Piece& operator*(void) const
             { return m_board.piece(m_rank, m_file); }
 
         bool operator!=(const Iterator& other) const
@@ -96,7 +94,7 @@ namespace Drk::Chess
 
         Iterator_const& operator++(void);
 
-        const Ptr<Piece>& operator*(void) const
+        const Piece& operator*(void) const
             { return m_board.piece(m_rank, m_file); }
 
         bool operator!=(const Iterator_const& other) const

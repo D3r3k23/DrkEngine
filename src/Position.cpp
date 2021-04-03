@@ -27,12 +27,7 @@ namespace Drk::Chess
 
             if (move.type == MoveType::Promotion) // Creates new move for each piece to promote to, removes original move
             {
-                Move promotionMove(move);
-                promotionMove.promoteTo = PieceEnum::Queen;  moves.push_back(promotionMove);
-                promotionMove.promoteTo = PieceEnum::Rook;   moves.push_back(promotionMove);
-                promotionMove.promoteTo = PieceEnum::Bishop; moves.push_back(promotionMove);
-                promotionMove.promoteTo = PieceEnum::Knight; moves.push_back(promotionMove);
-                remove = true;
+                
             }
 
             if (remove)
@@ -73,20 +68,8 @@ namespace Drk::Chess
         return moves;
     }
 
-    bool Position::check_legal_move(Move& move) const
+    bool Position::check_legal_move(const Move& move) const
     {
-        switch (move.piece)
-        {
-        case PieceEnum::King   : break;
-        case PieceEnum::Queen  : break;
-        case PieceEnum::Rook   : break;
-        case PieceEnum::Bishop : break;
-        case PieceEnum::Knight : break;
-        case PieceEnum::Pawn   : break;
-        case PieceEnum::None   : break;
-        default                : break;
-        }
-
         if (m_board.square_occupied(move.to))
         {
             if (m_board.get_piece(move.to)->get_color() == m_toPlay)

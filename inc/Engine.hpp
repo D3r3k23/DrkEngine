@@ -16,6 +16,7 @@
 #include "ChessPrimitives.hpp"
 
 #include <vector>
+#include <tuple>
 
 
 namespace Drk::Engine
@@ -42,14 +43,27 @@ namespace Drk::Engine
         void set_endgame(void);
     };
 
+    // Contains a move and its eval rating
+    struct EvalMove      //////////   const auto& [move, eval] = move.data;
+    {
+        std::tuple<Chess::Move, int> data;
 
-    // The results of an evaluation:
-    //   - vector of moves
-    //   - rating of current position(eval of best move)
+        EvalMove(const Chess::Move& move, int eval)
+            : data(std::make_tuple(move, eval))
+        { }
+
+        Chess::Move get_move(void) const
+            { return std::get<0>(data); }
+        
+        int get_eval(void) const
+            { return std::get<1>(data); }
+    };
+
+
+    // The results of an evaluation
     struct EvalResults
     {
-        std::vector<Chess::Move> moves;
-        int eval;
+        std::vector<EvalMove> moves;
     };
 }
 

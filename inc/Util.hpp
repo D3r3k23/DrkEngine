@@ -17,6 +17,12 @@ namespace Drk::Util
 
 
     bool in_bounds(int rank, int file);
+
+    template<typename T>
+    bool in_range(T x, T min, T max)
+    {
+        return (min <= x) && (x <= max);
+    }
 }
 
 

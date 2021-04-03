@@ -19,6 +19,8 @@
 
 namespace Drk::Chess
 {
+    ////////// Rank & File //////////
+
     enum class Rank : int { R1, R2, R3, R4, R5, R6, R7, R8 };
     enum class File : int { Fa, Fb, Fc, Fd, Fe, Ff, Fg, Fh };
 
@@ -53,6 +55,8 @@ namespace Drk::Chess
     File operator--(File&, int);
 
 
+    ////////// PieceEnum //////////
+
     enum class PieceEnum : char
     {
         None   = ' ',
@@ -67,6 +71,9 @@ namespace Drk::Chess
     PieceEnum to_piece_enum(char ch);
     char to_char(PieceEnum piece);
 
+
+    ////////// Color //////////
+
     enum class Color : char
     {
         None  = ' ',
@@ -79,6 +86,8 @@ namespace Drk::Chess
 
     Color operator!(const Color& color);
 
+
+    ////////// Square //////////
 
     struct Square
     {
@@ -100,8 +109,17 @@ namespace Drk::Chess
     };
 
 
+    ////////// Move //////////
+
     enum class MoveType
-        { Move, Capture, CastleShort, CastleLong, Promotion };
+    {
+        Move,
+        Capture,
+        EnPassant,
+        CastleShort,
+        CastleLong,
+        Promotion
+    };
 
     struct Move
     {
@@ -116,6 +134,14 @@ namespace Drk::Chess
         Move(Square from, Square to, PieceEnum piece, MoveType type=MoveType::Move, PieceEnum promoteTo=PieceEnum::None)
             : from(from), to(to), piece(piece), type(type), promoteTo(promoteTo)
         { }
+
+        Move make_promotion(PieceEnum to)
+        {
+            Move newMove{*this};
+            newMove.type = MoveType::Promotion;
+            newMove.promoteTo = to;
+            return newMove;
+        }
 
         std::string to_string(void);
     };

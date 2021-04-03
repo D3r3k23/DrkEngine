@@ -10,20 +10,22 @@ namespace Drk::Chess
     {
         for (int r = 0; r < 8; r++)
             for (int f = 0; f < 8; f++)
-                set_piece(Piece::create(PieceEnum::None, { r, f }));
+                set_piece(PieceEnum::None, { r, f }));
     }
 
-    void Board::set_piece(const Ptr<Piece>& newPiece)
+    void Board::set_piece(const Piece& newPiece)
     {
-        const int rank = to_index(newPiece->get_square().rank);
-        const int file = to_index(newPiece->get_square().file);
+        const Rank rank = newPiece->get_square().rank;
+        const File file = newPiece->get_square().file;
         piece(rank, file) = newPiece;
     }
 
     void Board::set_piece(PieceEnum piece, Square square, Color color)
     {
         auto newPiece = Piece::create(piece, square, color);
-        set_piece(newPiece);
+        const Rank rank = square.rank;
+        const File file = square.file;
+        piece(rank, file) = *newPiece;
     }
 
 
