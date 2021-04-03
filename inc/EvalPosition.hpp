@@ -1,4 +1,9 @@
 
+/*//////////////////////////////////////////////////
+ * Chess:Position wrapper class for use by Eval
+ * Contains evalution data
+/*//////////////////////////////////////////////////
+
 #ifndef EVAL_POSITION_HPP
 #define EVAL_POSITION_HPP
 
@@ -21,6 +26,5 @@ namespace Drk::Engine
         int eval;
     };
 }
-
 
 #endif // EVAL_POSITION_HPP

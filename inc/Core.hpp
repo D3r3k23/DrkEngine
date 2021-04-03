@@ -1,4 +1,12 @@
 
+/*////////////////////////////////////////////////
+ * - Various basic features:
+ *     Platform-dependent debug break
+ *     Logging
+ *     Asserts
+ * - #define DRK_DEBUG for logging & asserts
+/*////////////////////////////////////////////////
+
 #ifndef CORE_HPP
 #define CORE_HPP
 

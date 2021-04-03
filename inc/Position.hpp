@@ -1,4 +1,8 @@
 
+/*//////////////////////////////////////////
+ * Contains a complete chess position
+/*//////////////////////////////////////////
+
 #ifndef POSITION_HPP
 #define POSITION_HPP
 
@@ -14,6 +18,8 @@
 
 namespace Drk::Chess
 {
+    // Used to track in-game flags
+    // - Use bitfields?
     struct PositionFlags
     {
         bool opening    = false;

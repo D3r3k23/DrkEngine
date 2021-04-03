@@ -11,4 +11,5 @@ target_sources(DrkEngine
     Engine.cpp
     EvalPosition.cpp
     Eval.cpp
+    CommandLineTools.cpp
 )

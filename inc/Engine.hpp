@@ -1,4 +1,13 @@
 
+/*//////////////////////////////////////
+ * - DrkEngine base definitions
+ * - Used by Eval
+ * - Contains:
+ *     EvalParams
+ *     EvalWeights
+ *     EvalResults
+/*//////////////////////////////////////
+
 #ifndef ENGINE_HPP
 #define ENGINE_HPP
 
@@ -11,6 +20,7 @@
 
 namespace Drk::Engine
 {
+    // Parameters for configuring Eval (Eval accepts in constructor)
     struct EvalParams
     {
         const int LEVEL;
@@ -21,6 +31,7 @@ namespace Drk::Engine
     };
 
 
+    // Variables for Eval to track game state
     struct EvalWeights
     {
         double bishop;
@@ -32,6 +43,9 @@ namespace Drk::Engine
     };
 
 
+    // The results of an evaluation:
+    //   - vector of moves
+    //   - rating of current position(eval of best move)
     struct EvalResults
     {
         std::vector<Chess::Move> moves;

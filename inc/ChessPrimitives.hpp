@@ -1,4 +1,15 @@
 
+/*////////////////////////////////////////////
+ * Various chess game primitives:
+ *   - Rank
+ *   - File
+ *   - PieceEnum
+ *   - Color
+ *   - Square
+ *   - MoveType
+ *   - Move
+/*////////////////////////////////////////////
+
 #ifndef CHESS_HPP
 #define CHESS_HPP
 

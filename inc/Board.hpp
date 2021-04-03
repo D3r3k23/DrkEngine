@@ -1,4 +1,9 @@
 
+/*///////////////////////////////////////////////////////
+ * Basic structure for a chess board. Contains a C-array
+ * of pieces. Contains non-const and const Iterators.
+/*///////////////////////////////////////////////////////
+
 #ifndef BOARD_HPP
 #define BOARD_HPP
 
@@ -43,6 +48,9 @@ namespace Drk::Chess
 
         Iterator_const begin(void) const;
         Iterator_const end(void) const;
+        
+
+        friend class CommandLineTools;
 
     private:
         Ptr<Piece>& piece(int rank, int file)
@@ -53,7 +61,8 @@ namespace Drk::Chess
 
     private:
         Ptr<Piece> m_board[8][8];
-    };
+
+    }; // class Board
 
 
     class Board::Iterator

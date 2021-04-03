@@ -1,4 +1,8 @@
 
+/*/////////////////////////
+ * Master include header
+/*/////////////////////////
+
 #ifndef DRK_ENGINE_HPP
 #define DRK_ENGINE_HPP
 

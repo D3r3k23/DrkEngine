@@ -17,7 +17,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Build Tests
-        run: scripts/buildtests.sh
+        run:  scripts/buildtests.sh
 
       - name: Run Tests
-        run: scripts/runtests.sh
+        run:  scripts/runtests.sh

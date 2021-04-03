@@ -1,10 +1,10 @@
 
+/*//////////////////////////////
+ * Various utilities
+/*//////////////////////////////
+
 #ifndef UTIL_HPP
 #define UTIL_HPP
-
-
-#include <cstdlib>
-#include <ctime>
 
 
 namespace Drk::Util

@@ -2,8 +2,14 @@
 #include "Util.hpp"
 
 
+#include <cstdlib>
+#include <ctime>
+
+
 namespace Drk::Util
 {
+    ////////// Random //////////
+
     void Random::init(void)
     {
         std::srand(time(NULL));
@@ -13,6 +19,9 @@ namespace Drk::Util
     {
         return (std::rand() % (upper - lower)) - lower;
     }
+
+    ////////////////////////////
+
 
     bool in_bounds(int rank, int file)
     {
