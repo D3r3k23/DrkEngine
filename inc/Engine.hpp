@@ -1,6 +1,6 @@
 
 /*//////////////////////////////////////
- * - DrkEngine base definitions
+ * - DrkEngine base definitions and ...
  * - Used by Eval
  * - Contains:
  *     EvalParams
@@ -16,7 +16,6 @@
 #include "ChessPrimitives.hpp"
 
 #include <vector>
-#include <tuple>
 
 
 namespace Drk::Engine
@@ -31,7 +30,6 @@ namespace Drk::Engine
         { }
     };
 
-
     // Variables for Eval to track game state
     struct EvalWeights
     {
@@ -44,21 +42,15 @@ namespace Drk::Engine
     };
 
     // Contains a move and its eval rating
-    struct EvalMove      //////////   const auto& [move, eval] = move.data;
+    struct EvalMove
     {
-        std::tuple<Chess::Move, int> data;
+        Chess::Move move;
+        int eval;
 
         EvalMove(const Chess::Move& move, int eval)
-            : data(std::make_tuple(move, eval))
+            : move(move), eval(eval)
         { }
-
-        Chess::Move get_move(void) const
-            { return std::get<0>(data); }
-        
-        int get_eval(void) const
-            { return std::get<1>(data); }
     };
-
 
     // The results of an evaluation
     struct EvalResults
