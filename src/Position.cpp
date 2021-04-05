@@ -14,31 +14,37 @@ namespace Drk::Chess
 
     std::vector<Move> Position::get_legal_moves(void) const
     {
-        std::vector<Move> moves = get_player_moves();
+        std::vector<Move> moves;
 
-        auto it = moves.begin();
-        while (it != moves.end())
-        {
-            auto& move = *it;
-            bool remove = false;
-
-            if (!check_legal_move(move))
-                remove = true;
-
-            if (move.type == MoveType::Promotion) // Creates new move for each piece to promote to, removes original move
+        for (const auto& piece : m_board)
+            if (piece->get_color() == m_toPlay)
             {
-                
+                const std::vector<Move> pieceMoves = piece->get_moves();
+                moves.insert(moves.end(), pieceMoves.begin(), pieceMoves.end());
             }
 
-            if (remove)
-                it = moves.erase(it);
-            else
-                it++;
-        }
         
-        // Add castles
+        // Add castling
 
         return moves;
+        
+
+        // auto it = moves.begin();
+        // while (it != moves.end())
+        // {
+        //     auto& move = *it;
+        //     bool remove = false;
+
+        //     if (!check_legal_move(move))
+        //         remove = true;
+
+            
+
+        //     if (remove)
+        //         it = moves.erase(it);
+        //     else
+        //         it++;
+        // }
     }
 
     bool Position::can_castle(void)
@@ -54,33 +60,9 @@ namespace Drk::Chess
         }
     }
 
-    std::vector<Move> Position::get_player_moves(void) const
-    {
-        std::vector<Move> moves;
-
-        for (const auto& piece : m_board)
-            if (piece->get_color() == m_toPlay)
-            {
-                const std::vector<Move> pieceMoves = piece->get_possible_moves();
-                moves.insert(moves.end(), pieceMoves.begin(), pieceMoves.end());
-            }
-
-        return moves;
-    }
-
     bool Position::check_legal_move(const Move& move) const
     {
-        if (m_board.square_occupied(move.to))
-        {
-            if (m_board.get_piece(move.to)->get_color() == m_toPlay)
-                return false;
-            else if (m_board.get_piece(move.to)->get_color() == !m_toPlay)
-            {
-                move.type = MoveType::Capture;
-                // if (move.piece == PieceEnum::Pawn)
-                //     check_en_passant(move.to);
-            }
-        }
+        
 
         // if (flags.in_check(m_toPlay))
         //     check_illegal_move_in_check()

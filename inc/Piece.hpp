@@ -36,10 +36,8 @@ namespace Drk::Chess
     protected:
         Piece(PieceEnum piece, Square square, Color color, int value);
 
-        // Used by get_moves() overrides
-        // Gets the possible moves for the piece, not taking into account
-          // non-eliminated checks, castling
-        virtual std::vector<Move> get_possible_moves(const Position& position) const;
+        // Checks if a move leaves the player in check
+        bool check_legal_move(const Position& position, Move move) const;
 
         // Checks if the square is a potential move (in-bounds, not the same square)
         // distance: max distance from current square
@@ -47,17 +45,13 @@ namespace Drk::Chess
         bool check_bishop_move(const Position& position, Square square, int distance=8) const; // Diagonal moves
         bool check_queen_move (const Position& position, Square square, int distance=8) const; // Any direction
         bool check_knight_move(const Position& position, Square square) const;
-        bool check_pawn_move  (const Position& position, Square square) const;
 
         // Checks if the move is a legal capture (if move is not a capture at all, still returns false)
         bool check_legal_capture(const Position& position, Square square) const;
 
         // Checks if the move destination is not the source
-        bool check_is_move(Square square)
+        bool check_is_move(Square square) const
             { return (square != m_square); }
-        
-        /////// ~~~~~Checks for not eliminating check~~~~~~
-        bool check_legal_move(const Position& position, Move move);
 
     protected:
         PieceEnum m_piece;

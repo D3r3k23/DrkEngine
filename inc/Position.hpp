@@ -44,7 +44,7 @@ namespace Drk::Chess
 
         const Piece& get_piece(Square square) const;
 
-        bool can_en_passant(Pieces::Pawn pawn, Move move) const;
+        bool can_en_passant(Square square) const;
 
         void load_starting_position();
 
@@ -53,8 +53,11 @@ namespace Drk::Chess
         bool square_occupied(Square square) const
             { return m_board.square_occupied(square); }
         
-        Rank promotion_rank(void) const
+        Rank pawn_promotion_rank(void) const
             { return (m_toPlay == Color::White) ? Rank::R8 : Rank::R1; }
+
+        Rank pawn_starting_rank(void) const
+            { return (m_toPlay == Color::White) ? Rank::R2 : Rank::R7; }
         
         bool can_castle(void);
 
@@ -63,11 +66,6 @@ namespace Drk::Chess
             { return m_board; }
     
     private:
-        std::vector<Move> get_player_moves(void) const;
-
-        // Checks if the move leaves the player in check
-        bool check_legal_move(Move& move) const;
-
         bool check_can_castle(void);
 
         void load_from_file(const char* fp);

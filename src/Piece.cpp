@@ -24,7 +24,12 @@ namespace Drk::Chess
         : m_piece(piece), m_square(square), m_color(color), m_value(value)
     { }
 
-    bool Piece::check_rook_move(const Position& position, Square square, int distance)
+    bool Piece::check_legal_move(const Position& position, Move move) const
+    {
+
+    }
+
+    bool Piece::check_rook_move(const Position& position, Square square, int distance) const
     {
         if (!check_is_move(square))
             return false;
@@ -33,38 +38,21 @@ namespace Drk::Chess
             && (Square(rank, file) != m_square));
     }
 
-    bool Piece::check_bishop_move(const Position& position, Square square, int distance)
+    bool Piece::check_bishop_move(const Position& position, Square square, int distance) const
     {
         return (((rank - to_index(m_square.rank)) == (file - to_index(m_square.file)))
             && (Square(rank, file) != m_square));
     }
 
-    bool Piece::check_queen_move(const Position& position, Square square, int distance)
+    bool Piece::check_queen_move(const Position& position, Square square, int distance) const
     {
         return check_rook_move(rank, file, distance)
             || check_bishop_move(rank, file, distance);
     }
 
-    bool Piece::check_knight_move(const Position& position, Square square)
+    bool Piece::check_knight_move(const Position& position, Square square) const
     {
 
-    }
-
-    bool Piece::check_pawn_move(const Position& position, Square square)
-    {
-        if (check_is_move(square))
-            if (Util::in_bounds(to_index(square.rank), to_index(square.file)))
-            {
-                if (square.rank == m_square.rank + 1)
-                {
-                    return Util::in_range<File>(square.file, m_square.file - 1, m_square.file + 1)
-                }
-                else if (square.rank == m_square.rank + 2)
-                {
-                    return square.file == m_square.file;
-                }
-            }
-        return false;
     }
 
     bool Piece::check_legal_capture(const Position& position, Square square) const
