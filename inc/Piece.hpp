@@ -33,7 +33,11 @@ namespace Drk::Chess
         char      get_symbol    (void) const { return to_char(m_piece); }
         PieceEnum get_piece_enum(void) const { return m_piece; }
 
-        bool has_moved(void) const { return m_hasMoved; }
+        bool is_piece(void) const
+            { return m_piece != PieceEnum::None; }
+
+        bool has_moved(void) const
+            { return m_hasMoved; }
 
         void move(Square dest);
 

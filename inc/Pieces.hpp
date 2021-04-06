@@ -75,15 +75,13 @@ namespace Drk::Chess::Pieces
         Pawn(Square square, Color color);
         std::vector<Move> get_moves(const Position& position) const override;
 
-        Rank forward_rank(int distance) const
-            { return (m_color == Color::White) ? m_square.rank + 1 : m_square.rank - 1; }
+        Rank forward_rank(int distance) const;
 
     private:
         // Checks if the move is a legal en passant
         bool check_en_passant(const Position& position, Square square) const;
 
-        bool is_promotion(const Position& position, Move move) const
-            { return (move.to.rank == position.pawn_promotion_rank()); }
+        bool is_promotion(const Position& position, Move move) const;
 
         static std::vector<Move> add_promotion_moves(std::vector<Move>& moves);
     };

@@ -175,6 +175,13 @@ namespace Drk::Chess::Pieces
 
     ////////// Pawn //////////
 
+    Rank Pawn::forward_rank(int distance) const
+    {
+        return (m_color == Color::White) ? m_square.rank + distance
+                                         : m_square.rank - distance;
+    }
+
+
     bool Pawn::check_legal_move(const Position& position, Move move) const
     {
         
@@ -185,6 +192,11 @@ namespace Drk::Chess::Pieces
     bool Pawn::check_en_passant(const Position& position, Move move) const
     {
         
+    }
+
+    bool Pawn::is_promotion(const Position& position, Move move) const // Board??
+    {
+        return (move.to.rank == position.pawn_promotion_rank()); // Pawn??
     }
 
     std::vector<Move> Pawn::add_promotion_moves(std::vector<Move>& moves, Move move)

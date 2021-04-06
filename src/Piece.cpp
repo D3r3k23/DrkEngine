@@ -24,7 +24,7 @@ namespace Drk::Chess
         : m_piece(piece), m_square(square), m_color(color), m_value(value)
     { }
     
-    void move(Square dest)
+    void Piece::move(Square dest)
     {
         m_square = dest;
         m_hasMoved = true;
@@ -40,14 +40,14 @@ namespace Drk::Chess
         if (!check_is_move(square))
             return false;
 
-        return (((rank == to_index(m_square.rank)) || (file == to_index(m_square.file)))
-            && (Square(rank, file) != m_square));
+        return (((square.rank == m_square.rank) || (square.file == m_square.file))
+            && (square != m_square));
     }
 
     bool Piece::check_bishop_move(const Position& position, Square square, int distance) const
     {
-        return (((rank - to_index(m_square.rank)) == (file - to_index(m_square.file)))
-            && (Square(rank, file) != m_square));
+        return (((square.rank - m_square.rank) == (square.file - m_square.file))
+            && (square != m_square));
     }
 
     bool Piece::check_queen_move(const Position& position, Square square, int distance) const

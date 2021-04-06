@@ -71,9 +71,13 @@ namespace Drk::Chess
         { }
 
         Iterator& operator++(void);
+        Iterator  operator++(int);
 
         Piece& operator*(void) const
             { return m_board.piece(m_rank, m_file); }
+        
+        Piece* operator->(void) const
+            { return &(m_board.piece(m_rank, m_file)); }
 
         bool operator!=(const Iterator& other) const
             { return (m_rank != other.m_rank) && (m_file != other.m_file); }
@@ -93,9 +97,13 @@ namespace Drk::Chess
         { }
 
         Iterator_const& operator++(void);
+        Iterator_const  operator++(int);
 
         const Piece& operator*(void) const
             { return m_board.piece(m_rank, m_file); }
+        
+        const Piece* operator->(void) const
+            { return &(m_board.piece(m_rank, m_file)); }
 
         bool operator!=(const Iterator_const& other) const
             { return (m_rank != other.m_rank) && (m_file != other.m_file); }

@@ -6,14 +6,13 @@ namespace Drk::Util
 {
     void CLTools::print_board(const Chess::Board& board)
     {
-        Board::Iterator_const it = m_board.begin();
-        for (i = 1; i <= 17; i++)
+        for (int i = 1; i <= 17; i++)
             print_board_row(board, i);
     }
 
     void CLTools::print_board_row(const Chess::Board& board, int row)
     {
-        bool pieceRow = (i % 2 == 1); // Odd rows
+        bool pieceRow = (row % 2 == 1); // Odd rows
         Chess::Board::Iterator_const it(board, 8 - (row / 2), 0);
 
         for (int i = 0; i < 8; i++)

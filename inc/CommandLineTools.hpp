@@ -32,7 +32,7 @@ namespace Drk::Util
             static void print_board(const Chess::Board& board);
             static void print_board_row(const Chess::Board& board, int row);
             
-            static void print_position(const Chess:Position& position);
+            static void print_position(const Chess::Position& position);
         };
     
     #else
