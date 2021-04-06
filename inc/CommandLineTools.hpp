@@ -12,7 +12,11 @@
 #define COMMAND_LINE_TOOLS_HPP
 
 
+#include "ChessPrimitives.hpp"
+#include "Piece.hpp"
 #include "Board.hpp"
+
+#include <iostream>
 
 
 namespace Drk::Util
@@ -26,6 +30,9 @@ namespace Drk::Util
                 { return true; }
             
             static void print_board(const Chess::Board& board);
+            static void print_board_row(const Chess::Board& board, int row);
+            
+            static void print_position(const Chess:Position& position);
         };
     
     #else

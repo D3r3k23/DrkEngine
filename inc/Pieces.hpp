@@ -26,6 +26,7 @@ namespace Drk::Chess::Pieces
         std::vector<Move> get_moves(const Position& position) const override;
     };
 
+
     class King : public Piece
     {
     public:
@@ -33,58 +34,40 @@ namespace Drk::Chess::Pieces
         std::vector<Move> get_moves(const Position& position) const override;
 
         bool has_moved(void) const { return m_hasMoved; }
-
-    private:
-        std::vector<Move> get_possible_moves(const Position& position) const override;
-    
-    private:
-        bool m_hasMoved = false;
     };
+
 
     class Queen : public Piece
     {
     public:
         Queen(Square square, Color color);
         std::vector<Move> get_moves(const Position& position) const override;
-
-    private:
-        std::vector<Move> get_possible_moves(Square square) const;
     };
+
 
     class Rook : public Piece
     {
     public:
         Rook(Square square, Color color);
         std::vector<Move> get_moves(const Position& position) const override;
-
-        bool has_moved(void) const { return m_hasMoved; }
-
-    private:
-        std::vector<Move> get_possible_moves(Square square) const;
-    
-    private:
-        bool m_hasMoved = false;
     };
+
 
     class Bishop : public Piece
     {
     public:
         Bishop(Square square, Color color);
         std::vector<Move> get_moves(const Position& position) const override;
-
-    private:
-        std::vector<Move> get_possible_moves(Square square) const;
     };
+
 
     class Knight : public Piece
     {
     public:
         Knight(Square square, Color color);
         std::vector<Move> get_moves(const Position& position) const override;
-
-    private:
-        std::vector<Move> get_possible_moves(Square square) const;
     };
+
 
     class Pawn : public Piece
     {

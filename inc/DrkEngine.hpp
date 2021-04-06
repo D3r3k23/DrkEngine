@@ -15,6 +15,7 @@
 #include "Engine.hpp"
 #include "EvalPosition.hpp"
 #include "Eval.hpp"
+#include "CommandLineTools.hpp"
 
 
 #endif // DRK_ENGINE_HPP

@@ -55,6 +55,12 @@ namespace DrkTest
 
     // Should fail
     bool should_fail();
+
+    // Prints the default board to the console
+    bool print_board();
+
+    // Loads the Chess starting position from a file and prints it
+    bool load_position();
 }
 
 

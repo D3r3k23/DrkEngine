@@ -62,8 +62,11 @@ namespace Drk::Chess
         bool can_castle(void);
 
         // For calling Board Iterator: for (auto piece : position.get_pieces())
+        // Or put begin() and end() in Position to wrap Board??
         const Board& get_pieces(void)
             { return m_board; }
+
+        friend class CommandLineTools;
     
     private:
         bool check_can_castle(void);

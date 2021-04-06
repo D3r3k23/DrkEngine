@@ -49,4 +49,17 @@ namespace DrkTest
             default    : return false;
         }
     }
+
+    bool print_board();
+    {
+        Board board;
+        CLTools::print_board(board);
+    }
+
+    bool load_position();
+    {
+        Position position;
+        position.load_from_file("resources/starting_position.drk");
+        CLTools::print_position(position);
+    }
 }

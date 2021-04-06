@@ -33,6 +33,10 @@ namespace Drk::Chess
         char      get_symbol    (void) const { return to_char(m_piece); }
         PieceEnum get_piece_enum(void) const { return m_piece; }
 
+        bool has_moved(void) const { return m_hasMoved; }
+
+        void move(Square dest);
+
     protected:
         Piece(PieceEnum piece, Square square, Color color, int value);
 
@@ -58,6 +62,8 @@ namespace Drk::Chess
         Square m_square;
         Color m_color;
         int m_value;
+
+        bool m_hasMoved;
     };
 }
 

@@ -117,7 +117,7 @@ namespace Drk::Chess::Pieces
         {
             moves.emplace_back(m_square, forward1);
 
-            if (m_square.rank == position.pawn_starting_rank())
+            if (!has_moved())
             {
                 Square forward2(forward_rank(2), m_square.file);
                 if (!position.square_occupied(forward2))

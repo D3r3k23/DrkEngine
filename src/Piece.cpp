@@ -23,6 +23,12 @@ namespace Drk::Chess
     Piece::Piece(PieceEnum piece, Square square, Color color, int value)
         : m_piece(piece), m_square(square), m_color(color), m_value(value)
     { }
+    
+    void move(Square dest)
+    {
+        m_square = dest;
+        m_hasMoved = true;
+    }
 
     bool Piece::check_legal_move(const Position& position, Move move) const
     {
