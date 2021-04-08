@@ -44,23 +44,22 @@ namespace DrkTest
 
     void Util::run_internal(std::function<bool()> func, const char* name)
     {
-        using Clock    = std::chrono::steady_clock;
-        using TimePnt  = std::chrono::time_point<Clock>;
-        using MicroSec = std::chrono::microseconds;
+        using Clock = std::chrono::steady_clock;
+        using Time  = std::chrono::time_point<Clock>;
+        using Micro = std::chrono::microseconds;
 
         numTests++;
 
-        TimePnt start = Clock::now();
-        bool passed   = func();
-        TimePnt end   = Clock::now();
+        Time start  = Clock::now();
+        bool passed = func();
+        Time end    = Clock::now();
+
+        Micro elapsed = std::chrono::duration_cast<Micro>(end - start);
 
         if (passed)
             numPassed++;
         else
             failingTests.emplace_back(name);
-
-        MicroSec elapsed = std::chrono::time_point_cast<MicroSec>(end  ).time_since_epoch()
-                         - std::chrono::time_point_cast<MicroSec>(start).time_since_epoch();
 
         std::cout << "Test:    " << name                           << std::endl;
         std::cout << "Result:  " << (passed ? "Passed" : "Failed") << std::endl;
