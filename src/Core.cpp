@@ -1,84 +1,93 @@
-
 #include "Core.hpp"
 
-#include <chrono>
-#include <ctime>
+#if defined(DRK_EN_LOGGING) || defined(DRK_EN_ASSERTS)
+    #include <format>
+#endif
 
+#if defined(DRK_EN_LOGGING)
+    #include <chrono>
+#endif
 
 namespace Drk
 {
     ////////// Logging //////////
-    #ifdef DRK_EN_LOGGING
+    #if 1 // defined(DRK_EN_LOGGING)
 
         // Logger private static instance
-        std::unique_ptr<Logger> Logger::s_instance = nullptr;
+        Logger* Logger::s_instance = nullptr;
 
         // Logger public static functions
 
         void Logger::init(const char* name)
         {
-            s_instance = std::make_unique<Logger>(name);
+            s_instance = new Logger(name);
             DRK_LOG(INFO, "Log file opened.");
         }
 
-        void Logger::log(LogType type, const char* msg)
+        void Logger::log(LogType type, std::string_view msg)
         {
-            if (!s_instance)
-                init();
-
+            DRK_ASSERT(s_instance, "Logger not initialized");
             s_instance->log_internal(type, msg);
-        }
-
-        void Logger::log(LogType type, const std::string& msg)
-        {
-            if (!s_instance)
-                init();
-
-            s_instance->log_internal(type, msg.c_str());
         }
 
         void Logger::save(void)
         {
-            if (s_instance)
-                s_instance->save_internal();
+            DRK_ASSERT(s_instance, "Logger not initialized");
+            DRK_LOG(INFO, "Log file closed.");
+            s_instance->save_internal();
         }
 
         // Logger constructor & destructor
 
         Logger::Logger(const char* name)
         {
-            const std::time_t now = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
-            const std::tm* const logtime = std::localtime(&now);
+            using Days    = std::chrono::days;
+            using Seconds = std::chrono::seconds;
 
-            const std::string fp = "logs/"
-                + std::string(name) + "_drk_engine" + "_"
-                + std::to_string(logtime->tm_mon)   + "."
-                + std::to_string(logtime->tm_mday)  + "."
-                + std::to_string(logtime->tm_year)  + "_"
-                + std::to_string(logtime->tm_hour)  + ":"
-                + std::to_string(logtime->tm_min)   + ":"
-                + std::to_string(logtime->tm_sec)   + ".log";
+            auto now = std::chrono::system_clock::now();
 
-            logfile.open(fp);
-            DRK_ASSERT(logfile.is_open(), "Couldn't open log file: " + fp);
+            const std::chrono::year_month_day    ymd(std::chrono::floor<Days>(now));
+            const std::chrono::hh_mm_ss<Seconds> hms(std::chrono::floor<Seconds>(now));
+
+            const auto fn = std::format("logs/{}_drk_engine_{}.{}.{}.{}.{}.{}.log",
+                name,
+                ymd.month(),
+                ymd.day(),
+                ymd.year(),
+                hms.hours(),
+                hms.minutes(),
+                hms.seconds()
+            );
+
+            // const std::stringstream fn;
+            // fn << "logs/";
+            // fn << name << "_drk_engine" << "_";
+            // fn << ymd.month() << ".";
+            // fn << ymd.day() << ".";
+            // fn << ymd.year() << "_";
+            // fn << hms.hours() << ":";
+            // fn << hms.minutes()  << ":";
+            // fn << hms.seconds()  << ".log";
+
+            log_file.open(fn);
+            DRK_ASSERT(log_file.is_open(), "Couldn't open log file: " + fn);
         }
 
         Logger::~Logger(void)
         {
-            save();
+            save_internal();
         }
 
         // Logger private functions
 
-        void Logger::log_internal(LogType type, const char* msg)
+        void Logger::log_internal(LogType type, std::string_view msg)
         {
-            logfile << "[" << type << "]  " << msg << "\n";
+            log_file << "[" << type << "]  " << msg << "\n";
         }
 
         void Logger::save_internal(void)
         {
-            DRK_LOG(INFO, "Log file closed.");
-            logfile.close();
+            log_file.close();
         }
 
 
@@ -102,11 +111,12 @@ namespace Drk
 
 
     ////////// Asserts //////////
-    #ifdef DRK_EN_ASSERTS  
+    #if defined(DRK_EN_ASSERTS)
 
-        void Assert::failed(const std::string& msg, const std::string& file, int line)
+        void assert_failed(std::string_view msg, std::string_view file, int line)
         {
-            const std::string assert_msg(file + ":" + std::to_string(line) + ": " + msg);
+            const auto file_name  = std::filesystem::path(file).filename();
+            const auto assert_msg = std::format("{}:{}: {}", file_name, line, msg);
             std::cout << "Assert: " << assert_msg << std::endl; // Remove later?
 
             DRK_LOG(ASSERT, assert_msg);

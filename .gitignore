@@ -1,6 +1,6 @@
 
 /.vscode/
 /.VSCodeCounter/
-/tests/build/
+/test/build/
 
 *.log
