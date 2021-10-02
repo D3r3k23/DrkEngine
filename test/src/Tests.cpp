@@ -1,7 +1,5 @@
 #include "Tests.hpp"
 
-#include <iostream>
-
 using namespace Drk;
 
 namespace DrkTest

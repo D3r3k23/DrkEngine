@@ -10,7 +10,7 @@ namespace DrkEngine::Util
 {
     ////////// Random //////////
 
-    void Random::init(void)
+    void Random::seed(void)
     {
         std::srand(time(NULL));
     }

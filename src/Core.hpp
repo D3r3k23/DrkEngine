@@ -1,5 +1,5 @@
-#ifndef DRK_CORE_HPP
-#define DRK_CORE_HPP
+#ifndef DRK_ENGINE_CORE_HPP
+#define DRK_ENGINE_CORE_HPP
 
 #include <memory>
 
@@ -9,9 +9,8 @@
 #endif
 
 #if defined(DRK_EN_LOGGING)
-#include <iostream>
-#include <fstream>
-#include <string_view>
+    #include <fstream>
+    #include <string_view>
 #endif
 
 #if defined(DRK_EN_ASSERTS)
@@ -41,23 +40,29 @@ namespace Drk
     #if defined(DRK_EN_LOGGING)
 
         #define DRK_LOGGER_INIT(name) Drk::Logger::init(name);
-        #define DRK_LOG(type, msg)    Drk::Logger::log(LogType::type, msg);
+        #define DRK_LOG(type, msg)    Drk::Logger::log(Drk::LogType::type, msg);
         #define DRK_LOGGER_SAVE()     Drk::Logger::save();
 
-        enum class LogType;
-
+        enum class LogType
+        {
+            INFO,
+            WARN,
+            ERR,
+            ASSERT
+        };
 
         class Logger
         {
         private:
-            static Logger* s_instance; // Singleton
+            static Ptr<Logger> s_instance; // Singleton
 
         public:
-            static void init(const char* name="");
+            static void init(const char* name, const char* dir=nullptr);
             static void log(LogType type, std::string_view msg);
             static void save(void);
+            static bool initialized(void);
 
-            Logger(const char* name);
+            Logger(const char* name, const char* dir);
             ~Logger(void);
 
             Logger(Logger&) = delete;
@@ -70,10 +75,7 @@ namespace Drk
             std::ofstream log_file;
         };
 
-
-        enum class LogType { INFO, WARN, ERR, ASSERT };
-
-        std::ostream& operator<<(std::ostream& os, LogType& type);
+        std::string to_string(LogType type);
 
     #else // Unimplemented
         #define DRK_LOGGER_INIT(name)
@@ -98,4 +100,4 @@ namespace Drk
     #endif // DRK_EN_ASSERTS
 }
 
-#endif // DRK_CORE_HPP
+#endif // DRK_ENGINE_CORE_HPP

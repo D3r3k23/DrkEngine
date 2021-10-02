@@ -1,33 +1,32 @@
 #include "Tests.hpp"
 
-#include <iostream>
-#include <chrono>
-
 namespace DrkTest
 {
-    // Private static instance
-    Util* Util::s_instance = nullptr;
+    // Private static
 
+    Util& get_instance(void)
+    {
+        static Util instance;
+        return instance;
+    }
 
     // Public static functions
 
-    void Util::init(void)
-    {
-        DRK_LOGGER_INIT("Tests");
-        s_instance = new Util;
-    }
-
     void Util::run(std::function<bool()> func, const char* name)
     {
-        if (!s_instance)
-            init();
-
-        s_instance->run_internal(func, name);
+        get_instance().run_internal(func, name);
     }
 
-    // Destructor
+    //
+    Util::Util(void)
+    {
+        DRK_LOGGER_INIT("Tests");
+        tests_start = Clock::now();
+    }
+
     Util::~Util(void)
     {
+        tests_end = Clock::now();
         print_results();
     }
 
@@ -35,10 +34,6 @@ namespace DrkTest
 
     void Util::run_internal(std::function<bool()> func, const char* name)
     {
-        using Clock = std::chrono::steady_clock;
-        using Time  = std::chrono::time_point<Clock>;
-        using Micro = std::chrono::microseconds;
-
         numTests++;
 
         const Time start  = Clock::now();
@@ -52,22 +47,25 @@ namespace DrkTest
         else
             failingTests.emplace_back(name);
 
-        std::cout << "Test:    " << name                           << std::endl;
-        std::cout << "Result:  " << (passed ? "Passed" : "Failed") << std::endl;
-        std::cout << "Profile: " << elapsed.count() << " us"       << std::endl;
-        std::cout << std::endl;
+        std::cout << std::format("Test:    {}", name)                         << '\n';
+        std::cout << std::format("Result:  {}", passed ? "Passed" : "Failed") << '\n';
+        std::cout << std::format("Elapsed: {} us", elapsed.count())           << '\n';
+        std::cout << '/n';
     }
 
     void Util::print_results(void)
     {
-        std::cout << "Tests completed." << std::endl;
-        std::cout << "Tests passed: " << numPassed << "/" << numTests << std::endl;
+        const Micro elapsed = std::chrono::duration_cast<Micro>(tests_end - tests_start);
+
+        std::cout << "Tests completed."                                      << '\n';
+        std::cout << std::format("Tests passed: {}/{}", numPassed, numTests) << '\n';
+        std::cout << std::format("Elapsed: {} us", elapsed.count())          << '\n';
 
         if (numTests - numPassed > 0)
         {
-            std::cout << "Failed tests:" << std::endl;
+            std::cout << "Failing tests:" << '\n';
             for (const auto& test : failingTests)
-                std::cout << " -" << test << std::endl;
+                std::cout << " -" << test << '\n';
         }
     }
 }

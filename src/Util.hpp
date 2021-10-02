@@ -11,7 +11,7 @@ namespace DrkEngine::Util
 {
     class Random
     {
-        static void init(void);
+        static void seed(void);
         static int int_in_range(int lower, int upper);
     };
 

@@ -1,30 +1,35 @@
 #ifndef DRK_ENGINE_TESTS_HPP
 #define DRK_ENGINE_TESTS_HPP
 
-#include <DrkEngine.hpp>
+#include <DrkEngine/Engine.hpp>
+#include <DrkEngine/Chess.hpp>
 
-#include <string>
+#include <iostream>
+#include <format>
 #include <vector>
 #include <functional>
-#include <memory>
+#include <chrono>
 
-#define INIT_TESTS()   DrkTest::Util::init()
 #define RUN_TEST(test) DrkTest::Util::run(DrkTest::test, #test)
 
 namespace DrkTest
 {
+    using Clock = std::chrono::steady_clock;
+    using Time  = std::chrono::time_point<Clock>;
+    using Micro = std::chrono::microseconds;
+
     class Util
     {
     private:
-        static Util* s_instance; // Singleton
+        static Util& get_instance(void); // Singleton
 
     public:
         static void init(void);
         static void run(std::function<bool()> func, const char* name);
 
+        Util(void);
         ~Util(void);
 
-        Util(void) = default;
         Util(Util&) = delete;
         Util& operator=(const Util&) = delete;
 
@@ -35,6 +40,8 @@ namespace DrkTest
     private:
         int numTests  = 0;
         int numPassed = 0;
+        Time tests_start;
+        Time tests_end;
         std::vector<std::string> failingTests;
     };
 
