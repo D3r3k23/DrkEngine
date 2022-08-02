@@ -39,9 +39,9 @@ namespace Drk
     ////////// Logging //////////
     #if defined(DRK_EN_LOGGING)
 
-        #define DRK_LOGGER_INIT(name) Drk::Logger::init(name);
-        #define DRK_LOG(type, msg)    Drk::Logger::log(Drk::LogType::type, msg);
-        #define DRK_LOGGER_SAVE()     Drk::Logger::save();
+        #define DRK_LOGGER_INIT(name) Drk::Logger::init(name)
+        #define DRK_LOG(type, msg)    Drk::Logger::log(Drk::LogType::type, msg)
+        #define DRK_LOGGER_SAVE()     Drk::Logger::save()
 
         enum class LogType
         {

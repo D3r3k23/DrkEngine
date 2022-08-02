@@ -1,23 +1,24 @@
-
-name: Unit Tests
-on: [push]
+name: DrkEngine CI
+on:
+  push:
+  workflow_dispatch:
 
 env:
   BUILD_TYPE: Debug
 
 jobs:
-  Tests:
+  Linux:
     runs-on: ubuntu-latest
     defaults:
       run:
         shell: bash
-        
+
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
-      - name: Build Tests
-        run:  scripts/buildtests.sh
+      - name: Build
+        run:  scripts/build.sh --debug --tests --console_chess
 
       - name: Run Tests
-        run:  scripts/runtests.sh
+        run:  scripts/run.sh --debug --tests

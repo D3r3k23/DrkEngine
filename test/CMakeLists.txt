@@ -15,6 +15,7 @@ set_target_properties(Tests
 target_compile_options(Tests     PRIVATE -Wall)
 target_compile_options(DrkEngine PRIVATE -Wall)
 
+# Delete this - for Linux, make separate build trees for Debug and Release
 set(OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin/${CMAKE_BUILD_TYPE})
 set_target_properties(Tests DrkEngine
   PROPERTIES

@@ -21,8 +21,8 @@ namespace DrkEngine::Util
     template<typename T>
     bool in_range(T x, T min, T max);
 
-    print_board(const Chess::Board& board);
-    print_board_row(const Chess::Board& board, int row);
+    void print_board(const Chess::Board& board);
+    void print_board_row(const Chess::Board& board, int row);
 }
 
 

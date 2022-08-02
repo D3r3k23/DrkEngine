@@ -1,7 +1,7 @@
 #ifndef DRK_ENGINE_INCLUDE_ENGINE_HPP
 #define DRK_ENGINE_INCLUDE_ENGINE_HPP
 
-#include "Engine/Engine.hpp"
+#include "DrkEngine/Engine/Engine.hpp"
 
 namespace Drk
 {

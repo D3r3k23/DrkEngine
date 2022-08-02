@@ -22,7 +22,6 @@ namespace DrkEngine::Util
 
     ////////////////////////////
 
-
     bool in_bounds(int rank, int file)
     {
         return (0 <= rank && rank <= 7)
