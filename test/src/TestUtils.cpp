@@ -40,7 +40,7 @@ namespace DrkTest
         const bool passed = func();
         const Time end    = Clock::now();
 
-        const Micro elapsed = std::chrono::duration_cast<Micro>(end - start);
+        const auto elapsed = std::chrono::duration_cast<Micro>(end - start).count();
 
         if (passed)
             numPassed++;
@@ -49,7 +49,7 @@ namespace DrkTest
 
         std::cout << std::format("Test:    {}", name)                         << '\n';
         std::cout << std::format("Result:  {}", passed ? "Passed" : "Failed") << '\n';
-        std::cout << std::format("Elapsed: {} us", elapsed.count())           << '\n';
+        std::cout << std::format("Elapsed: {} us", elapsed)                   << '\n';
         std::cout << '/n';
     }
 

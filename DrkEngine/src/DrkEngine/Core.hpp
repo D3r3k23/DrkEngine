@@ -16,9 +16,9 @@
 #if defined(DRK_EN_ASSERTS)
     #ifdef __linux__
         #include <signal.h>
-        #define DRK_DEBUG_BREAK raise(SIGTRAP)
+        #define DRK_DEBUG_BREAK() raise(SIGTRAP)
     #elif _WIN32
-        #define DRK_DEBUG_BREAK __debugbreak()
+        #define DRK_DEBUG_BREAK() __debugbreak()
     #endif
 #endif
 
